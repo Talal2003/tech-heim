@@ -23,8 +23,8 @@ export default function Navbar() {
             <Link component={RouterLink} to='/home' color='inherit' underline='none'>Blog</Link>
             <Link component={RouterLink} to='/home' color='inherit' underline='none'>FAQ</Link>
             <Link component={RouterLink} to='/home' color='inherit' underline='none'>Contact Us</Link>
-            <Link component={RouterLink} to='/auth/login' color='inherit' underline='none'>Login</Link>
-            <Link component={RouterLink} to='/auth/register' color='inherit' underline='none'>Register</Link>
+            <Link component={RouterLink} to='/login' color='inherit' underline='none'>Login</Link>
+            <Link component={RouterLink} to='/register' color='inherit' underline='none'>Register</Link>
           </Box>
 
         </Toolbar>
