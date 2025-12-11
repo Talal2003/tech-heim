@@ -12,8 +12,8 @@ export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Toolbar sx={{display:'flex', justifyContent: 'space-between'}}>
+          <Typography variant="h6" component="div">
             Tech Heim
           </Typography>
 
@@ -23,6 +23,9 @@ export default function Navbar() {
             <Link component={RouterLink} to='/home' color='inherit' underline='none'>Blog</Link>
             <Link component={RouterLink} to='/home' color='inherit' underline='none'>FAQ</Link>
             <Link component={RouterLink} to='/home' color='inherit' underline='none'>Contact Us</Link>
+          </Box>
+
+          <Box sx={{ display:'flex', gap: 4}}>
             <Link component={RouterLink} to='/login' color='inherit' underline='none'>Login</Link>
             <Link component={RouterLink} to='/register' color='inherit' underline='none'>Register</Link>
           </Box>
