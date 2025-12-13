@@ -7,27 +7,39 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
+import logoIcon from './../../assets/icons/navbar/logo.svg';
+import searchNormalIcon from './../../assets/icons/navbar/search-normal.svg';
+import bagIcon from './../../assets/icons/navbar/bag.svg';
 
 export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" color="white">
         <Toolbar sx={{display:'flex', justifyContent: 'space-between'}}>
-          <Typography variant="h6" component="div">
-            Tech Heim
-          </Typography>
-
-          <Box sx={{ display:'flex', gap: 4}}>
-            <Link component={RouterLink} to='/home' color='inherit' underline='none'>Home</Link>
-            <Link component={RouterLink} to='/cart' color='inherit' underline='none'>Products</Link>
-            <Link component={RouterLink} to='/home' color='inherit' underline='none'>Blog</Link>
-            <Link component={RouterLink} to='/home' color='inherit' underline='none'>FAQ</Link>
-            <Link component={RouterLink} to='/home' color='inherit' underline='none'>Contact Us</Link>
+          <Box>
+            <Link>
+              <img src={logoIcon} alt="Logo" />
+            </Link>
           </Box>
 
           <Box sx={{ display:'flex', gap: 4}}>
-            <Link component={RouterLink} to='/login' color='inherit' underline='none'>Login</Link>
-            <Link component={RouterLink} to='/register' color='inherit' underline='none'>Register</Link>
+            <Link component={RouterLink} to='/home' color='inherit' underline='none'>Home</Link>
+            <Link component={RouterLink} to='/' color='inherit' underline='none'>Products</Link>
+            <Link component={RouterLink} to='/' color='inherit' underline='none'>Blog</Link>
+            <Link component={RouterLink} to='/' color='inherit' underline='none'>FAQ</Link>
+            <Link component={RouterLink} to='/' color='inherit' underline='none'>Contact Us</Link>
+          </Box>
+
+          <Box sx={{ display:'flex', gap: 2, alignItems:'center'}}>
+            <Link component={RouterLink} to='/'
+            sx={{ display:'flex', gap: 2, alignItems:'center'}}>
+              <img src={searchNormalIcon} alt="" />
+            </Link>
+            <Link component={RouterLink} to='/cart'
+            sx={{ display:'flex', gap: 2, alignItems:'center'}}>
+              <img src={bagIcon} alt="" />
+            </Link>
+            <Button component={RouterLink} to='/login' variant="contained">Login / Sign Up</Button>
           </Box>
 
         </Toolbar>
