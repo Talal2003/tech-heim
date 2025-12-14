@@ -23,7 +23,7 @@ export default function Login() {
       if(response.status === 200) {
         localStorage.setItem("token", response.data.accessToken);
         setSuccessfulLogin(true);
-        setServerErrors([]);
+        setServerErrors("");
       }
     }catch(err) {
       console.log(err);
@@ -68,6 +68,8 @@ export default function Login() {
         <TextField {...register('password')} type="password" label="Password" fullWidth variant="outlined"
         error={errors.password} helperText={errors.password?.message}
         />
+        <Link component={RouterLink} variant="caption" to='/send-code'underline='none'
+        sx={{ alignSelf: 'flex-end' }}>Forgot Password ?</Link>
         <FormControlLabel control={<Checkbox size="small" />}
         label={<Typography variant="caption">Keep me logged in</Typography>}
         sx={{ alignSelf: 'flex-start' }} />

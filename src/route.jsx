@@ -5,6 +5,8 @@ import Home from "./pages/home/Home";
 import Cart from "./pages/cart/Cart";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
+import SendCode from "./pages/send_code/sendCode";
+import ResetPassword from "./pages/reset_password/resetPassword";
 
 const router = createBrowserRouter([
   {
@@ -26,15 +28,16 @@ const router = createBrowserRouter([
         {
             path:'register',
             element:<Register />
+        },
+        {
+            path:'send-code',
+            element:<SendCode />
+        },
+        {
+            path:'reset-password',
+            element:<ResetPassword />
         }
     ]
   },
-  {
-    path:'/auth',
-    element:<AuthLayout />,
-    children:[
-    
-    ]
-  }
 ]);
 export default router;

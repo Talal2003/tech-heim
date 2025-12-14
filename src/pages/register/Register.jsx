@@ -22,7 +22,7 @@ export default function Register() {
       console.log(response);
       if(response.status === 201) {
         setSuccessfulRegistration(true);
-        setServerErrors("");
+        setServerErrors([]);
       }
 
     }catch(err) {
