@@ -1,11 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FacebookRounded, Google } from "@mui/icons-material";
 import { Alert, Box, Button, Checkbox, CircularProgress, FormControlLabel, Link, Tab, Tabs, TextField, Typography } from "@mui/material";
-import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link as RouterLink } from 'react-router-dom';
 import { LoginSchema } from "../../validations/LoginSchema";
+import axiosInstance from "../../api/axiosinstance";
 
 export default function Login() {
 
@@ -18,7 +18,7 @@ export default function Login() {
   const loginForm = async(values)=>{
     console.log(values);
     try {
-      const response = await axios.post(`https://knowledgeshop.runasp.net/api/Auth/Account/Login`, values);
+      const response = await axiosInstance.post(`/Auth/Account/Login`, values);
       console.log(response);
       if(response.status === 200) {
         localStorage.setItem("token", response.data.accessToken);

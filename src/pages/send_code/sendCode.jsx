@@ -1,10 +1,10 @@
 import { Alert, Box, Button, CircularProgress, Tab, Tabs, TextField, Typography } from "@mui/material";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SendCodeSchema } from "../../validations/SendCodeSchema";
 import { useState } from "react";
+import axiosInstance from "../../api/axiosinstance";
 
 export default function SendCode() {
 
@@ -18,7 +18,7 @@ export default function SendCode() {
   const sendCodeForm = async(values)=> {
     console.log(values);
     try {
-      const response = await axios.post(`https://knowledgeshop.runasp.net/api/Auth/Account/SendCode`, values);
+      const response = await axiosInstance.post(`/Auth/Account/SendCode`, values);
       console.log(response);
       if(response.status === 200) {
         localStorage.setItem("email", values.email);

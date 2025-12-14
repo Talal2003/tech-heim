@@ -1,10 +1,10 @@
 import { Alert, Box, Button, CircularProgress, Tab, Tabs, TextField, Typography } from "@mui/material";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Link as RouterLink } from 'react-router-dom';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ResetPasswordSchema } from "../../validations/ResetPasswordSchema";
 import { useState } from "react";
+import axiosInstance from "../../api/axiosinstance";
 
 export default function SendCode() {
     
@@ -19,7 +19,7 @@ export default function SendCode() {
     const sendCodeForm = async(values)=> {
         console.log(values);
         try {
-            const response = await axios.patch(`https://knowledgeshop.runasp.net/api/Auth/Account/ResetPassword`, values);
+            const response = await axiosInstance.patch(`/Auth/Account/ResetPassword`, values);
             console.log(response);
         if(response.status === 200) {
             setSuccessfulSentCode(true);

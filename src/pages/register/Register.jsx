@@ -1,11 +1,11 @@
 import { FacebookRounded, Google } from "@mui/icons-material";
 import { Alert, Box, Button, Checkbox, CircularProgress, FormControlLabel, Link, Tab, Tabs, TextField, Typography } from "@mui/material";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Link as RouterLink } from 'react-router-dom';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RegisterSchema } from "../../validations/RegisterSchema";
 import { useState } from "react";
+import axiosInstance from "../../api/axiosinstance";
 
 export default function Register() {
 
@@ -18,7 +18,7 @@ export default function Register() {
   const registerForm = async(values)=> {
     console.log(values);
     try {
-      const response = await axios.post(`https://knowledgeshop.runasp.net/api/Auth/Account/Register`, values);
+      const response = await axiosInstance.post(`/Auth/Account/Register`, values);
       console.log(response);
       if(response.status === 201) {
         setSuccessfulRegistration(true);
