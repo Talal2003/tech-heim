@@ -7,6 +7,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import SendCode from "./pages/send_code/sendCode";
 import ResetPassword from "./pages/reset_password/resetPassword";
+import Products from "./pages/products/Products";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
         {
             path:'home',
             element:<Home />
+        },
+        {
+            path:'products',
+            element:<Products />
         },
         {
             path:'cart',

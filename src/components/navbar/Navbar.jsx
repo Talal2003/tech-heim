@@ -14,7 +14,8 @@ import bagIcon from './../../assets/icons/navbar/bag.svg';
 export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color="white">
+      <AppBar position="static" color="white"
+      sx={{ borderBottom: '1px solid', borderColor: '#78ABF9', boxShadow: 'none'}}>
         <Toolbar sx={{display:'flex', justifyContent: 'space-between'}}>
           <Box>
             <Link>
@@ -22,9 +23,9 @@ export default function Navbar() {
             </Link>
           </Box>
 
-          <Box sx={{ display:'flex', gap: 4}}>
+          <Box sx={{ display:'flex', gap: 6}}>
             <Link component={RouterLink} to='/home' color='inherit' underline='none'>Home</Link>
-            <Link component={RouterLink} to='/' color='inherit' underline='none'>Products</Link>
+            <Link component={RouterLink} to='/products' color='inherit' underline='none'>Products</Link>
             <Link component={RouterLink} to='/' color='inherit' underline='none'>Blog</Link>
             <Link component={RouterLink} to='/' color='inherit' underline='none'>FAQ</Link>
             <Link component={RouterLink} to='/' color='inherit' underline='none'>Contact Us</Link>
