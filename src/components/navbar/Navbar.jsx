@@ -6,12 +6,22 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import logoIcon from './../../assets/icons/navbar/logo.svg';
 import searchNormalIcon from './../../assets/icons/navbar/search-normal.svg';
 import bagIcon from './../../assets/icons/navbar/bag.svg';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 export default function Navbar() {
+
+  const {token, logout} = useContext(AuthContext);
+  const navigate = useNavigate('');
+  const handleLogout = ()=> {
+    logout();
+    navigate('/login');
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="white"
@@ -40,7 +50,11 @@ export default function Navbar() {
             sx={{ display:'flex', gap: 2, alignItems:'center'}}>
               <img src={bagIcon} alt="" />
             </Link>
+            {token != null?
+            <Button variant="contained" onClick={handleLogout}>Logout</Button>
+            :
             <Button component={RouterLink} to='/login' variant="contained">Login / Sign Up</Button>
+            }
           </Box>
 
         </Toolbar>
