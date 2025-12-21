@@ -6,20 +6,20 @@ export default function useRegister() {
 
     const [serverErrors, setServerErrors] = useState([]);
     const [successfulRegistration, setSuccessfulRegistration] = useState(false);
+
     const registerMutation = useMutation({
-        
-    mutationFn:async(values)=> {
-      return await axiosInstance.post(`/Auth/Account/Register`, values);
-    },
-    onSuccess:()=> {
-      setSuccessfulRegistration(true);
-      setServerErrors([]);
-    },
-    onError:()=> {
-      setServerErrors(err.response.data.errors);
-      setSuccessfulRegistration(false);
-    },
-  });
-  
-  return {serverErrors, registerMutation, successfulRegistration}
+        mutationFn: async (values) => {
+            return await axiosInstance.post(`/Auth/Account/Register`, values);
+        },
+        onSuccess: () => {
+            setSuccessfulRegistration(true);
+            setServerErrors([]);
+        },
+        onError: (err) => {
+            setServerErrors(err.response.data.errors);
+            setSuccessfulRegistration(false);
+        },
+    });
+
+    return { registerMutation, successfulRegistration, serverErrors }
 }

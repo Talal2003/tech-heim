@@ -1,39 +1,20 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FacebookRounded, Google } from "@mui/icons-material";
 import { Alert, Box, Button, Checkbox, CircularProgress, FormControlLabel, Link, Tab, Tabs, TextField, Typography } from "@mui/material";
-import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { LoginSchema } from "../../validations/LoginSchema";
-import axiosInstance from "../../api/axiosinstance";
-import { AuthContext } from "../../context/AuthContext";
+import useLogin from "../../hooks/useLogin";
 
 export default function Login() {
-
-  const navigate = useNavigate();
-  const {setAccessToken} = useContext(AuthContext);
-  const [serverErrors, setServerErrors] = useState("");
-  const [successfulLogin, setSuccessfulLogin] = useState(false);
+  
   const{register, handleSubmit, formState: { errors, isSubmitting }} = useForm({
       resolver:yupResolver(LoginSchema),
       mode:'onBlur'
   })
-  const loginForm = async(values)=>{
-    console.log(values);
-    try {
-      const response = await axiosInstance.post(`/Auth/Account/Login`, values);
-      if(response.status === 200) {
-        console.log(response);
-        setAccessToken(response.data.accessToken);
-        navigate('/home');
-        setSuccessfulLogin(true);
-        setServerErrors("");
-      }
-    }catch(err) {
-      console.log(err);
-      setServerErrors(err.response.data.message);
-      setSuccessfulLogin(false);
-    }
+  const {loginMutation, successfulLogin, serverErrors} = useLogin();
+  const loginForm = async (values)=> {
+    await loginMutation.mutateAsync(values);
   }
 
   return (

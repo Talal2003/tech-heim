@@ -4,12 +4,10 @@ import { useForm } from "react-hook-form";
 import { Link as RouterLink } from 'react-router-dom';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RegisterSchema } from "../../validations/RegisterSchema";
-import { useState } from "react";
-import axiosInstance from "../../api/axiosinstance";
-import { useMutation } from "@tanstack/react-query";
 import useRegister from "../../hooks/useRegister";
 
 export default function Register() {
+
   const{register, handleSubmit, formState: { errors, isSubmitting }} = useForm({
     resolver:yupResolver(RegisterSchema),
     mode:'onBlur'
@@ -18,6 +16,7 @@ export default function Register() {
   const registerForm = async (values)=> {
     await registerMutation.mutateAsync(values);
   }
+  
   return (
     <Box className="register-form"
     sx={{ display:'flex', flexDirection:'column', gap:2, mt:3, alignItems:'center' }}>
