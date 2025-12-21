@@ -6,30 +6,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { RegisterSchema } from "../../validations/RegisterSchema";
 import { useState } from "react";
 import axiosInstance from "../../api/axiosinstance";
+import { useMutation } from "@tanstack/react-query";
+import useRegister from "../../hooks/useRegister";
 
 export default function Register() {
-
-  const [serverErrors, setServerErrors] = useState([]);
-  const [successfulRegistration, setSuccessfulRegistration] = useState(false);
   const{register, handleSubmit, formState: { errors, isSubmitting }} = useForm({
     resolver:yupResolver(RegisterSchema),
     mode:'onBlur'
   })
-  const registerForm = async(values)=> {
-    console.log(values);
-    try {
-      const response = await axiosInstance.post(`/Auth/Account/Register`, values);
-      console.log(response);
-      if(response.status === 201) {
-        setSuccessfulRegistration(true);
-        setServerErrors([]);
-      }
-
-    }catch(err) {
-      console.log(err);
-      setServerErrors(err.response.data.errors);
-      setSuccessfulRegistration(false);
-    }
+  const {registerMutation, serverErrors, successfulRegistration} = useRegister();
+  const registerForm = async (values)=> {
+    await registerMutation.mutateAsync(values);
   }
   return (
     <Box className="register-form"
