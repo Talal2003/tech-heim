@@ -1,38 +1,21 @@
 import { Alert, Box, Button, CircularProgress, Tab, Tabs, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SendCodeSchema } from "../../validations/SendCodeSchema";
-import { useState } from "react";
-import axiosInstance from "../../api/axiosinstance";
+import useSendCode from "../../hooks/useSendCode";
 
 export default function SendCode() {
 
-  const navigate = useNavigate();
-  const [serverErrors, setServerErrors] = useState("");
-  const [successfulSentCode, setSuccessfulSentCode] = useState(false);
   const{register, handleSubmit, formState: { errors, isSubmitting }} = useForm({
     resolver:yupResolver(SendCodeSchema),
     mode:'onBlur'
   })
+  const {sendCodeMutation, serverErrors} = useSendCode();
   const sendCodeForm = async(values)=> {
-    console.log(values);
-    try {
-      const response = await axiosInstance.post(`/Auth/Account/SendCode`, values);
-      console.log(response);
-      if(response.status === 200) {
-        localStorage.setItem("email", values.email);
-        setSuccessfulSentCode(true);
-        setServerErrors("");
-        navigate('/reset-password');
-      }
-
-    }catch(err) {
-      console.log(err);
-      setServerErrors(err.response.data.message);
-      setSuccessfulSentCode(false);
-    }
+    await sendCodeMutation.mutateAsync(values);
   }
+
   return (
     <Box className="send-code-form"
     sx={{ display:'flex', flexDirection:'column', gap:2, mt:3, alignItems:'center' }}>
