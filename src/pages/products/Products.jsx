@@ -1,21 +1,32 @@
-import { Box, Card, CardMedia, CardContent, Typography } from "@mui/material";
+import { Box, Card, CardMedia, CardContent, Typography, FormControl, InputLabel, Select, MenuItem, TextField } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import StarIcon from '@mui/icons-material/Star';
 import Categories from "../../components/categories/Categories.jsx";
 
 export default function Products() {
   return (
-    <Box>
+    <Box sx={{my: 2}}>
       <Categories />
       <Grid container spacing={4}>
+        <Grid size={{ sm: 4, md: 3 }} sx={{ display: { xs: 'none', sm: 'block' } }}>
 
-        <Grid size={{ sm:4, md: 3 }} sx={{ display: { xs: 'none', sm: 'block' } }}>
-          <Grid container spacing={4}>
-
-          </Grid>
         </Grid>
 
         <Grid size={{ xs: 12, sm: 8, md: 9 }}>
+
+          <Box sx={{ display: "flex", gap: 2, alignItems: "center", mb: 2 }}>
+            <TextField label="Search.." sx={{ flex: 1 }}/>
+
+            <FormControl sx={{ minWidth: 205 }}>
+              <InputLabel>Sort By</InputLabel>
+              <Select>
+                <MenuItem value="featured">Featured</MenuItem>
+                <MenuItem value="priceAscending">Price: ascending</MenuItem>
+                <MenuItem value="priceDescending">Price: descending</MenuItem>
+                <MenuItem value="newArrivals">New Arrivals</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
 
           <Grid container spacing={4}>
 
