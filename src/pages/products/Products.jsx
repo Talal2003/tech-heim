@@ -1,21 +1,41 @@
-import { Box, Card, CardMedia, CardContent, Typography, FormControl, InputLabel, Select, MenuItem, TextField } from "@mui/material";
+import { Box, Card, CardMedia, CardContent, Typography, FormControl, InputLabel, Select, MenuItem, TextField, Button, Accordion, AccordionSummary, Slider } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import StarIcon from '@mui/icons-material/Star';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Categories from "../../components/categories/Categories.jsx";
 
 export default function Products() {
   return (
-    <Box sx={{my: 2}}>
-      <Categories />
+    <Box sx={{ my: 2 }}>
+      {/* <Categories /> */}
       <Grid container spacing={4}>
         <Grid size={{ sm: 4, md: 3 }} sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Box sx={{ display: "flex", gap: 1, flexDirection: "column", p: 2 }}>
+            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <Typography variant="subtitle1" fontWeight="bold">Filters</Typography>
+              <Button size="small" sx={{px: 6.5}}>Clear all</Button>
+            </Box>
 
+            <Accordion sx={{ boxShadow: "none" }}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ p: 0 }} >
+                <Typography variant="subtitle2">Price</Typography>
+              </AccordionSummary>
+                <Box sx={{ px: 3 }}>
+                  <Box sx={{ display: "flex", gap: 2, mb: 1, px: 3 }}>
+                    <TextField label="min." type="number" size="small"/>
+                    <TextField label="max." type="number" size="small"/>
+                  </Box>
+                  <Slider valueLabelDisplay="auto"/>
+                </Box>
+            </Accordion>
+          </Box>
         </Grid>
+
 
         <Grid size={{ xs: 12, sm: 8, md: 9 }}>
 
           <Box sx={{ display: "flex", gap: 2, alignItems: "center", mb: 2 }}>
-            <TextField label="Search.." sx={{ flex: 1 }}/>
+            <TextField label="Search.." sx={{ flex: 1 }} />
 
             <FormControl sx={{ minWidth: 205 }}>
               <InputLabel>Sort By</InputLabel>
