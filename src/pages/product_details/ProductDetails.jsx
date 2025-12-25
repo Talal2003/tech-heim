@@ -1,0 +1,158 @@
+import { Box, Button, Card, CardActions, CardContent, Divider, FormControlLabel, Grid, ImageList, ImageListItem, Radio, RadioGroup, Typography } from '@mui/material'
+import StarIcon from '@mui/icons-material/Star';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import VerifiedIcon from '@mui/icons-material/Verified';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import DiscountIcon from '@mui/icons-material/Discount';
+
+export default function ProductDetails() {
+    const itemData = [
+        {
+            img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
+            title: 'Breakfast',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+            title: 'Burger',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
+            title: 'Camera',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+            title: 'Coffee',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
+            title: 'Hats',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
+            title: 'Honey',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
+            title: 'Basketball',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
+            title: 'Fern',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
+            title: 'Mushrooms',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
+            title: 'Tomato basil',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
+            title: 'Sea star',
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
+            title: 'Bike',
+        },
+    ];
+
+    const mainItem = itemData[0];
+    console.log(mainItem.img);
+
+    return (
+        <Box sx={{ p: 11.75 }}>
+            <Grid container spacing={6.125}>
+                <Grid size={{ xs: 12, md: 8, lg: 9 }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, maxWidth: 496}}>
+                            <Box>
+                                <img
+                                    src={mainItem.img}
+                                    alt={mainItem.title}
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 8 }}
+                                />
+                            </Box>
+                            <Box sx={{ display: 'flex', overflowX: 'auto', overflowY: 'hidden', gap: 3 }}>
+                                {itemData.slice(1).map((item) => (
+                                    <Box key={item.img} sx={{ minWidth: 80 }}>
+                                        <img
+                                            src={item.img}
+                                            alt={item.title}
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 8 }}
+                                        />
+                                    </Box>
+                                ))}
+                            </Box>
+                        </Box>
+                        <Box display="flex" flexDirection="column" gap={4}>
+                            <Box display="flex" flexDirection="column" gap={3}>
+                                <Box display="flex" flexDirection="column" gap={1}>
+                                    <Typography>MacBook Pro M2 MNEJ3 2022 LLA 13.3 inch</Typography>
+                                    <Box display="flex" alignItems="center" gap={2}>
+                                        <Box display="flex" alignItems="center"
+                                            sx={{ color: 'white', backgroundColor: "#063A88", p: 0.5, borderRadius: 1 }}>
+                                            <StarIcon fontSize="small" />
+                                            <Typography variant="body2">4.9</Typography>
+                                        </Box>
+                                        <Divider orientation="vertical" flexItem sx={{ borderWidth: 1, backgroundColor: "#717171" }} />
+                                        <Typography>sold 125</Typography>
+                                    </Box>
+                                </Box>
+                                <Box display="flex" flexDirection="row" gap={4}>
+                                    <Box display="flex" flexDirection="row" gap={0.5} alignItems={'center'}>
+                                        <InventoryIcon fontSize="small" />
+                                        <Typography variant="body2">In Stock</Typography>
+                                    </Box>
+                                    <Box display="flex" flexDirection="row" gap={0.5} alignItems={'center'}>
+                                        <VerifiedIcon fontSize="small" />
+                                        <Typography variant="body2">Guaranteed</Typography>
+                                    </Box>
+                                    <Box display="flex" flexDirection="row" gap={0.5} alignItems={'center'}>
+                                        <LocalShippingIcon fontSize="small" />
+                                        <Typography variant="body2">Free Delivery</Typography>
+                                    </Box>
+                                </Box>
+                            </Box>
+
+                            <Box>
+                                <Typography>More Details:</Typography>
+                                <Typography>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero aperiam harum in eius blanditiis reiciendis explicabo sequi optio. Totam magni velit aspernatur autem nisi repudiandae? Asperiores quod exercitationem quos maxime?</Typography>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Grid>
+
+                <Grid size={{ md: 4, lg: 3 }} sx={{ display: { xs: 'none', sm: 'block' } }}>
+                    <Card sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                        <CardContent sx={{ display: "flex", flexDirection: "column", gap: 0.5, px: 3, pt: 3, pb: 0 }}>
+                            <Box display="flex" flexDirection="column" gap={0.5}>
+                                <Box display="flex" flexDirection="row" justifyContent="space-between">
+                                    <Typography variant="h5">$ 1299.00</Typography>
+                                    <Box display="flex" flexDirection="row" gap={0.25}>
+                                        <DiscountIcon fontSize="small" />
+                                        <Typography>-12%</Typography>
+                                    </Box>
+                                </Box>
+                                <Box display="flex" flexDirection="row" gap={1}>
+                                    <Typography>last price</Typography>
+                                    <Typography>$ 1410,87</Typography>
+                                </Box>
+                            </Box>
+                            <Box>
+                                <RadioGroup>
+                                    <FormControlLabel value="pay-now" control={<Radio />} label="Pay Now" />
+                                    <FormControlLabel value="installments" control={<Radio />} label="Buy in installments" />
+                                </RadioGroup>
+                            </Box>
+                        </CardContent>
+                        <CardActions sx={{ display: "flex", flexDirection: "column", gap: 1, px: 3, pt: 0, pb: 3 }}>
+                            <Button variant="contained" color="primary" fullWidth sx={{ py: 1.25, borderRadius: 2 }}>Buy Now</Button>
+                            <Button variant="outlined" color="primary" fullWidth sx={{ py: 1.25, borderRadius: 2 }}>Add to cart</Button>
+                        </CardActions>
+                    </Card>
+                </Grid>
+            </Grid>
+        </Box>
+    )
+}

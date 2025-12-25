@@ -5,9 +5,10 @@ import Home from "./pages/home/Home";
 import Cart from "./pages/cart/Cart";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import SendCode from "./pages/send_code/sendCode";
-import ResetPassword from "./pages/reset_password/resetPassword";
+import SendCode from "./pages/send_code/SendCode";
+import ResetPassword from "./pages/reset_password/ResetPassword";
 import Products from "./pages/products/Products";
+import ProductDetails from "./pages/product_details/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,11 @@ const router = createBrowserRouter([
         {
             path:'reset-password',
             element:<ResetPassword />
-        }
+        },
+        {
+            path:'product-details',
+            element:<ProductDetails />
+        },
     ]
   },
 ]);

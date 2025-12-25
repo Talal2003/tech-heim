@@ -4,7 +4,7 @@ import axiosInstance from "../api/axiosinstance"
 export function useCategories() {
     const fetchCategories = async ()=> {
         const response = await axiosInstance.get('/Categories');
-        return response.data;
+        return response.data.response;
     }
 
     const query = useQuery({
