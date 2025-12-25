@@ -1,6 +1,5 @@
 import { Box, CircularProgress, Tab, Tabs, Typography } from "@mui/material";
 import { useCategories } from "../../hooks/useCategories";
-import { Google } from "@mui/icons-material";
 import { useState } from "react";
 
 export default function Categories() {
