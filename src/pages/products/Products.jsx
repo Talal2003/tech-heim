@@ -2,7 +2,7 @@ import { Box, Card, CardMedia, CardContent, Typography, FormControl, InputLabel,
 import Grid from "@mui/material/Grid";
 import StarIcon from '@mui/icons-material/Star';
 import Categories from "../../components/categories/Categories.jsx";
-import Filters from "../../components/filters/filters.jsx";
+import Filters from "../../components/filters/Filters.jsx";
 
 export default function Products() {
   return (
