@@ -194,7 +194,7 @@ export default function ProductDetails() {
                     </Box>
                 </Grid>
                 <Grid size={{ xs: 12, md: 8, lg: 9 }}>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, pt: 6 }}>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, p: 2, backgroundColor: '#F9F9F9' }}>
                             <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
                                 <Avatar alt="avatar" src="https://mui.com/static/images/avatar/1.jpg"
