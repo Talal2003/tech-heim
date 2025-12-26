@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, Divider, FormControlLabel, Grid, ImageList, ImageListItem, Radio, RadioGroup, Typography } from '@mui/material'
+import { Avatar, Box, Button, Card, CardActions, CardContent, Divider, FormControlLabel, Grid, LinearProgress, Radio, RadioGroup, Typography } from '@mui/material'
 import StarIcon from '@mui/icons-material/Star';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import VerifiedIcon from '@mui/icons-material/Verified';
@@ -61,11 +61,11 @@ export default function ProductDetails() {
     console.log(mainItem.img);
 
     return (
-        <Box sx={{ p: 11.75 }}>
+        <Box sx={{ p: 11.75, display: 'flex', flexDirection: 'column', gap: 6 }}>
             <Grid container spacing={6.125}>
                 <Grid size={{ xs: 12, md: 8, lg: 9 }}>
                     <Box sx={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, maxWidth: 496}}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, maxWidth: 496 }}>
                             <Box>
                                 <img
                                     src={mainItem.img}
@@ -151,6 +151,113 @@ export default function ProductDetails() {
                             <Button variant="outlined" color="primary" fullWidth sx={{ py: 1.25, borderRadius: 2 }}>Add to cart</Button>
                         </CardActions>
                     </Card>
+                </Grid>
+            </Grid>
+            <Grid container spacing={3}>
+                <Grid size={{ md: 4, lg: 3 }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                            <Typography variant='h5' sx={{ fontWeight: 'medium' }}>Comments</Typography>
+                            <Typography variant='h6' sx={{ fontWeight: 'normal' }}>leave your comments here for other customers</Typography>
+                        </Box>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+                            <Typography sx={{ px: 3, py: 0.5, border: '1px solid', borderRadius: 4, color: '#9E9E9E', }}>
+                                Share your thoughts about this product here</Typography>
+                            <Button variant="outlined" sx={{ borderWidth: 2, borderRadius: 4, color: '#0C68F4',
+                                borderBlockColor: '#0C68F4', textTransform: 'none', py: 1.8125 }}>
+                                    <Typography sx={{ fontWeight: 'medium' }}>Comment</Typography>
+                                </Button>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                                <Typography variant='body1'>By feature</Typography>
+                                <Box sx={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.125 }}>
+                                        <Typography variant='caption'>Battery charge</Typography>
+                                        <Typography variant='caption'>Monitor</Typography>
+                                        <Typography variant='caption'>Lightness</Typography>
+                                    </Box>
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4, py: 1.1875, flex: 1, }}>
+                                        <LinearProgress variant="determinate" value={(4.8 / 5) * 100} color="warning"
+                                            sx={{ height: 4, borderRadius: 4, backgroundColor: "#CBCBCB" }} />
+                                        <LinearProgress variant="determinate" value={(4.9 / 5) * 100} color="warning"
+                                            sx={{ height: 4, borderRadius: 4, backgroundColor: "#CBCBCB" }} />
+                                        <LinearProgress variant="determinate" value={(4.3 / 5) * 100} color="warning"
+                                            sx={{ height: 4, borderRadius: 4, backgroundColor: "#CBCBCB" }} />
+                                    </Box>
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.625 }}>
+                                        <Typography variant='body1'>4.8</Typography>
+                                        <Typography variant='body1'>4.9</Typography>
+                                        <Typography variant='body1'>4.3</Typography>
+                                    </Box>
+                                </Box>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Grid>
+                <Grid size={{ xs: 12, md: 8, lg: 9 }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, p: 2, backgroundColor: '#F9F9F9' }}>
+                            <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
+                                <Avatar alt="avatar" src="https://mui.com/static/images/avatar/1.jpg"
+                                    sx={{ width: 60, height: 60 }} />
+                                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: "space-between", width: "100%" }}>
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                                        <Typography variant="h5">Gabriel</Typography>
+                                        <Typography variant="caption">July 28, 2023</Typography>
+                                    </Box>
+                                    <Box display="flex" alignItems="center"
+                                        sx={{ color: 'white', backgroundColor: "#063A88", p: 0.5, borderRadius: 1 }}>
+                                        <StarIcon fontSize="small" />
+                                        <Typography variant="body2">4.8</Typography>
+                                    </Box>
+                                </Box>
+                            </Box>
+                            <Box>
+                                <Typography variant="body1">I needed a fast, efficient laptop for on the go use. Battery life is amazing. Build quality is fantastic. Perfect fit for my needs.</Typography>
+                            </Box>
+                        </Box>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, p: 2, backgroundColor: '#F9F9F9' }}>
+                            <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
+                                <Avatar alt="avatar" src="https://mui.com/static/images/avatar/2.jpg"
+                                    sx={{ width: 60, height: 60 }} />
+                                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: "space-between", width: "100%" }}>
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                                        <Typography variant="h5">Jimmy Smith</Typography>
+                                        <Typography variant="caption">May 28, 2023</Typography>
+                                    </Box>
+                                    <Box display="flex" alignItems="center"
+                                        sx={{ color: 'white', backgroundColor: "#063A88", p: 0.5, borderRadius: 1 }}>
+                                        <StarIcon fontSize="small" />
+                                        <Typography variant="body2">4.8</Typography>
+                                    </Box>
+                                </Box>
+                            </Box>
+                            <Box>
+                                <Typography variant="body1">This macbook air at first feels just so big to me using it for school, and after a while, it felt as a perfect size. I look at it sometimes and realize how portable and small it is, but IT FEELS AS BIG AS LIKE A TV SCREEN. It's not a huge computer, but when your doing work and typing or whatever watching youtube it feels like a movie screen, beautiful. I never had such a good computer that just feels like a breath of fresh air. If you are contemplating on buying one, I would get 512 GB of storage and 16 ram. You will not be disappointed if you buy this no matter what, I strongly recommend it.</Typography>
+                            </Box>
+                        </Box>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, p: 2, backgroundColor: '#F9F9F9' }}>
+                            <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
+                                <Avatar alt="avatar" src="https://mui.com/static/images/avatar/3.jpg"
+                                    sx={{ width: 60, height: 60 }} />
+                                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: "space-between", width: "100%" }}>
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                                        <Typography variant="h5">sarah Anderson</Typography>
+                                        <Typography variant="caption">April 20, 2023</Typography>
+                                    </Box>
+                                    <Box display="flex" alignItems="center"
+                                        sx={{ color: 'white', backgroundColor: "#063A88", p: 0.5, borderRadius: 1 }}>
+                                        <StarIcon fontSize="small" />
+                                        <Typography variant="body2">4.2</Typography>
+                                    </Box>
+                                </Box>
+                            </Box>
+                            <Box>
+                                <Typography variant="body1">This was my first personal Mac purchase. We are using a combination of Mac & PC at work and while my PC skills are good the Mac side needs work.
+                                    So far I like the experience, although not all my apps will run on the Mac, I am finding workarounds.
+                                    One person found this helpful</Typography>
+                            </Box>
+                        </Box>
+                    </Box>
                 </Grid>
             </Grid>
         </Box>
