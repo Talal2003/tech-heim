@@ -1,9 +1,11 @@
-import { Box, Card, CardMedia, CardContent, Typography, FormControl, InputLabel, Select, MenuItem, TextField, Button, Accordion, AccordionSummary, Slider, CardActionArea } from "@mui/material";
+import { Box, Card, CardMedia, CardContent, Typography, FormControl, InputLabel, Select, MenuItem, TextField, CardActionArea, Pagination, PaginationItem } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import StarIcon from '@mui/icons-material/Star';
 import Categories from "../../components/categories/Categories.jsx";
 import Filters from "../../components/filters/Filters.jsx";
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 export default function Products() {
   return (
@@ -17,227 +19,245 @@ export default function Products() {
 
         <Grid size={{ xs: 12, sm: 8, md: 9 }}>
 
-          <Box sx={{ display: "flex", gap: 2, alignItems: "center", mb: 2 }}>
-            <TextField label="Search.." sx={{ flex: 1 }} />
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 4.125 }}>
+            <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+              <TextField label="Search.." sx={{ flex: 1 }} />
 
-            <FormControl sx={{ minWidth: 205 }}>
-              <InputLabel>Sort By</InputLabel>
-              <Select>
-                <MenuItem value="featured">Featured</MenuItem>
-                <MenuItem value="priceAscending">Price: ascending</MenuItem>
-                <MenuItem value="priceDescending">Price: descending</MenuItem>
-                <MenuItem value="newArrivals">New Arrivals</MenuItem>
-              </Select>
-            </FormControl>
+              <FormControl sx={{ minWidth: 205 }}>
+                <InputLabel>Sort By</InputLabel>
+                <Select>
+                  <MenuItem value="featured">Featured</MenuItem>
+                  <MenuItem value="priceAscending">Price: ascending</MenuItem>
+                  <MenuItem value="priceDescending">Price: descending</MenuItem>
+                  <MenuItem value="newArrivals">New Arrivals</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+
+            <Grid container spacing={4}>
+              <Grid size={{ sm: 5, md: 4 }}>
+                <Card>
+                  <CardActionArea component={RouterLink} to="/product-details">
+                    <CardMedia
+                      sx={{ height: 190 }}
+                      image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                      title="green iguana"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="body1">
+                        Apple MacBook Air 15" w/ Touch ID (2023) - Space Grey
+                        (Apple M2 Chip / 256GB SSD / 8GB RAM) - French
+                      </Typography>
+
+                      <Box display="flex" justifyContent="space-between" alignItems="center" mt={1}>
+                        <Box display="flex" flexDirection="column">
+                          <Typography variant="caption" color="textSecondary" sx={{ textDecoration: 'line-through' }}>
+                            $1410.87
+                          </Typography>
+                          <Typography variant="subtitle1">
+                            $1299.00
+                          </Typography>
+                        </Box>
+
+                        <Box display="flex" alignItems="center" justifyContent="flex-end" mt="auto" gap={0.5}>
+                          <StarIcon fontSize="small" />
+                          <Typography variant="body2">4.9</Typography>
+                        </Box>
+
+                      </Box>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
+              <Grid size={{ sm: 5, md: 4 }}>
+                <Card>
+                  <CardActionArea component={RouterLink} to="/product-details">
+                    <CardMedia
+                      sx={{ height: 190 }}
+                      image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                      title="green iguana"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="body1">
+                        Apple MacBook Air 15" w/ Touch ID (2023) - Space Grey
+                        (Apple M2 Chip / 256GB SSD / 8GB RAM) - French
+                      </Typography>
+
+                      <Box display="flex" justifyContent="space-between" alignItems="center" mt={1}>
+                        <Box display="flex" flexDirection="column">
+                          <Typography variant="caption" color="textSecondary" sx={{ textDecoration: 'line-through' }}>
+                            $1410.87
+                          </Typography>
+                          <Typography variant="subtitle1">
+                            $1299.00
+                          </Typography>
+                        </Box>
+
+                        <Box display="flex" alignItems="center" justifyContent="flex-end" mt="auto" gap={0.5}>
+                          <StarIcon fontSize="small" />
+                          <Typography variant="body2">4.9</Typography>
+                        </Box>
+
+                      </Box>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
+              <Grid size={{ sm: 5, md: 4 }}>
+                <Card>
+                  <CardActionArea component={RouterLink} to="/product-details">
+                    <CardMedia
+                      sx={{ height: 190 }}
+                      image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                      title="green iguana"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="body1">
+                        Apple MacBook Air 15" w/ Touch ID (2023) - Space Grey
+                        (Apple M2 Chip / 256GB SSD / 8GB RAM) - French
+                      </Typography>
+
+                      <Box display="flex" justifyContent="space-between" alignItems="center" mt={1}>
+                        <Box display="flex" flexDirection="column">
+                          <Typography variant="caption" color="textSecondary" sx={{ textDecoration: 'line-through' }}>
+                            $1410.87
+                          </Typography>
+                          <Typography variant="subtitle1">
+                            $1299.00
+                          </Typography>
+                        </Box>
+
+                        <Box display="flex" alignItems="center" justifyContent="flex-end" mt="auto" gap={0.5}>
+                          <StarIcon fontSize="small" />
+                          <Typography variant="body2">4.9</Typography>
+                        </Box>
+
+                      </Box>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
+              <Grid size={{ sm: 5, md: 4 }}>
+                <Card>
+                  <CardActionArea component={RouterLink} to="/product-details">
+                    <CardMedia
+                      sx={{ height: 190 }}
+                      image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                      title="green iguana"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="body1">
+                        Apple MacBook Air 15" w/ Touch ID (2023) - Space Grey
+                        (Apple M2 Chip / 256GB SSD / 8GB RAM) - French
+                      </Typography>
+
+                      <Box display="flex" justifyContent="space-between" alignItems="center" mt={1}>
+                        <Box display="flex" flexDirection="column">
+                          <Typography variant="caption" color="textSecondary" sx={{ textDecoration: 'line-through' }}>
+                            $1410.87
+                          </Typography>
+                          <Typography variant="subtitle1">
+                            $1299.00
+                          </Typography>
+                        </Box>
+
+                        <Box display="flex" alignItems="center" justifyContent="flex-end" mt="auto" gap={0.5}>
+                          <StarIcon fontSize="small" />
+                          <Typography variant="body2">4.9</Typography>
+                        </Box>
+
+                      </Box>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
+              <Grid size={{ sm: 5, md: 4 }}>
+                <Card>
+                  <CardActionArea component={RouterLink} to="/product-details">
+                    <CardMedia
+                      sx={{ height: 190 }}
+                      image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                      title="green iguana"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="body1">
+                        Apple MacBook Air 15" w/ Touch ID (2023) - Space Grey
+                        (Apple M2 Chip / 256GB SSD / 8GB RAM) - French
+                      </Typography>
+
+                      <Box display="flex" justifyContent="space-between" alignItems="center" mt={1}>
+                        <Box display="flex" flexDirection="column">
+                          <Typography variant="caption" color="textSecondary" sx={{ textDecoration: 'line-through' }}>
+                            $1410.87
+                          </Typography>
+                          <Typography variant="subtitle1">
+                            $1299.00
+                          </Typography>
+                        </Box>
+
+                        <Box display="flex" alignItems="center" justifyContent="flex-end" mt="auto" gap={0.5}>
+                          <StarIcon fontSize="small" />
+                          <Typography variant="body2">4.9</Typography>
+                        </Box>
+
+                      </Box>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
+              <Grid size={{ sm: 5, md: 4 }}>
+                <Card>
+                  <CardActionArea component={RouterLink} to="/product-details">
+                    <CardMedia
+                      sx={{ height: 190 }}
+                      image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                      title="green iguana"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="body1">
+                        Apple MacBook Air 15" w/ Touch ID (2023) - Space Grey
+                        (Apple M2 Chip / 256GB SSD / 8GB RAM) - French
+                      </Typography>
+
+                      <Box display="flex" justifyContent="space-between" alignItems="center" mt={1}>
+                        <Box display="flex" flexDirection="column">
+                          <Typography variant="caption" color="textSecondary" sx={{ textDecoration: 'line-through' }}>
+                            $1410.87
+                          </Typography>
+                          <Typography variant="subtitle1">
+                            $1299.00
+                          </Typography>
+                        </Box>
+
+                        <Box display="flex" alignItems="center" justifyContent="flex-end" mt="auto" gap={0.5}>
+                          <StarIcon fontSize="small" />
+                          <Typography variant="body2">4.9</Typography>
+                        </Box>
+
+                      </Box>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
+
+            </Grid>
+
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <Pagination
+                count={10}
+                shape="rounded"
+                size="large"
+                renderItem={(item) => (
+                  <PaginationItem
+                    slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
+                    {...item}
+                  />
+                )}
+              />
+
+            </Box>
           </Box>
 
-          <Grid container spacing={4}>
-            <Grid size={{ sm: 5, md: 4 }}>
-              <Card>
-                <CardActionArea component={RouterLink} to="/product-details">
-                  <CardMedia
-                    sx={{ height: 190 }}
-                    image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                    title="green iguana"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="body1">
-                      Apple MacBook Air 15" w/ Touch ID (2023) - Space Grey
-                      (Apple M2 Chip / 256GB SSD / 8GB RAM) - French
-                    </Typography>
-
-                    <Box display="flex" justifyContent="space-between" alignItems="center" mt={1}>
-                      <Box display="flex" flexDirection="column">
-                        <Typography variant="caption" color="textSecondary" sx={{ textDecoration: 'line-through' }}>
-                          $1410.87
-                        </Typography>
-                        <Typography variant="subtitle1">
-                          $1299.00
-                        </Typography>
-                      </Box>
-
-                      <Box display="flex" alignItems="center" justifyContent="flex-end" mt="auto" gap={0.5}>
-                        <StarIcon fontSize="small" />
-                        <Typography variant="body2">4.9</Typography>
-                      </Box>
-
-                    </Box>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-            <Grid size={{ sm: 5, md: 4 }}>
-              <Card>
-                <CardActionArea component={RouterLink} to="/product-details">
-                  <CardMedia
-                    sx={{ height: 190 }}
-                    image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                    title="green iguana"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="body1">
-                      Apple MacBook Air 15" w/ Touch ID (2023) - Space Grey
-                      (Apple M2 Chip / 256GB SSD / 8GB RAM) - French
-                    </Typography>
-
-                    <Box display="flex" justifyContent="space-between" alignItems="center" mt={1}>
-                      <Box display="flex" flexDirection="column">
-                        <Typography variant="caption" color="textSecondary" sx={{ textDecoration: 'line-through' }}>
-                          $1410.87
-                        </Typography>
-                        <Typography variant="subtitle1">
-                          $1299.00
-                        </Typography>
-                      </Box>
-
-                      <Box display="flex" alignItems="center" justifyContent="flex-end" mt="auto" gap={0.5}>
-                        <StarIcon fontSize="small" />
-                        <Typography variant="body2">4.9</Typography>
-                      </Box>
-
-                    </Box>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-            <Grid size={{ sm: 5, md: 4 }}>
-              <Card>
-                <CardActionArea component={RouterLink} to="/product-details">
-                  <CardMedia
-                    sx={{ height: 190 }}
-                    image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                    title="green iguana"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="body1">
-                      Apple MacBook Air 15" w/ Touch ID (2023) - Space Grey
-                      (Apple M2 Chip / 256GB SSD / 8GB RAM) - French
-                    </Typography>
-
-                    <Box display="flex" justifyContent="space-between" alignItems="center" mt={1}>
-                      <Box display="flex" flexDirection="column">
-                        <Typography variant="caption" color="textSecondary" sx={{ textDecoration: 'line-through' }}>
-                          $1410.87
-                        </Typography>
-                        <Typography variant="subtitle1">
-                          $1299.00
-                        </Typography>
-                      </Box>
-
-                      <Box display="flex" alignItems="center" justifyContent="flex-end" mt="auto" gap={0.5}>
-                        <StarIcon fontSize="small" />
-                        <Typography variant="body2">4.9</Typography>
-                      </Box>
-
-                    </Box>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-            <Grid size={{ sm: 5, md: 4 }}>
-              <Card>
-                <CardActionArea component={RouterLink} to="/product-details">
-                  <CardMedia
-                    sx={{ height: 190 }}
-                    image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                    title="green iguana"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="body1">
-                      Apple MacBook Air 15" w/ Touch ID (2023) - Space Grey
-                      (Apple M2 Chip / 256GB SSD / 8GB RAM) - French
-                    </Typography>
-
-                    <Box display="flex" justifyContent="space-between" alignItems="center" mt={1}>
-                      <Box display="flex" flexDirection="column">
-                        <Typography variant="caption" color="textSecondary" sx={{ textDecoration: 'line-through' }}>
-                          $1410.87
-                        </Typography>
-                        <Typography variant="subtitle1">
-                          $1299.00
-                        </Typography>
-                      </Box>
-
-                      <Box display="flex" alignItems="center" justifyContent="flex-end" mt="auto" gap={0.5}>
-                        <StarIcon fontSize="small" />
-                        <Typography variant="body2">4.9</Typography>
-                      </Box>
-
-                    </Box>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-            <Grid size={{ sm: 5, md: 4 }}>
-              <Card>
-                <CardActionArea component={RouterLink} to="/product-details">
-                  <CardMedia
-                    sx={{ height: 190 }}
-                    image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                    title="green iguana"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="body1">
-                      Apple MacBook Air 15" w/ Touch ID (2023) - Space Grey
-                      (Apple M2 Chip / 256GB SSD / 8GB RAM) - French
-                    </Typography>
-
-                    <Box display="flex" justifyContent="space-between" alignItems="center" mt={1}>
-                      <Box display="flex" flexDirection="column">
-                        <Typography variant="caption" color="textSecondary" sx={{ textDecoration: 'line-through' }}>
-                          $1410.87
-                        </Typography>
-                        <Typography variant="subtitle1">
-                          $1299.00
-                        </Typography>
-                      </Box>
-
-                      <Box display="flex" alignItems="center" justifyContent="flex-end" mt="auto" gap={0.5}>
-                        <StarIcon fontSize="small" />
-                        <Typography variant="body2">4.9</Typography>
-                      </Box>
-
-                    </Box>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-            <Grid size={{ sm: 5, md: 4 }}>
-              <Card>
-                <CardActionArea component={RouterLink} to="/product-details">
-                  <CardMedia
-                    sx={{ height: 190 }}
-                    image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                    title="green iguana"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="body1">
-                      Apple MacBook Air 15" w/ Touch ID (2023) - Space Grey
-                      (Apple M2 Chip / 256GB SSD / 8GB RAM) - French
-                    </Typography>
-
-                    <Box display="flex" justifyContent="space-between" alignItems="center" mt={1}>
-                      <Box display="flex" flexDirection="column">
-                        <Typography variant="caption" color="textSecondary" sx={{ textDecoration: 'line-through' }}>
-                          $1410.87
-                        </Typography>
-                        <Typography variant="subtitle1">
-                          $1299.00
-                        </Typography>
-                      </Box>
-
-                      <Box display="flex" alignItems="center" justifyContent="flex-end" mt="auto" gap={0.5}>
-                        <StarIcon fontSize="small" />
-                        <Typography variant="body2">4.9</Typography>
-                      </Box>
-
-                    </Box>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-
-          </Grid>
         </Grid>
 
 
