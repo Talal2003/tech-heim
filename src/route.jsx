@@ -9,6 +9,7 @@ import SendCode from "./pages/send_code/SendCode";
 import ResetPassword from "./pages/reset_password/ResetPassword";
 import Products from "./pages/products/Products";
 import ProductDetails from "./pages/product_details/ProductDetails";
+import ProtectedRouter from "./ProtectedRouter"
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,10 @@ const router = createBrowserRouter([
         },
         {
             path:'cart',
-            element:<Cart />
+            element:
+            <ProtectedRouter>
+                <Cart />
+            </ProtectedRouter>
         },
         {
             path:'login',
