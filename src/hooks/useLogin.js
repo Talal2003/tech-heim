@@ -1,13 +1,13 @@
 import { useMutation } from "@tanstack/react-query";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import axiosInstance from "../api/axiosinstance";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "./../context/AuthContext";
+import useAuthStore from "../store/authStore";
 
 export default function useLogin() {
 
     const navigate = useNavigate();
-    const { setAccessToken } = useContext(AuthContext);
+    const setToken = useAuthStore(state=>state.setToken);
     const [serverErrors, setServerErrors] = useState("");
     const [successfulLogin, setSuccessfulLogin] = useState(false);
 
@@ -16,7 +16,7 @@ export default function useLogin() {
             return await axiosInstance.post(`/Auth/Account/Login`, values);
         },
         onSuccess: (response) => {
-            setAccessToken(response.data.accessToken);
+            setToken(response.data.accessToken);
             navigate('/home');
             setSuccessfulLogin(true);
             setServerErrors("");

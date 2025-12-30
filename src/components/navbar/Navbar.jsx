@@ -10,12 +10,12 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import logoIcon from './../../assets/icons/navbar/logo.svg';
 import searchNormalIcon from './../../assets/icons/navbar/search-normal.svg';
 import bagIcon from './../../assets/icons/navbar/bag.svg';
-import { useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import useAuthStore from '../../store/authStore';
 
 export default function Navbar() {
 
-  const {token, logout} = useContext(AuthContext);
+  const token = useAuthStore(state=>state.token);
+  const logout = useAuthStore(state=>state.logout);
   const navigate = useNavigate('');
   const handleLogout = ()=> {
     logout();
