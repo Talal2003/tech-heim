@@ -3,8 +3,6 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from '@mui/material';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import logoIcon from './../../assets/icons/navbar/logo.svg';
@@ -16,6 +14,7 @@ export default function Navbar() {
 
   const token = useAuthStore(state=>state.token);
   const logout = useAuthStore(state=>state.logout);
+  const user = useAuthStore(state=>state.user);
   const navigate = useNavigate('');
   const handleLogout = ()=> {
     logout();
@@ -50,6 +49,7 @@ export default function Navbar() {
             sx={{ display:'flex', gap: 2, alignItems:'center'}}>
               <img src={bagIcon} alt="" />
             </Link>
+            <Typography>{user?.name}</Typography>
             {token != null?
             <Button variant="contained" onClick={handleLogout}>Logout</Button>
             :
