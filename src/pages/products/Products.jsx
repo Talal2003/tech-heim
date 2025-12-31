@@ -11,12 +11,8 @@ import useProducts from "../../hooks/useProducts.js";
 export default function Products() {
 
   const { isLoading, isError, data } = useProducts();
-  if (isLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3 }}>
-        <CircularProgress />
-    </Box>
-    if (isError) return <Typography sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3, color: 'red' }}>
-        {error.message}
-    </Typography>
+  if (isLoading) return <CircularProgress></CircularProgress>
+  if (isError) return <Typography>Error</Typography>
 
   return (
     <Box>
