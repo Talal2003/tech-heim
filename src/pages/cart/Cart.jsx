@@ -6,7 +6,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 export default function Cart() {
   return (
-    <Box sx={{ py: 6 }}>
+    <>
       <Grid container spacing={13}>
         <Grid size={{ xs: 12, md: 7, lg: 8 }}>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
@@ -198,6 +198,6 @@ export default function Cart() {
 
         </Grid>
       </Grid>
-    </Box>
+    </>
   )
 }

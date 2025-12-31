@@ -61,7 +61,7 @@ export default function ProductDetails() {
     console.log(mainItem.img);
 
     return (
-        <Box sx={{ p: 11.75, display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <>
             <Grid container spacing={6.125}>
                 <Grid size={{ xs: 12, md: 8, lg: 9 }}>
                     <Box sx={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
@@ -260,6 +260,6 @@ export default function ProductDetails() {
                     </Box>
                 </Grid>
             </Grid>
-        </Box>
+        </>
     )
 }

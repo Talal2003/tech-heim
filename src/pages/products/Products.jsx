@@ -15,7 +15,7 @@ export default function Products() {
   if (isError) return <Typography>Error</Typography>
 
   return (
-    <Box>
+    <>
       <Categories />
       <Grid container spacing={4}>
         <Grid size={{ sm: 4, md: 3 }} sx={{ display: { xs: 'none', sm: 'block' } }}>
@@ -95,8 +95,6 @@ export default function Products() {
 
 
       </Grid>
-
-
-    </Box>
+    </>
   )
 }

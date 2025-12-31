@@ -14,7 +14,7 @@ export default function Categories() {
     </Typography>
 
     return (
-        <Box p={3} sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Tabs value={value} onChange={(e, newValue) => setValue(newValue)}
                 variant="scrollable" scrollButtons="auto" aria-label="categories tabs">
                 {data.map((category, index) =>
