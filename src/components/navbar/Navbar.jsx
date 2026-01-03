@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { Link } from '@mui/material';
+import { Container, Link } from '@mui/material';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import logoIcon from './../../assets/icons/navbar/logo.svg';
 import searchNormalIcon from './../../assets/icons/navbar/search-normal.svg';
@@ -22,45 +22,45 @@ export default function Navbar() {
   }
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color="white"
-        sx={{ borderBottom: '1px solid', borderColor: '#78ABF9', boxShadow: 'none' }}>
-        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Box>
-            <Link>
-              <img src={logoIcon} alt="Logo" />
-            </Link>
-          </Box>
+    <Box sx={{ borderBottom: '1px solid', borderColor: '#78ABF9', boxShadow: 'none', py: 1 }}>
+      <Container maxWidth="xl">
+        <AppBar position="static" color="white" sx={{ boxShadow: 'none' }}>
+          <Toolbar disableGutters  sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Box>
+              <Link>
+                <img src={logoIcon} alt="Logo" />
+              </Link>
+            </Box>
 
-          <Box sx={{ display: 'flex', gap: 6 }}>
-            <Link component={RouterLink} to='/home' color='inherit' underline='none'>Home</Link>
-            <Link component={RouterLink} to='/products' color='inherit' underline='none'>Products</Link>
-            <Link component={RouterLink} to='/' color='inherit' underline='none'>Blog</Link>
-            <Link component={RouterLink} to='/' color='inherit' underline='none'>FAQ</Link>
-            <Link component={RouterLink} to='/' color='inherit' underline='none'>Contact Us</Link>
-          </Box>
+            <Box sx={{ display: 'flex', gap: 6 }}>
+              <Link component={RouterLink} to='/home' color='inherit' underline='none'>Home</Link>
+              <Link component={RouterLink} to='/products' color='inherit' underline='none'>Products</Link>
+              <Link component={RouterLink} to='/blog' color='inherit' underline='none'>Blog</Link>
+              <Link component={RouterLink} to='/faq' color='inherit' underline='none'>FAQ</Link>
+              <Link component={RouterLink} to='/contact-us' color='inherit' underline='none'>Contact Us</Link>
+            </Box>
 
-          <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-            <Typography>{user?.name}</Typography>
-            <Link component={RouterLink} to='/'
-              sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-              <img src={searchNormalIcon} alt="" />
-            </Link>
-            {token != null ?
-              <>
-                <Link component={RouterLink} to='/cart'
-                  sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-                  <img src={bagIcon} alt="" />
-                </Link>
-                <Button variant="contained" onClick={handleLogout}>Logout</Button>
-              </>
-              :
-              <Button component={RouterLink} to='/login' variant="contained">Login / Sign Up</Button>
-            }
-          </Box>
-
-        </Toolbar>
-      </AppBar>
+            <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+              <Typography>{user?.name}</Typography>
+              <Link component={RouterLink} to='/'
+                sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                <img src={searchNormalIcon} alt="" />
+              </Link>
+              {token != null ?
+                <>
+                  <Link component={RouterLink} to='/cart'
+                    sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                    <img src={bagIcon} alt="" />
+                  </Link>
+                  <Button variant="contained" onClick={handleLogout}>Logout</Button>
+                </>
+                :
+                <Button component={RouterLink} to='/login' variant="contained">Login / Sign Up</Button>
+              }
+            </Box>
+          </Toolbar>
+        </AppBar>
+      </Container>
     </Box>
   );
 }
