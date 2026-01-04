@@ -95,7 +95,7 @@ export default function Navbar() {
                             <AccountCircleOutlinedIcon />
                             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                               <Typography variant='body1' color='primary'>{user?.name}</Typography>
-                              <Typography variant='body2'>Jimmy.smith1996@gmail.com</Typography>
+                              <Typography variant='body2'>{user?.email}</Typography>
                             </Box>
                           </Box>
                         </MenuItem>
