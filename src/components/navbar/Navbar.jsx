@@ -57,16 +57,14 @@ export default function Navbar() {
             </Tabs>
 
             <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-              <Link component={RouterLink} to='/'
-                sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+              <IconButton component={RouterLink} to='/products'>
                 <img src={searchNormalIcon} alt="" />
-              </Link>
+              </IconButton>
               {token != null ?
                 <>
-                  <Link component={RouterLink} to='/cart'
-                    sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                  <IconButton component={RouterLink} to='/cart'>
                     <img src={bagIcon} alt="" />
-                  </Link>
+                  </IconButton>
                   <Box>
                     <IconButton
                       aria-label="more"
