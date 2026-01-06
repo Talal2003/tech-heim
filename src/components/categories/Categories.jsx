@@ -17,7 +17,7 @@ export default function Categories() {
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Tabs value={value} onChange={(e, newValue) => setValue(newValue)}
                 variant="scrollable" scrollButtons="auto" aria-label="categories tabs">
-                {data.map((category, index) =>
+                {data.response.map((category, index) =>
                     <Tab key={category.id} label={category.name} value={index} />
                 )}
             </Tabs>
