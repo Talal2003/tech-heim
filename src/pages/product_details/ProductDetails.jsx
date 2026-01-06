@@ -1,9 +1,11 @@
-import { Avatar, Box, Button, Card, CardActions, CardContent, Divider, FormControlLabel, Grid, LinearProgress, Radio, RadioGroup, Typography } from '@mui/material'
+import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, CircularProgress, Divider, FormControlLabel, Grid, LinearProgress, Radio, RadioGroup, Typography } from '@mui/material'
 import StarIcon from '@mui/icons-material/Star';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import DiscountIcon from '@mui/icons-material/Discount';
+import { useParams } from 'react-router-dom';
+import useProductDetails from '../../hooks/useProductDetails';
 
 export default function ProductDetails() {
     const itemData = [
@@ -57,8 +59,17 @@ export default function ProductDetails() {
         },
     ];
 
-    const mainItem = itemData[0];
-    console.log(mainItem.img);
+    const { id } = useParams();
+    const { data, isLoading, isError } = useProductDetails(id);
+    const product = data?.response;
+    if (isLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3 }}>
+        <CircularProgress />
+    </Box>
+    if (isError) return <Typography sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3, color: 'red' }}>
+        {error.message}
+    </Typography>
+
+    console.log(data);
 
     return (
         <>
@@ -66,13 +77,11 @@ export default function ProductDetails() {
                 <Grid size={{ xs: 12, md: 8, lg: 9 }}>
                     <Box sx={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, maxWidth: 496 }}>
-                            <Box>
-                                <img
-                                    src={mainItem.img}
-                                    alt={mainItem.title}
-                                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 8 }}
-                                />
-                            </Box>
+                            <CardMedia component={'img'}
+                                image={product.image}
+                                sx={{ height: 338, objectFit: 'contain', borderRadius: 8 }}
+                            >
+                            </CardMedia>
                             <Box sx={{ display: 'flex', overflowX: 'auto', overflowY: 'hidden', gap: 3 }}>
                                 {itemData.slice(1).map((item) => (
                                     <Box key={item.img} sx={{ minWidth: 80 }}>
@@ -88,15 +97,15 @@ export default function ProductDetails() {
                         <Box display="flex" flexDirection="column" gap={4}>
                             <Box display="flex" flexDirection="column" gap={3}>
                                 <Box display="flex" flexDirection="column" gap={1}>
-                                    <Typography>MacBook Pro M2 MNEJ3 2022 LLA 13.3 inch</Typography>
+                                    <Typography>{product.name}</Typography>
                                     <Box display="flex" alignItems="center" gap={2}>
                                         <Box display="flex" alignItems="center"
                                             sx={{ color: 'white', backgroundColor: "#063A88", p: 0.5, borderRadius: 1 }}>
                                             <StarIcon fontSize="small" />
-                                            <Typography variant="body2">4.9</Typography>
+                                            <Typography variant="body2">{product.rate}</Typography>
                                         </Box>
                                         <Divider orientation="vertical" flexItem sx={{ borderWidth: 1, backgroundColor: "#717171" }} />
-                                        <Typography>sold 125</Typography>
+                                        <Typography>quantity {product.quantity}</Typography>
                                     </Box>
                                 </Box>
                                 <Box display="flex" flexDirection="row" gap={4}>
@@ -116,8 +125,8 @@ export default function ProductDetails() {
                             </Box>
 
                             <Box>
-                                <Typography>More Details:</Typography>
-                                <Typography>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero aperiam harum in eius blanditiis reiciendis explicabo sequi optio. Totam magni velit aspernatur autem nisi repudiandae? Asperiores quod exercitationem quos maxime?</Typography>
+                                <Typography>Description:</Typography>
+                                <Typography>{product.description}</Typography>
                             </Box>
                         </Box>
                     </Box>
@@ -128,15 +137,15 @@ export default function ProductDetails() {
                         <CardContent sx={{ display: "flex", flexDirection: "column", gap: 0.5, px: 3, pt: 3, pb: 0 }}>
                             <Box display="flex" flexDirection="column" gap={0.5}>
                                 <Box display="flex" flexDirection="row" justifyContent="space-between">
-                                    <Typography variant="h5">$ 1299.00</Typography>
+                                    <Typography variant="h5">$ {product.price}</Typography>
                                     <Box display="flex" flexDirection="row" gap={0.25}>
                                         <DiscountIcon fontSize="small" />
-                                        <Typography>-12%</Typography>
+                                        <Typography>-0%</Typography>
                                     </Box>
                                 </Box>
                                 <Box display="flex" flexDirection="row" gap={1}>
                                     <Typography>last price</Typography>
-                                    <Typography>$ 1410,87</Typography>
+                                    <Typography>$ {product.price}</Typography>
                                 </Box>
                             </Box>
                             <Box>
@@ -163,10 +172,12 @@ export default function ProductDetails() {
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
                             <Typography sx={{ px: 3, py: 0.5, border: '1px solid', borderRadius: 4, color: '#9E9E9E', }}>
                                 Share your thoughts about this product here</Typography>
-                            <Button variant="outlined" sx={{ borderWidth: 2, borderRadius: 4, color: '#0C68F4',
-                                borderBlockColor: '#0C68F4', textTransform: 'none', py: 1.8125 }}>
-                                    <Typography sx={{ fontWeight: 'medium' }}>Comment</Typography>
-                                </Button>
+                            <Button variant="outlined" sx={{
+                                borderWidth: 2, borderRadius: 4, color: '#0C68F4',
+                                borderBlockColor: '#0C68F4', textTransform: 'none', py: 1.8125
+                            }}>
+                                <Typography sx={{ fontWeight: 'medium' }}>Comment</Typography>
+                            </Button>
                             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                                 <Typography variant='body1'>By feature</Typography>
                                 <Box sx={{ display: 'flex', flexDirection: 'row', gap: 3 }}>

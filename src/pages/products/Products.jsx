@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import StarIcon from '@mui/icons-material/Star';
 import Categories from "../../components/categories/Categories.jsx";
 import Filters from "../../components/filters/Filters.jsx";
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import useProducts from "../../hooks/useProducts.js";
@@ -11,8 +11,12 @@ import useProducts from "../../hooks/useProducts.js";
 export default function Products() {
 
   const { isLoading, isError, data } = useProducts();
-  if (isLoading) return <CircularProgress></CircularProgress>
-  if (isError) return <Typography>Error</Typography>
+  if (isLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3 }}>
+    <CircularProgress />
+  </Box>
+  if (isError) return <Typography sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3, color: 'red' }}>
+    {error.message}
+  </Typography>
 
   return (
     <>
@@ -44,7 +48,7 @@ export default function Products() {
               {data.response.data.map((product) =>
                 <Grid size={{ sm: 5, md: 4 }}>
                   <Card>
-                    <CardActionArea component={RouterLink} to="/product-details">
+                    <CardActionArea component={RouterLink} to={`/product/${product.id}`}>
                       <CardMedia
                         component="img"
                         image={product.image}
