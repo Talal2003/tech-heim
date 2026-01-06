@@ -41,7 +41,7 @@ export default function Products() {
             </Box>
 
             <Grid container spacing={4}>
-              {data.map((product) =>
+              {data.response.data.map((product) =>
                 <Grid size={{ sm: 5, md: 4 }}>
                   <Card>
                     <CardActionArea component={RouterLink} to="/product-details">
