@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, Grid, Typography } from "@mui/material";
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, Grid, IconButton, Typography } from "@mui/material";
 import InventoryIcon from '@mui/icons-material/Inventory';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
@@ -43,17 +43,19 @@ export default function Cart() {
                       $1299.00
                     </Typography>
                   </Box>
-                  <Box sx={{ display: "flex", flexDirection: "row", gap: 1, pr: 3 }}>
-                    <DeleteOutlineIcon fontSize="small" sx={{ color: "red", mt: "auto" }} />
+                  <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
+                    <IconButton sx={{ mt: "auto", p: 0 }}>
+                      <DeleteOutlineIcon fontSize="small" sx={{ color: "red" }} />
+                    </IconButton>
                     <Box sx={{
                       display: "flex", flexDirection: "row", gap: 1.5, alignItems: "center",
                       width: "100%", borderBottom: "1px solid #717171"
                     }}>
-                      <Button sx={{ p: 0, minWidth: 0.4375, minHeight: 0.4375 }}>
+                      <Button sx={{ px: 0.4375, py: 0, minWidth: 0 }}>
                         <Typography variant="h4" sx={{ color: "#717171" }}>-</Typography>
                       </Button>
                       <Typography variant="h6" sx={{ color: "#717171" }}>1</Typography>
-                      <Button sx={{ p: 0, minWidth: 0.4375, minHeight: 0.4375 }}>
+                      <Button sx={{ px: 0.4375, py: 0, minWidth: 0 }}>
                         <Typography variant="h5" sx={{ color: "#717171" }}>+</Typography>
                       </Button>
                     </Box>
