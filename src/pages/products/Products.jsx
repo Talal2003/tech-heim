@@ -10,7 +10,7 @@ import useProducts from "../../hooks/useProducts.js";
 
 export default function Products() {
 
-  const { isLoading, isError, data } = useProducts();
+  const { isLoading, isError, error, data } = useProducts();
   if (isLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3 }}>
     <CircularProgress />
   </Box>

@@ -6,6 +6,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import DiscountIcon from '@mui/icons-material/Discount';
 import { useParams } from 'react-router-dom';
 import useProductDetails from '../../hooks/useProductDetails';
+import useAddToCart from '../../hooks/useAddToCart';
 
 export default function ProductDetails() {
     const itemData = [
@@ -60,16 +61,15 @@ export default function ProductDetails() {
     ];
 
     const { id } = useParams();
-    const { data, isLoading, isError } = useProductDetails(id);
-    const product = data?.response;
+    const { isLoading, isError, error, data } = useProductDetails(id);
+    const { mutate: addToCart, isPending } = useAddToCart();
     if (isLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3 }}>
         <CircularProgress />
     </Box>
     if (isError) return <Typography sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3, color: 'red' }}>
         {error.message}
     </Typography>
-
-    console.log(data);
+    const product = data.response;
 
     return (
         <>
@@ -157,7 +157,10 @@ export default function ProductDetails() {
                         </CardContent>
                         <CardActions sx={{ display: "flex", flexDirection: "column", gap: 1, px: 3, pt: 0, pb: 3 }}>
                             <Button variant="contained" color="primary" fullWidth sx={{ py: 1.25, borderRadius: 2 }}>Buy Now</Button>
-                            <Button variant="outlined" color="primary" fullWidth sx={{ py: 1.25, borderRadius: 2 }}>Add to cart</Button>
+                            <Button variant="outlined" color="primary" fullWidth sx={{ py: 1.25, borderRadius: 2 }}
+                                onClick={() => addToCart({ ProductId: product.id, Count: 1 })}
+                                disabled={isPending}
+                            >Add to cart</Button>
                         </CardActions>
                     </Card>
                 </Grid>
