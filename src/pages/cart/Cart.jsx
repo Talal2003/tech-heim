@@ -3,6 +3,7 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { Link as RouterLink } from 'react-router-dom';
 
 export default function Cart() {
   return (
@@ -164,9 +165,9 @@ export default function Cart() {
         </Grid>
         <Grid size={{ xs: 12, md: 5, lg: 4 }}>
 
-          <Card sx={{ display: "flex", flexDirection: "column", gap: 2, px: 3, py: 2 }}>
+          <Card variant="outlined" sx={{ display: "flex", flexDirection: "column", borderColor: "#EDEDED", gap: 2, px: 3, py: 2, borderRadius: 2 }}>
             <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2, p: 0 }}>
-              <Typography variant="h4">Payment Details</Typography>
+              <Typography component={'h4'} variant="h5">Payment Details</Typography>
               <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5, p: 1 }}>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
                   <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
@@ -182,16 +183,17 @@ export default function Cart() {
                     <Typography variant="body2" sx={{ color: "#717171" }}>$22.50</Typography>
                   </Box>
                 </Box>
-                <Divider></Divider>
+                <Divider sx={{ borderBottomWidth: '2px' }}></Divider>
                 <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                  <Typography variant="h6" sx={{ color: "#2D2D2D" }}>Grand Total</Typography>
-                  <Typography variant="h6" sx={{ color: "#2D2D2D" }}>$543.02</Typography>
+                  <Typography component={'h6'} variant="body1" sx={{ color: "#2D2D2D" }}>Grand Total</Typography>
+                  <Typography component={'h6'} variant="body1" sx={{ color: "#2D2D2D" }}>$543.02</Typography>
                 </Box>
               </Box>
             </CardContent>
             <CardActions sx={{ p: 0 }}>
               <Button fullWidth variant="contained" sx={{ py: 1.8125, borderRadius: 2, textTransform: 'none' }}>
-                <Typography variant="body1">Procced to checkout</Typography>
+                <Typography component={RouterLink} variant="body1" to='/checkout'
+                  sx={{ color: 'white', textDecoration: 'none' }}>Procced to checkout</Typography>
               </Button>
             </CardActions>
           </Card>
