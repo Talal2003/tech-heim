@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, CircularProgress, Divider, FormControlLabel, Grid, LinearProgress, Radio, RadioGroup, Typography } from '@mui/material'
+import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, CircularProgress, Divider, FormControlLabel, Grid, LinearProgress, Radio, RadioGroup, TextField, Typography } from '@mui/material'
 import StarIcon from '@mui/icons-material/Star';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import VerifiedIcon from '@mui/icons-material/Verified';
@@ -173,8 +173,8 @@ export default function ProductDetails() {
                             <Typography variant='h6' sx={{ fontWeight: 'normal' }}>leave your comments here for other customers</Typography>
                         </Box>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-                            <Typography sx={{ px: 3, py: 0.5, border: '1px solid', borderRadius: 4, color: '#9E9E9E', }}>
-                                Share your thoughts about this product here</Typography>
+                            <TextField multiline minRows={1} maxRows={6} placeholder='Share your thoughts about this product here'
+                            sx={{ 'fieldset': { borderColor:'#9E9E9E', borderRadius: 4 } }}/>
                             <Button variant="outlined" sx={{
                                 borderWidth: 2, borderRadius: 4, color: '#0C68F4',
                                 borderBlockColor: '#0C68F4', textTransform: 'none', py: 1.8125
