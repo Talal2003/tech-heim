@@ -74,65 +74,69 @@ export default function ProductDetails() {
     return (
         <>
             <Grid container spacing={6.125}>
-                <Grid size={{ xs: 12, md: 8, lg: 9 }}>
-                    <Box sx={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, maxWidth: 496 }}>
-                            <CardMedia component={'img'}
-                                image={product.image}
-                                sx={{ height: 338, objectFit: 'contain', borderRadius: 8 }}
-                            >
-                            </CardMedia>
-                            <Box sx={{ display: 'flex', overflowX: 'auto', overflowY: 'hidden', gap: 3 }}>
-                                {itemData.slice(1).map((item) => (
-                                    <Box key={item.img} sx={{ minWidth: 80 }}>
-                                        <img
-                                            src={item.img}
-                                            alt={item.title}
-                                            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 8 }}
-                                        />
-                                    </Box>
-                                ))}
-                            </Box>
-                        </Box>
-                        <Box display="flex" flexDirection="column" gap={4}>
-                            <Box display="flex" flexDirection="column" gap={3}>
-                                <Box display="flex" flexDirection="column" gap={1}>
-                                    <Typography>{product.name}</Typography>
-                                    <Box display="flex" alignItems="center" gap={2}>
-                                        <Box display="flex" alignItems="center"
-                                            sx={{ color: 'white', backgroundColor: "#063A88", p: 0.5, borderRadius: 1 }}>
-                                            <StarIcon fontSize="small" />
-                                            <Typography variant="body2">{product.rate}</Typography>
+                <Grid size={{ xs: 12, lg: 9 }}>
+                    <Grid container spacing={3}>
+                        <Grid size={{ xs: 12, md: 5 }}>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, maxWidth: 496 }}>
+                                <CardMedia component={'img'}
+                                    image={product.image}
+                                    sx={{ height: 338, objectFit: 'contain', borderRadius: 8 }}
+                                >
+                                </CardMedia>
+                                <Box sx={{ display: 'flex', overflowX: 'auto', overflowY: 'hidden', gap: 3 }}>
+                                    {itemData.slice(1).map((item) => (
+                                        <Box key={item.img} sx={{ minWidth: 80 }}>
+                                            <img
+                                                src={item.img}
+                                                alt={item.title}
+                                                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 8 }}
+                                            />
                                         </Box>
-                                        <Divider orientation="vertical" flexItem sx={{ borderWidth: 1, backgroundColor: "#717171" }} />
-                                        <Typography>quantity {product.quantity}</Typography>
-                                    </Box>
-                                </Box>
-                                <Box display="flex" flexDirection="row" gap={4}>
-                                    <Box display="flex" flexDirection="row" gap={0.5} alignItems={'center'}>
-                                        <InventoryIcon fontSize="small" />
-                                        <Typography variant="body2">In Stock</Typography>
-                                    </Box>
-                                    <Box display="flex" flexDirection="row" gap={0.5} alignItems={'center'}>
-                                        <VerifiedIcon fontSize="small" />
-                                        <Typography variant="body2">Guaranteed</Typography>
-                                    </Box>
-                                    <Box display="flex" flexDirection="row" gap={0.5} alignItems={'center'}>
-                                        <LocalShippingIcon fontSize="small" />
-                                        <Typography variant="body2">Free Delivery</Typography>
-                                    </Box>
+                                    ))}
                                 </Box>
                             </Box>
+                        </Grid>
+                        <Grid size={{ xs: 12, md: 7 }}>
+                            <Box display="flex" flexDirection="column" gap={4}>
+                                <Box display="flex" flexDirection="column" gap={3}>
+                                    <Box display="flex" flexDirection="column" gap={1}>
+                                        <Typography>{product.name}</Typography>
+                                        <Box display="flex" alignItems="center" gap={2}>
+                                            <Box display="flex" alignItems="center"
+                                                sx={{ color: 'white', backgroundColor: "#063A88", p: 0.5, borderRadius: 1 }}>
+                                                <StarIcon fontSize="small" />
+                                                <Typography variant="body2">{product.rate}</Typography>
+                                            </Box>
+                                            <Divider orientation="vertical" flexItem sx={{ borderWidth: 1, backgroundColor: "#717171" }} />
+                                            <Typography>quantity {product.quantity}</Typography>
+                                        </Box>
+                                    </Box>
+                                    <Box display="flex" flexDirection="row" gap={4}>
+                                        <Box display="flex" flexDirection="row" gap={0.5} alignItems={'center'}>
+                                            <InventoryIcon fontSize="small" />
+                                            <Typography variant="body2">In Stock</Typography>
+                                        </Box>
+                                        <Box display="flex" flexDirection="row" gap={0.5} alignItems={'center'}>
+                                            <VerifiedIcon fontSize="small" />
+                                            <Typography variant="body2">Guaranteed</Typography>
+                                        </Box>
+                                        <Box display="flex" flexDirection="row" gap={0.5} alignItems={'center'}>
+                                            <LocalShippingIcon fontSize="small" />
+                                            <Typography variant="body2">Free Delivery</Typography>
+                                        </Box>
+                                    </Box>
+                                </Box>
 
-                            <Box>
-                                <Typography>Description:</Typography>
-                                <Typography>{product.description}</Typography>
+                                <Box>
+                                    <Typography>Description:</Typography>
+                                    <Typography>{product.description}</Typography>
+                                </Box>
                             </Box>
-                        </Box>
-                    </Box>
+                        </Grid>
+                    </Grid>
                 </Grid>
 
-                <Grid size={{ md: 4, lg: 3 }} sx={{ display: { xs: 'none', sm: 'block' } }}>
+                <Grid size={{ xs: 12, lg: 3 }} sx={{ display: { xs: 'none', sm: 'block' } }}>
                     <Card sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
                         <CardContent sx={{ display: "flex", flexDirection: "column", gap: 0.5, px: 3, pt: 3, pb: 0 }}>
                             <Box display="flex" flexDirection="column" gap={0.5}>
@@ -166,7 +170,7 @@ export default function ProductDetails() {
                 </Grid>
             </Grid>
             <Grid container spacing={3}>
-                <Grid size={{ md: 4, lg: 3 }}>
+                <Grid size={{ xs: 12, md: 4, lg: 3 }}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                             <Typography variant='h5' sx={{ fontWeight: 'medium' }}>Comments</Typography>
@@ -174,7 +178,7 @@ export default function ProductDetails() {
                         </Box>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
                             <TextField multiline minRows={1} maxRows={6} placeholder='Share your thoughts about this product here'
-                            sx={{ 'fieldset': { borderColor:'#9E9E9E', borderRadius: 4 } }}/>
+                                sx={{ 'fieldset': { borderColor: '#9E9E9E', borderRadius: 4 } }} />
                             <Button variant="outlined" sx={{
                                 borderWidth: 2, borderRadius: 4, color: '#0C68F4',
                                 borderBlockColor: '#0C68F4', textTransform: 'none', py: 1.8125
