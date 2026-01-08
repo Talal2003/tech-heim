@@ -3,8 +3,8 @@ import { Link as RouterLink } from 'react-router-dom';
 
 export default function Checkout() {
     return <>
-        <Grid container spacing={3}>
-            <Grid size={{ xs: 12, md: 7 }}>
+        <Grid container spacing={{xs: 2, md: 3}}>
+            <Grid size={{ xs: 12, md: 7.2 }}>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                     <Box sx={{ display: "flex", flexDirection: "column", gap: 2, px: 4, py: 3, border: "1px solid", borderRadius: 2, borderColor: "#EDEDED" }}>
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
@@ -36,7 +36,7 @@ export default function Checkout() {
                     </Box>
                 </Box>
             </Grid>
-            <Grid size={{ xs: 12, md: 5 }}>
+            <Grid size={{ xs: 12, md: 4.8 }}>
                 <Card variant="outlined" sx={{ display: "flex", flexDirection: "column", borderColor: "#EDEDED", gap: 5, p: 3, borderRadius: 2 }}>
                     <CardContent sx={{ display: "flex", flexDirection: "column", gap: 5, p: 0 }}>
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>

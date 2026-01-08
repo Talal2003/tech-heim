@@ -8,7 +8,7 @@ import { Link as RouterLink } from 'react-router-dom';
 export default function Cart() {
   return (
     <>
-      <Grid container spacing={13}>
+      <Grid container spacing={{ xs: 3, md: 6, lg: 13 }}>
         <Grid size={{ xs: 12, md: 7, lg: 8 }}>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
             <Card sx={{ display: "flex", flexDirection: "row", gap: 3, px: 2, py: 1, alignItems: "center" }}>
@@ -36,9 +36,6 @@ export default function Cart() {
                 </Box>
                 <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                   <Box sx={{ display: "flex", flexDirection: "row", gap: 1, alignItems: "center" }}>
-                    <Typography variant="caption" color="textSecondary" sx={{ textDecoration: 'line-through' }}>
-                      $1410.87
-                    </Typography>
                     <Typography variant="subtitle1">
                       $1299.00
                     </Typography>
@@ -88,9 +85,6 @@ export default function Cart() {
                 </Box>
                 <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                   <Box sx={{ display: "flex", flexDirection: "row", gap: 1, alignItems: "center" }}>
-                    <Typography variant="caption" color="textSecondary" sx={{ textDecoration: 'line-through' }}>
-                      $1410.87
-                    </Typography>
                     <Typography variant="subtitle1">
                       $1299.00
                     </Typography>
@@ -140,9 +134,6 @@ export default function Cart() {
                 </Box>
                 <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                   <Box sx={{ display: "flex", flexDirection: "row", gap: 1, alignItems: "center" }}>
-                    <Typography variant="caption" color="textSecondary" sx={{ textDecoration: 'line-through' }}>
-                      $1410.87
-                    </Typography>
                     <Typography variant="subtitle1">
                       $1299.00
                     </Typography>
