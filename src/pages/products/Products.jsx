@@ -22,18 +22,17 @@ export default function Products() {
     <>
       <Categories />
       <Grid container spacing={4}>
-        <Grid size={{ sm: 4, md: 3 }} sx={{ display: { xs: 'none', sm: 'block' } }}>
+        <Grid size={{ sm: 12, md: 4, lg: 3 }}>
           <Filters />
         </Grid>
 
-
-        <Grid size={{ xs: 12, sm: 8, md: 9 }}>
+        <Grid size={{ sm: 12, md: 8, lg: 9 }}>
 
           <Box sx={{ display: "flex", flexDirection: "column", gap: 4.125 }}>
             <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
               <TextField label="Search.." sx={{ flex: 1 }} />
 
-              <FormControl sx={{ minWidth: 205 }}>
+              <FormControl sx={{ flex: { xs: 0.5, md: 0.25 } }}>
                 <InputLabel>Sort By</InputLabel>
                 <Select>
                   <MenuItem value="featured">Featured</MenuItem>
@@ -46,7 +45,7 @@ export default function Products() {
 
             <Grid container spacing={4}>
               {data.response.data.map((product) =>
-                <Grid size={{ sm: 5, md: 4 }}>
+                <Grid size={{ xs: 12, sm: 6, lg: 4 }}>
                   <Card>
                     <CardActionArea component={RouterLink} to={`/product/${product.id}`}>
                       <CardMedia
@@ -96,8 +95,6 @@ export default function Products() {
           </Box>
 
         </Grid>
-
-
       </Grid>
     </>
   )
