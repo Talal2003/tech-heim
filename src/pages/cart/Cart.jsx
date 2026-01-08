@@ -4,8 +4,13 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Link as RouterLink } from 'react-router-dom';
+import useCart from "../../hooks/useCart";
 
 export default function Cart() {
+
+const {data} = useCart();
+console.log(data);
+
   return (
     <>
       <Grid container spacing={{ xs: 3, md: 6, lg: 13 }}>
