@@ -6,11 +6,23 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Link as RouterLink } from 'react-router-dom';
 import useCart from "../../hooks/useCart";
 import useRemoveFromCart from "../../hooks/useRemoveFromCart";
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import useUpdateCartItem from "../../hooks/useUpdateCartItem";
 
 export default function Cart() {
 
   const { data, isLoading, isError } = useCart();
-  const { mutate: removeItem, isPending } = useRemoveFromCart();
+  const { mutate: removeItem, isPending: removeItemPending } = useRemoveFromCart();
+  const { mutate: updateItem, isPending: updateItemPending } = useUpdateCartItem();
+  const handleUpdate = (productId, action) => {
+    const item = data.items.find(i => i.productId == productId);
+    if (action == '-') {
+      updateItem({ productId, count: item.count - 1 })
+    } else {
+      updateItem({ productId, count: item.count + 1 })
+    }
+  }
   if (isLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3 }}>
     <CircularProgress />
   </Box>
@@ -52,7 +64,7 @@ export default function Cart() {
                       <Typography variant="subtitle1">${item.price}</Typography>
                     </Box>
                     <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
-                      <IconButton sx={{ mt: "auto", p: 0 }} disabled={isPending}
+                      <IconButton disabled={removeItemPending} sx={{ mt: "auto", p: 0 }}
                         onClick={() => removeItem(item.productId)}>
                         <DeleteOutlineIcon fontSize="small" sx={{ color: "red" }} />
                       </IconButton>
@@ -60,13 +72,15 @@ export default function Cart() {
                         display: "flex", flexDirection: "row", gap: 1.5, alignItems: "center",
                         width: "100%", borderBottom: "1px solid #717171"
                       }}>
-                        <Button sx={{ px: 0.4375, py: 0, minWidth: 0 }}>
-                          <Typography variant="h4" sx={{ color: "#717171" }}>-</Typography>
-                        </Button>
-                        <Typography variant="h6" sx={{ color: "#717171" }}>{item.count}</Typography>
-                        <Button sx={{ px: 0.4375, py: 0, minWidth: 0 }}>
-                          <Typography variant="h5" sx={{ color: "#717171" }}>+</Typography>
-                        </Button>
+                        <IconButton disabled={updateItemPending} sx={{ p: 0.4375, minWidth: 0 }}
+                          onClick={() => handleUpdate(item.productId, '-')}>
+                          <RemoveIcon fontSize="small" sx={{ color: "#717171" }} />
+                        </IconButton>
+                        <Typography component={'span'} sx={{ color: "#717171" }}>{item.count}</Typography>
+                        <IconButton disabled={updateItemPending} sx={{ p: 0.4375, minWidth: 0 }}
+                          onClick={() => handleUpdate(item.productId, '+')}>
+                          <AddIcon fontSize="small" sx={{ color: "#717171" }} />
+                        </IconButton>
                       </Box>
                     </Box>
                   </Box>
