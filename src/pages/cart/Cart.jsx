@@ -5,10 +5,12 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Link as RouterLink } from 'react-router-dom';
 import useCart from "../../hooks/useCart";
+import useRemoveFromCart from "../../hooks/useRemoveFromCart";
 
 export default function Cart() {
 
   const { data, isLoading, isError } = useCart();
+  const { mutate: removeItem, isPending } = useRemoveFromCart();
   if (isLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3 }}>
     <CircularProgress />
   </Box>
@@ -50,7 +52,8 @@ export default function Cart() {
                       <Typography variant="subtitle1">${item.price}</Typography>
                     </Box>
                     <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
-                      <IconButton sx={{ mt: "auto", p: 0 }}>
+                      <IconButton sx={{ mt: "auto", p: 0 }} disabled={isPending}
+                        onClick={() => removeItem(item.productId)}>
                         <DeleteOutlineIcon fontSize="small" sx={{ color: "red" }} />
                       </IconButton>
                       <Box sx={{
