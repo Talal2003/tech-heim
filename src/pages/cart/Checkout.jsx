@@ -1,10 +1,19 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, FormControl, FormControlLabel, Grid, Link, Radio, RadioGroup, TextField, Typography } from "@mui/material";
+import { Box, Button, Card, CardActions, CardContent, CardMedia, CircularProgress, Divider, FormControl, FormControlLabel, Grid, Link, Radio, RadioGroup, TextField, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Link as RouterLink } from 'react-router-dom';
+import useCart from "../../hooks/useCart";
 
 export default function Checkout() {
 
+    const { data, isLoading, isError, error } = useCart();
     const { t } = useTranslation();
+
+    if (isLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3 }}>
+        <CircularProgress />
+    </Box>
+    if (isError) return <Typography sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3, color: 'red' }}>
+        {error.message}
+    </Typography>
 
     return <>
         <Grid container spacing={{ xs: 2, md: 3 }}>
@@ -46,54 +55,24 @@ export default function Checkout() {
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
                             <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
                                 <Typography component={'h4'} variant="h5">{t("Your Order")}</Typography>
-                                <Card sx={{ boxShadow: "none" }}>
-                                    <Box sx={{ display: "flex", flexDirection: "row", gap: 0.75, p: 0.75 }}>
-                                        <CardMedia
-                                            component="img"
-                                            sx={{ width: 87, objectFit: 'contain', borderRadius: 2 }}
-                                            image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                                            title=""
-                                        />
-                                        <Box sx={{ display: "flex", flexDirection: "column", gap: 1, color: "#2D2D2D", width: "100%" }}>
-                                            <Typography variant="body2">MacBook Pro M2 MNEJ3 2022 LLA 13.3 inch</Typography>
-                                            <Typography variant="caption" sx={{ color: "#717171" }}>x1</Typography>
-                                            <Typography variant="body2" sx={{ alignSelf: "flex-end" }}>$63.26</Typography>
+                                {data.items.map(item => (
+                                    <Card sx={{ boxShadow: "none" }}>
+                                        <Box sx={{ display: "flex", flexDirection: "row", gap: 0.75, p: 0.75 }}>
+                                            <CardMedia
+                                                component="img"
+                                                sx={{ width: 87, objectFit: 'contain', borderRadius: 2 }}
+                                                image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                                                title=""
+                                            />
+                                            <Box sx={{ display: "flex", flexDirection: "column", gap: 1, color: "#2D2D2D", width: "100%" }}>
+                                                <Typography variant="body2">{item.productName}</Typography>
+                                                <Typography variant="caption" sx={{ color: "#717171" }}>x{item.count}</Typography>
+                                                <Typography variant="body2" sx={{ alignSelf: "flex-end" }}>${item.price}</Typography>
+                                            </Box>
                                         </Box>
-                                    </Box>
-                                    <Divider></Divider>
-                                </Card>
-                                <Card sx={{ boxShadow: "none" }}>
-                                    <Box sx={{ display: "flex", flexDirection: "row", gap: 0.75, p: 0.75 }}>
-                                        <CardMedia
-                                            component="img"
-                                            sx={{ width: 87, objectFit: 'contain', borderRadius: 2 }}
-                                            image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                                            title=""
-                                        />
-                                        <Box sx={{ display: "flex", flexDirection: "column", gap: 1, color: "#2D2D2D", width: "100%" }}>
-                                            <Typography variant="body2">MacBook Pro M2 MNEJ3 2022 LLA 13.3 inch</Typography>
-                                            <Typography variant="caption" sx={{ color: "#717171" }}>x1</Typography>
-                                            <Typography variant="body2" sx={{ alignSelf: "flex-end" }}>$63.26</Typography>
-                                        </Box>
-                                    </Box>
-                                    <Divider></Divider>
-                                </Card>
-                                <Card sx={{ boxShadow: "none" }}>
-                                    <Box sx={{ display: "flex", flexDirection: "row", gap: 0.75, p: 0.75 }}>
-                                        <CardMedia
-                                            component="img"
-                                            sx={{ width: 87, objectFit: 'contain', borderRadius: 2 }}
-                                            image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                                            title=""
-                                        />
-                                        <Box sx={{ display: "flex", flexDirection: "column", gap: 1, color: "#2D2D2D", width: "100%" }}>
-                                            <Typography variant="body2">MacBook Pro M2 MNEJ3 2022 LLA 13.3 inch</Typography>
-                                            <Typography variant="caption" sx={{ color: "#717171" }}>x1</Typography>
-                                            <Typography variant="body2" sx={{ alignSelf: "flex-end" }}>$63.26</Typography>
-                                        </Box>
-                                    </Box>
-                                    <Divider></Divider>
-                                </Card>
+                                        <Divider></Divider>
+                                    </Card>
+                                ))}
                             </Box>
                             <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
                                 <TextField placeholder={t("discount code")} fullWidth variant="outlined"
@@ -105,23 +84,17 @@ export default function Checkout() {
                         </Box>
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5, p: 1 }}>
                             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-                                <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                                    <Typography variant="body2" sx={{ color: "#717171" }}>Subtotal</Typography>
-                                    <Typography variant="body2" sx={{ color: "#717171" }}>$519.52</Typography>
-                                </Box>
-                                <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                                    <Typography variant="body2" sx={{ color: "#717171" }}>Discount</Typography>
-                                    <Typography variant="body2" sx={{ color: "#717171" }}>-$111.87</Typography>
-                                </Box>
-                                <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                                    <Typography variant="body2" sx={{ color: "#717171" }}>Shipment cost</Typography>
-                                    <Typography variant="body2" sx={{ color: "#717171" }}>$22.50</Typography>
-                                </Box>
+                                {data.items.map(item => (
+                                    <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                                        <Typography variant="body2" sx={{ color: "#717171" }}>{item.productName}</Typography>
+                                        <Typography variant="body2" sx={{ color: "#717171" }}>${item.totalPrice}</Typography>
+                                    </Box>
+                                ))}
                             </Box>
                             <Divider sx={{ borderBottomWidth: '2px' }}></Divider>
                             <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                                 <Typography component={'h6'} variant="body1" sx={{ color: "#2D2D2D" }}>{t("Grand Total")}</Typography>
-                                <Typography component={'h6'} variant="body1" sx={{ color: "#2D2D2D" }}>$543.02</Typography>
+                                <Typography component={'h6'} variant="body1" sx={{ color: "#2D2D2D" }}>${data.cartTotal}</Typography>
                             </Box>
                         </Box>
                     </CardContent>
