@@ -21,9 +21,9 @@ export default function useLogin() {
             const accessToken = response.data.accessToken;
             const decoded = jwtDecode(accessToken);
             const user = {
-                name: decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"],
-                email: decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"],
-                role: decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
+                name: decoded["https://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"],
+                email: decoded["https://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"],
+                role: decoded["https://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
             }
             setToken(accessToken);
             setUser(user);
