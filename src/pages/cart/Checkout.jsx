@@ -1,24 +1,28 @@
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, FormControl, FormControlLabel, Grid, Link, Radio, RadioGroup, TextField, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { Link as RouterLink } from 'react-router-dom';
 
 export default function Checkout() {
+
+    const { t } = useTranslation();
+
     return <>
-        <Grid container spacing={{xs: 2, md: 3}}>
+        <Grid container spacing={{ xs: 2, md: 3 }}>
             <Grid size={{ xs: 12, md: 7.2 }}>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                     <Box sx={{ display: "flex", flexDirection: "column", gap: 2, px: 4, py: 3, border: "1px solid", borderRadius: 2, borderColor: "#EDEDED" }}>
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
-                            <Typography component={'h5'} variant="h6">Payment</Typography>
+                            <Typography component={'h5'} variant="h6">{t("Payment")}</Typography>
 
                             <FormControl>
                                 <RadioGroup defaultValue="credit-card"
                                     sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
                                     <Box sx={{ backgroundColor: '#F9F9F9', borderRadius: 2, px: 1, py: 1.75 }}>
-                                        <FormControlLabel value="credit-card" control={<Radio sx={{ pl: 0.5, py: 0 }} />} label="Credit Card"
+                                        <FormControlLabel value="credit-card" control={<Radio sx={{ pl: 0.5, py: 0 }} />} label={t("Credit Card")}
                                             sx={{ px: 1 }} />
                                     </Box>
                                     <Box sx={{ backgroundColor: '#F9F9F9', borderRadius: 2, px: 1, py: 1.75 }}>
-                                        <FormControlLabel value="cash" control={<Radio sx={{ pl: 0.5, py: 0 }} />} label="Cash"
+                                        <FormControlLabel value="cash" control={<Radio sx={{ pl: 0.5, py: 0 }} />} label={t("Cash")}
                                             sx={{ px: 1, py: 0 }} />
                                     </Box>
                                 </RadioGroup>
@@ -26,13 +30,13 @@ export default function Checkout() {
 
                         </Box>
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
-                            <Typography component={'h5'} variant="h6">Shipping address</Typography>
-                            <TextField placeholder="HubSpot, 25  Street, Cambridge MA 02141, United States" fullWidth
+                            <Typography component={'h5'} variant="h6">{t("Shipping address")}</Typography>
+                            <TextField placeholder={t("HubSpot, 25  Street, Cambridge MA 02141, United States")} fullWidth
                                 sx={{ input: { px: 1, py: 1.9375 }, 'fieldset': { border: 'none' }, backgroundColor: '#F9F9F9', borderRadius: 2 }} />
                         </Box>
                     </Box>
                     <Box sx={{ px: 1.3125, py: 1.8125 }}>
-                        <Link component={RouterLink} variant="body1" to='/cart' underline='none'>Return to cart</Link>
+                        <Link component={RouterLink} variant="body1" to='/cart' underline='none'>{t("Return to cart")}</Link>
                     </Box>
                 </Box>
             </Grid>
@@ -41,7 +45,7 @@ export default function Checkout() {
                     <CardContent sx={{ display: "flex", flexDirection: "column", gap: 5, p: 0 }}>
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
                             <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                                <Typography component={'h4'} variant="h5">Your Order</Typography>
+                                <Typography component={'h4'} variant="h5">{t("Your Order")}</Typography>
                                 <Card sx={{ boxShadow: "none" }}>
                                     <Box sx={{ display: "flex", flexDirection: "row", gap: 0.75, p: 0.75 }}>
                                         <CardMedia
@@ -92,10 +96,10 @@ export default function Checkout() {
                                 </Card>
                             </Box>
                             <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
-                                <TextField placeholder="discount code" fullWidth variant="outlined"
+                                <TextField placeholder={t("discount code")} fullWidth variant="outlined"
                                     sx={{ input: { p: 1.5 }, 'fieldset': { borderRadius: 2 } }} />
-                                <Button variant="outlined"  sx={{ border: "2px solid", textTransform: "none", borderRadius: 2, px: 5.5625 }}>
-                                    <Typography variant="body1">Apply</Typography>
+                                <Button variant="outlined" sx={{ border: "2px solid", textTransform: "none", borderRadius: 2, px: 5.5625 }}>
+                                    <Typography variant="body1">{t("Apply")}</Typography>
                                 </Button>
                             </Box>
                         </Box>
@@ -116,14 +120,14 @@ export default function Checkout() {
                             </Box>
                             <Divider sx={{ borderBottomWidth: '2px' }}></Divider>
                             <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                                <Typography component={'h6'} variant="body1" sx={{ color: "#2D2D2D" }}>Grand Total</Typography>
+                                <Typography component={'h6'} variant="body1" sx={{ color: "#2D2D2D" }}>{t("Grand Total")}</Typography>
                                 <Typography component={'h6'} variant="body1" sx={{ color: "#2D2D2D" }}>$543.02</Typography>
                             </Box>
                         </Box>
                     </CardContent>
                     <CardActions sx={{ p: 0 }}>
                         <Button fullWidth variant="contained" sx={{ py: 1.8125, borderRadius: 2, textTransform: 'none' }}>
-                            <Typography variant="body1">Continue to pay</Typography>
+                            <Typography variant="body1">{t("Continue to pay")}</Typography>
                         </Button>
                     </CardActions>
                 </Card>

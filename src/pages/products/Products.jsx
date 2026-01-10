@@ -7,10 +7,12 @@ import { Link as RouterLink } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import useProducts from "../../hooks/useProducts.js";
+import { useTranslation } from "react-i18next";
 
 export default function Products() {
 
   const { isLoading, isError, error, data } = useProducts();
+  const { t } = useTranslation();
   if (isLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3 }}>
     <CircularProgress />
   </Box>
@@ -30,22 +32,22 @@ export default function Products() {
 
           <Box sx={{ display: "flex", flexDirection: "column", gap: 4.125 }}>
             <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-              <TextField label="Search.." sx={{ flex: 1 }} />
+              <TextField label={`${t("Search")}..`} sx={{ flex: 1 }} />
 
               <FormControl sx={{ flex: { xs: 0.5, md: 0.25 } }}>
-                <InputLabel>Sort By</InputLabel>
+                <InputLabel>{t("Sort By")}</InputLabel>
                 <Select>
-                  <MenuItem value="featured">Featured</MenuItem>
-                  <MenuItem value="priceAscending">Price: ascending</MenuItem>
-                  <MenuItem value="priceDescending">Price: descending</MenuItem>
-                  <MenuItem value="newArrivals">New Arrivals</MenuItem>
+                  <MenuItem value="featured">{t("Featured")}</MenuItem>
+                  <MenuItem value="priceAscending">{t("Price: ascending")}</MenuItem>
+                  <MenuItem value="priceDescending">{t("Price: descending")}</MenuItem>
+                  <MenuItem value="newArrivals">{t("New Arrivals")}</MenuItem>
                 </Select>
               </FormControl>
             </Box>
 
             <Grid container spacing={4}>
               {data.response.data.map((product) =>
-                <Grid size={{ xs: 12, sm: 6, lg: 4 }}>
+                <Grid size={{ xs: 12, sm: 6, lg: 4 }} key={product.id}>
                   <Card>
                     <CardActionArea component={RouterLink} to={`/product/${product.id}`}>
                       <CardMedia

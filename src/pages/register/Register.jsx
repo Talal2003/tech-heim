@@ -5,9 +5,11 @@ import { Link as RouterLink } from 'react-router-dom';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RegisterSchema } from "../../validations/RegisterSchema";
 import useRegister from "../../hooks/useRegister";
+import { useTranslation } from "react-i18next";
 
 export default function Register() {
 
+  const { t } = useTranslation();
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(RegisterSchema),
     mode: 'onBlur'
@@ -30,11 +32,11 @@ export default function Register() {
             aria-label="nav tabs example"
             role="navigation"
           >
-            <Tab label="Log in" component={RouterLink} to="/login" />
-            <Tab label="Create Account" component={RouterLink} to="/register" />
+            <Tab label={t("Log in")} component={RouterLink} to="/login" />
+            <Tab label={t("Create Account")} component={RouterLink} to="/register" />
           </Tabs>
 
-          <Typography variant='h5'>Create your account</Typography>
+          <Typography variant='h5'>{t("Create your account")}</Typography>
 
           {serverErrors.length > 0 ?
             serverErrors.map((err) =>
@@ -46,36 +48,35 @@ export default function Register() {
 
           {successfulRegistration && (
             <Alert variant="outlined" severity="info" sx={{ width: '100%', }}>
-              <Typography component="strong" variant="p">Registration successful!</Typography>
-              <Typography variant="body2">A confirmation email has</Typography>
-              <Typography variant="body2">been sent to your inbox.</Typography>
+              <Typography component="strong" variant="p">{`${t("Registration successful")}!`}</Typography>
+              <Typography variant="body2">{`${t("A confirmation email has been sent to your inbox")}.`}</Typography>
             </Alert>
           )}
 
-          <TextField {...register('fullName')} label="Full Name" fullWidth variant="outlined"
+          <TextField {...register('fullName')} label={t("Full Name")} fullWidth variant="outlined"
             error={errors.fullName} helperText={errors.fullName?.message}
           />
-          <TextField {...register('email')} label="E-mail" fullWidth variant="outlined"
+          <TextField {...register('email')} label={t("E-mail")} fullWidth variant="outlined"
             error={errors.email} helperText={errors.email?.message}
           />
-          <TextField {...register('userName')} label="Username" fullWidth variant="outlined"
+          <TextField {...register('userName')} label={t("Username")} fullWidth variant="outlined"
             error={errors.userName} helperText={errors.userName?.message}
           />
-          <TextField {...register('password')} type="password" label="Password" fullWidth variant="outlined"
+          <TextField {...register('password')} type="password" label={t("Password")} fullWidth variant="outlined"
             error={errors.password} helperText={errors.password?.message}
           />
-          <TextField {...register('phoneNumber')} label="Phone Number" fullWidth variant="outlined"
+          <TextField {...register('phoneNumber')} label={t("Phone Number")} fullWidth variant="outlined"
             error={errors.phoneNumber} helperText={errors.phoneNumber?.message}
           />
           <FormControlLabel required control={<Checkbox size="small" />}
-            label={<Typography variant="caption">I agree to all Terms & Conditions</Typography>}
+            label={<Typography variant="caption">{t("I agree to all Terms & Conditions")}</Typography>}
             sx={{ alignSelf: 'flex-start' }} />
           <Button variant="contained" fullWidth type="submit" disabled={isSubmitting}>
-            {isSubmitting ? <CircularProgress /> : 'Create Account'}
+            {isSubmitting ? <CircularProgress /> : t("Create Account")}
           </Button>
         </Box>
 
-        <Typography>Or Sign Up with</Typography>
+        <Typography>{t("Or Sign Up with")}</Typography>
 
         <Box className="other-sign-up-options"
           sx={{ display: 'flex', gap: 2, flexDirection: 'column', alignItems: 'center' }}>
@@ -89,8 +90,8 @@ export default function Register() {
           </Box>
           <Box
             sx={{ display: 'flex', gap: 2 }}>
-            <Typography>Already have an account ?</Typography>
-            <Link component={RouterLink} to='/login' underline='none'>sign in</Link>
+            <Typography>{t("Already have an account ?")}</Typography>
+            <Link component={RouterLink} to='/login' underline='none'>{t("sign in")}</Link>
           </Box>
         </Box>
       </Box>

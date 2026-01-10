@@ -13,6 +13,7 @@ import { useState } from 'react';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import { useTranslation } from 'react-i18next';
 
 export default function Navbar() {
 
@@ -20,10 +21,15 @@ export default function Navbar() {
   const token = useAuthStore(state => state.token);
   const logout = useAuthStore(state => state.logout);
   const user = useAuthStore(state => state.user);
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate('');
   const handleLogout = () => {
     logout();
     navigate('/login');
+  }
+  const changeLanguage = () => {
+    const newLng = i18n.language === 'ar' ? 'en' : 'ar';;
+    i18n.changeLanguage(newLng);
   }
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -49,14 +55,21 @@ export default function Navbar() {
             <Tabs value={value} onChange={(e, newValue) => setValue(newValue)}
               variant="scrollable" scrollButtons="auto" aria-label="categories tabs"
               sx={{ '.MuiTabs-flexContainer': { gap: { lg: 4 } }, '.MuiTabs-indicator': { height: 1.5 } }}>
-              <Tab component={RouterLink} to='/home' label={"Home"} value={0} />
-              <Tab component={RouterLink} to='/products' label={"Products"} value={1} />
-              <Tab component={RouterLink} to='/blog' label={"Blog"} value={2} />
-              <Tab component={RouterLink} to='/faq' label={"FAQ"} value={3} />
-              <Tab component={RouterLink} to='/contact-us' label={"Contact Us"} value={4} />
+              <Tab component={RouterLink} to='/home' label={t("Home")} value={0} />
+              <Tab component={RouterLink} to='/products' label={t("Products")} value={1} />
+              <Tab component={RouterLink} to='/' label={t("Blog")} value={2} />
+              <Tab component={RouterLink} to='/' label={t("FAQ")} value={3} />
+              <Tab component={RouterLink} to='/' label={t("Contact Us")} value={4} />
             </Tabs>
 
             <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+              <IconButton color='inherit'
+                onClick={changeLanguage}
+              >
+                <Typography sx={{ width: '1.5rem' }}>
+                  {i18n.language === 'ar' ? 'EN' : 'ع'}
+                </Typography>
+              </IconButton>
               <IconButton component={RouterLink} to='/products'>
                 <img src={searchNormalIcon} alt="" />
               </IconButton>
@@ -105,7 +118,7 @@ export default function Navbar() {
                         }} disableRipple>
                           <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
                             <LogoutOutlinedIcon />
-                            Log out
+                            {t("Log out")}
                           </Box>
                         </MenuItem>
                       </Box>
@@ -113,7 +126,7 @@ export default function Navbar() {
                   </Box>
                 </>
                 :
-                <Button component={RouterLink} to='/login' variant="contained">Login / Sign Up</Button>
+                <Button component={RouterLink} to='/login' variant="contained">{t("Login")} / {t("Sign Up")}</Button>
               }
             </Box>
           </Toolbar>

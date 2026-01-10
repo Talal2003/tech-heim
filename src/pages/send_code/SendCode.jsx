@@ -4,9 +4,11 @@ import { Link as RouterLink } from 'react-router-dom';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SendCodeSchema } from "../../validations/SendCodeSchema";
 import useSendCode from "../../hooks/useSendCode";
+import { useTranslation } from "react-i18next";
 
 export default function SendCode() {
 
+  const { t } = useTranslation();
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(SendCodeSchema),
     mode: 'onBlur'
@@ -29,16 +31,14 @@ export default function SendCode() {
             aria-label="nav tabs example"
             role="navigation"
           >
-            <Tab label="Log in" component={RouterLink} to="/login" />
-            <Tab label="Create Account" component={RouterLink} to="/register" />
+            <Tab label={t("Log in")} component={RouterLink} to="/login" />
+            <Tab label={t("Create Account")} component={RouterLink} to="/register" />
           </Tabs>
 
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, alignSelf: 'flex-start', mt: 1, mb: 2 }}>
-            <Typography variant='h5'>Password Reset</Typography>
+            <Typography variant='h5'>{t("Password Reset")}</Typography>
             <Box>
-              <Typography>provide the email address</Typography>
-              <Typography>associated with your account</Typography>
-              <Typography>to recover your password.</Typography>
+              <Typography>{`${t("provide the email address associated with your account to recover your password")}.`}</Typography>
             </Box>
           </Box>
 
@@ -48,12 +48,12 @@ export default function SendCode() {
             </Alert>
             : null}
 
-          <TextField {...register('email')} label="E-mail" fullWidth variant="outlined"
+          <TextField {...register('email')} label={t("E-mail")} fullWidth variant="outlined"
             error={errors.email} helperText={errors.email?.message}
           />
 
           <Button variant="contained" fullWidth type="submit" disabled={isSubmitting}>
-            {isSubmitting ? <CircularProgress /> : 'Reset Password'}
+            {isSubmitting ? <CircularProgress /> : t("Reset Password")}
           </Button>
         </Box>
       </Box>

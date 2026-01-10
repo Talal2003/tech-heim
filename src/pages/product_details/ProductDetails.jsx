@@ -7,6 +7,7 @@ import DiscountIcon from '@mui/icons-material/Discount';
 import { useParams } from 'react-router-dom';
 import useProductDetails from '../../hooks/useProductDetails';
 import useAddToCart from '../../hooks/useAddToCart';
+import { useTranslation } from 'react-i18next';
 
 export default function ProductDetails() {
     const itemData = [
@@ -63,6 +64,7 @@ export default function ProductDetails() {
     const { id } = useParams();
     const { isLoading, isError, error, data } = useProductDetails(id);
     const { mutate: addToCart, isPending } = useAddToCart();
+    const { t } = useTranslation();
     if (isLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3 }}>
         <CircularProgress />
     </Box>
@@ -108,27 +110,27 @@ export default function ProductDetails() {
                                                 <Typography variant="body2">{product.rate}</Typography>
                                             </Box>
                                             <Divider orientation="vertical" flexItem sx={{ borderWidth: 1, backgroundColor: "#717171" }} />
-                                            <Typography>quantity {product.quantity}</Typography>
+                                            <Typography>{t("quantity")} {product.quantity}</Typography>
                                         </Box>
                                     </Box>
                                     <Box display="flex" flexDirection="row" gap={4}>
                                         <Box display="flex" flexDirection="row" gap={0.5} alignItems={'center'}>
                                             <InventoryIcon fontSize="small" />
-                                            <Typography variant="body2">In Stock</Typography>
+                                            <Typography variant="body2">{t("In Stock")}</Typography>
                                         </Box>
                                         <Box display="flex" flexDirection="row" gap={0.5} alignItems={'center'}>
                                             <VerifiedIcon fontSize="small" />
-                                            <Typography variant="body2">Guaranteed</Typography>
+                                            <Typography variant="body2">{t("Guaranteed")}</Typography>
                                         </Box>
                                         <Box display="flex" flexDirection="row" gap={0.5} alignItems={'center'}>
                                             <LocalShippingIcon fontSize="small" />
-                                            <Typography variant="body2">Free Delivery</Typography>
+                                            <Typography variant="body2">{t("Free Delivery")}</Typography>
                                         </Box>
                                     </Box>
                                 </Box>
 
                                 <Box>
-                                    <Typography>Description:</Typography>
+                                    <Typography>{t("Description")}:</Typography>
                                     <Typography>{product.description}</Typography>
                                 </Box>
                             </Box>
@@ -148,23 +150,23 @@ export default function ProductDetails() {
                                     </Box>
                                 </Box>
                                 <Box display="flex" flexDirection="row" gap={1}>
-                                    <Typography>last price</Typography>
+                                    <Typography>{t("last price")}</Typography>
                                     <Typography>$ {product.price}</Typography>
                                 </Box>
                             </Box>
                             <Box>
                                 <RadioGroup>
-                                    <FormControlLabel value="pay-now" control={<Radio />} label="Pay Now" />
-                                    <FormControlLabel value="installments" control={<Radio />} label="Buy in installments" />
+                                    <FormControlLabel value="pay-now" control={<Radio />} label={t("Pay Now")} />
+                                    <FormControlLabel value="installments" control={<Radio />} label={t("Buy in installments")} />
                                 </RadioGroup>
                             </Box>
                         </CardContent>
                         <CardActions sx={{ display: "flex", flexDirection: "column", gap: 1, px: 3, pt: 0, pb: 3 }}>
-                            <Button variant="contained" color="primary" fullWidth sx={{ py: 1.25, borderRadius: 2 }}>Buy Now</Button>
+                            <Button variant="contained" color="primary" fullWidth sx={{ py: 1.25, borderRadius: 2 }}>{t("Buy Now")}</Button>
                             <Button variant="outlined" color="primary" fullWidth sx={{ py: 1.25, borderRadius: 2 }}
                                 onClick={() => addToCart({ ProductId: product.id, Count: 1 })}
                                 disabled={isPending}
-                            >Add to cart</Button>
+                            >{t("Add to Cart")}</Button>
                         </CardActions>
                     </Card>
                 </Grid>
@@ -173,20 +175,20 @@ export default function ProductDetails() {
                 <Grid size={{ xs: 12, md: 4, lg: 3 }}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-                            <Typography variant='h5' sx={{ fontWeight: 'medium' }}>Comments</Typography>
-                            <Typography variant='h6' sx={{ fontWeight: 'normal' }}>leave your comments here for other customers</Typography>
+                            <Typography variant='h5' sx={{ fontWeight: 'medium' }}>{t("Comments")}</Typography>
+                            <Typography variant='h6' sx={{ fontWeight: 'normal' }}>{t("leave your comments here for other customers")}</Typography>
                         </Box>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-                            <TextField multiline minRows={1} maxRows={6} placeholder='Share your thoughts about this product here'
+                            <TextField multiline minRows={1} maxRows={6} placeholder={t("Share your thoughts about this product here")}
                                 sx={{ 'fieldset': { borderColor: '#9E9E9E', borderRadius: 4 } }} />
                             <Button variant="outlined" sx={{
                                 borderWidth: 2, borderRadius: 4, color: '#0C68F4',
                                 borderBlockColor: '#0C68F4', textTransform: 'none', py: 1.8125
                             }}>
-                                <Typography sx={{ fontWeight: 'medium' }}>Comment</Typography>
+                                <Typography sx={{ fontWeight: 'medium' }}>{t("Comment")}</Typography>
                             </Button>
                             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                                <Typography variant='body1'>By feature</Typography>
+                                <Typography variant='body1'>{t("By feature")}</Typography>
                                 <Box sx={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
                                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.125 }}>
                                         <Typography variant='caption'>Battery charge</Typography>

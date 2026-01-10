@@ -9,12 +9,14 @@ import useRemoveFromCart from "../../hooks/useRemoveFromCart";
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import useUpdateCartItem from "../../hooks/useUpdateCartItem";
+import { useTranslation } from "react-i18next";
 
 export default function Cart() {
 
-  const { data, isLoading, isError } = useCart();
+  const { data, isLoading, isError, error } = useCart();
   const { mutate: removeItem, isPending: removeItemPending } = useRemoveFromCart();
   const { mutate: updateItem, isPending: updateItemPending } = useUpdateCartItem();
+  const { t } = useTranslation();
   const handleUpdate = (productId, action) => {
     const item = data.items.find(i => i.productId == productId);
     if (action == '-') {
@@ -48,15 +50,15 @@ export default function Cart() {
                   <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
                     <Box display="flex" flexDirection="row" gap={0.5} alignItems={'center'}>
                       <InventoryIcon fontSize="small" />
-                      <Typography variant="body2">In Stock</Typography>
+                      <Typography variant="body2">{t("In Stock")}</Typography>
                     </Box>
                     <Box display="flex" flexDirection="row" gap={0.5} alignItems={'center'}>
                       <VerifiedIcon fontSize="small" />
-                      <Typography variant="body2">Guaranteed</Typography>
+                      <Typography variant="body2">{t("Guaranteed")}</Typography>
                     </Box>
                     <Box display="flex" flexDirection="row" gap={0.5} alignItems={'center'}>
                       <LocalShippingIcon fontSize="small" />
-                      <Typography variant="body2">Free Delivery</Typography>
+                      <Typography variant="body2">{t("Free Delivery")}</Typography>
                     </Box>
                   </Box>
                   <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
@@ -93,7 +95,7 @@ export default function Cart() {
 
           <Card variant="outlined" sx={{ display: "flex", flexDirection: "column", borderColor: "#EDEDED", gap: 2, px: 3, py: 2, borderRadius: 2 }}>
             <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2, p: 0 }}>
-              <Typography component={'h4'} variant="h5">Payment Details</Typography>
+              <Typography component={'h4'} variant="h5">{t("Payment Details")}</Typography>
               <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5, p: 1 }}>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
                   {data.items.map(item => (
@@ -105,7 +107,7 @@ export default function Cart() {
                 </Box>
                 <Divider sx={{ borderBottomWidth: '2px' }}></Divider>
                 <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                  <Typography component={'h6'} variant="body1" sx={{ color: "#2D2D2D" }}>Grand Total</Typography>
+                  <Typography component={'h6'} variant="body1" sx={{ color: "#2D2D2D" }}>{t("Grand Total")}</Typography>
                   <Typography component={'h6'} variant="body1" sx={{ color: "#2D2D2D" }}>${data.cartTotal}</Typography>
                 </Box>
               </Box>
@@ -113,7 +115,7 @@ export default function Cart() {
             <CardActions sx={{ p: 0 }}>
               <Button fullWidth variant="contained" sx={{ py: 1.8125, borderRadius: 2, textTransform: 'none' }}>
                 <Typography component={RouterLink} variant="body1" to='/checkout'
-                  sx={{ color: 'white', textDecoration: 'none' }}>Procced to checkout</Typography>
+                  sx={{ color: 'white', textDecoration: 'none' }}>{t("Procced to checkout")}</Typography>
               </Button>
             </CardActions>
           </Card>

@@ -5,9 +5,11 @@ import { useForm } from "react-hook-form";
 import { Link as RouterLink } from 'react-router-dom';
 import { LoginSchema } from "../../validations/LoginSchema";
 import useLogin from "../../hooks/useLogin";
+import { useTranslation } from "react-i18next";
 
 export default function Login() {
   
+  const { t } = useTranslation();
   const{register, handleSubmit, formState: { errors, isSubmitting }} = useForm({
       resolver:yupResolver(LoginSchema),
       mode:'onBlur'
@@ -29,11 +31,11 @@ export default function Login() {
           aria-label="nav tabs example"
           role="navigation"
         >
-          <Tab label="Log in" component={RouterLink} to="/login" />
-          <Tab label="Create Account" component={RouterLink} to="/register" />
+          <Tab label={t("Log in")} component={RouterLink} to="/login" />
+          <Tab label={t("Create Account")} component={RouterLink} to="/register" />
         </Tabs>
 
-        <Typography variant='h5' >Log in to Tech Heim</Typography>
+        <Typography variant='h5' >{t("Log in to Tech Heim")}</Typography>
 
         {(serverErrors.length > 0) ? 
           <Alert variant="outlined" severity="error" sx={{ width: '100%',}}>
@@ -43,27 +45,27 @@ export default function Login() {
 
         {successfulLogin && (
           <Alert variant="outlined" severity="success" sx={{ width: '100%',}}>
-            Logged In Successfully
+            {t("Logged In Successfully")}
           </Alert>
         )}
 
-        <TextField {...register('email')} label="E-mail" fullWidth variant="outlined"
+        <TextField {...register('email')} label={t("E-mail")} fullWidth variant="outlined"
         error={errors.email} helperText={errors.email?.message}
         />
-        <TextField {...register('password')} type="password" label="Password" fullWidth variant="outlined"
+        <TextField {...register('password')} type="password" label={t("Password")} fullWidth variant="outlined"
         error={errors.password} helperText={errors.password?.message}
         />
         <Link component={RouterLink} variant="caption" to='/send-code'underline='none'
-        sx={{ alignSelf: 'flex-end' }}>Forgot Password ?</Link>
+        sx={{ alignSelf: 'flex-end' }}>{t("Forgot Password ?")}</Link>
         <FormControlLabel control={<Checkbox size="small" />}
-        label={<Typography variant="caption">Keep me logged in</Typography>}
+        label={<Typography variant="caption">{t("Keep me logged in")}</Typography>}
         sx={{ alignSelf: 'flex-start' }} />
         <Button variant="contained" fullWidth type="submit" disabled={isSubmitting}>
-          {isSubmitting ? <CircularProgress /> : 'Log In'}
+          {isSubmitting ? <CircularProgress /> : t("Log In")}
         </Button>
       </Box>
 
-      <Typography>Or Log In with</Typography>
+      <Typography>{t("Or Log In with")}</Typography>
 
       <Box className="other-sign-up-options"
       sx={{display:'flex', gap:2, flexDirection:'column', alignItems:'center'}}>
@@ -77,8 +79,8 @@ export default function Login() {
         </Box>
         <Box 
           sx={{display:'flex', gap:2}}>
-          <Typography>Don’t have an account ? </Typography>
-          <Link component={RouterLink} to='/register' underline='none'>sign up</Link>
+          <Typography>{t("Don’t have an account ?")}</Typography>
+          <Link component={RouterLink} to='/register' underline='none'>{t("sign up")}</Link>
         </Box>
       </Box>
     </Box>

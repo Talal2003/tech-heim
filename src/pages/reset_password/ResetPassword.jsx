@@ -4,9 +4,11 @@ import { Link as RouterLink } from 'react-router-dom';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ResetPasswordSchema } from "../../validations/ResetPasswordSchema";
 import useResetPassword from "../../hooks/useResetPassword";
+import { useTranslation } from "react-i18next";
 
 export default function SendCode() {
 
+    const { t } = useTranslation();
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
         resolver: yupResolver(ResetPasswordSchema),
         mode: 'onBlur',
@@ -29,14 +31,14 @@ export default function SendCode() {
                         aria-label="nav tabs example"
                         role="navigation"
                     >
-                        <Tab label="Log in" component={RouterLink} to="/login" />
-                        <Tab label="Create Account" component={RouterLink} to="/register" />
+                        <Tab label={t("Log in")} component={RouterLink} to="/login" />
+                        <Tab label={t("Create Account")} component={RouterLink} to="/register" />
                     </Tabs>
 
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, alignSelf: 'flex-start', mt: 1, mb: 2 }}>
-                        <Typography variant='h5'>Enter your code</Typography>
+                        <Typography variant='h5'>{t("Enter your code")}</Typography>
                         <Box>
-                            <Typography>Verification code sent to </Typography>
+                            <Typography>{t("Verification code sent to")} </Typography>
                             <Typography>{userEmail}</Typography>
                         </Box>
                     </Box>
@@ -53,18 +55,18 @@ export default function SendCode() {
                         </Alert>
                     )}
 
-                    <TextField {...register('code')} label="Code" fullWidth variant="outlined"
+                    <TextField {...register('code')} label={t("Code")} fullWidth variant="outlined"
                         error={errors.code} helperText={errors.code?.message}
                     />
-                    <TextField {...register('newPassword')} label="New Password" fullWidth variant="outlined"
+                    <TextField {...register('newPassword')} label={t("New Password")} fullWidth variant="outlined"
                         error={errors.newPassword} helperText={errors.newPassword?.message}
                     />
-                    <TextField {...register('email')} label="E-mail" fullWidth variant="outlined"
+                    <TextField {...register('email')} label={t("E-mail")} fullWidth variant="outlined"
                         error={errors.email} helperText={errors.email?.message} value={userEmail} disabled
                     />
 
                     <Button variant="contained" fullWidth type="submit" disabled={isSubmitting}>
-                        {isSubmitting ? <CircularProgress /> : 'Reset Password'}
+                        {isSubmitting ? <CircularProgress /> : t("Reset Password")}
                     </Button>
                 </Box>
             </Box>
