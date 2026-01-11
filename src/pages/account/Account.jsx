@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Account() {
 
+    const user = useAuthStore(state => state.user);
     const logout = useAuthStore(state => state.logout);
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ export default function Account() {
                 <Box sx={{ display: "flex", flexDirection: "column", backgroundColor: "#F9F9F9" }}>
                     <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2, px: 1, py: 0.25 }}>
                         <AccountCircleOutlinedIcon sx={{ color: '#B4B4B4', fontSize: '3.75rem' }} />
-                        <Typography component={"h5"} variant="h6">Jimmy smith</Typography>
+                        <Typography component={"h5"} variant="h6">{user?.name}</Typography>
                     </Box>
                     <Button sx={{ display: "flex", flexDirection: "row", justifyContent: "start", alignItems: "center", color: "inherit", textTransform: "none", gap: 2, p: 3 }}>
                         <ManageAccountsOutlinedIcon sx={{ color: "#444444" }} />
@@ -54,7 +55,7 @@ export default function Account() {
                             }}>
                                 <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
                                     <PersonOutlineOutlinedIcon sx={{ color: "#444444" }} />
-                                    <Typography fontWeight="lighter" color="#717171">Jimmy Smith</Typography>
+                                    <Typography fontWeight="lighter" color="#717171">{user?.name}</Typography>
                                 </Box>
                                 <IconButton>
                                     <EditOutlinedIcon color="primary" />
@@ -68,7 +69,7 @@ export default function Account() {
                             }}>
                                 <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
                                     <EmailOutlinedIcon sx={{ color: "#444444" }} />
-                                    <Typography fontWeight="lighter" color="#717171">Jimmy.smith1996@gmail.com</Typography>
+                                    <Typography fontWeight="lighter" color="#717171">{user?.email}</Typography>
                                 </Box>
                                 <IconButton>
                                     <EditOutlinedIcon color="primary" />
