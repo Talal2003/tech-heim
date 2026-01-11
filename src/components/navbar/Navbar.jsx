@@ -22,7 +22,7 @@ export default function Navbar() {
   const logout = useAuthStore(state => state.logout);
   const user = useAuthStore(state => state.user);
   const { t, i18n } = useTranslation();
-  const navigate = useNavigate('');
+  const navigate = useNavigate();
   const handleLogout = () => {
     logout();
     navigate('/login');
@@ -103,7 +103,10 @@ export default function Navbar() {
                       }}
                     >
                       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, py: 1 }}>
-                        <MenuItem onClick={handleClose} disableRipple>
+                        <MenuItem disableRipple onClick={() => {
+                          handleClose();
+                          navigate('/account');
+                        }}>
                           <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
                             <AccountCircleOutlinedIcon />
                             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
