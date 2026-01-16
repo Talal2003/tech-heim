@@ -1,12 +1,21 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, CircularProgress, Divider, FormControl, FormControlLabel, Grid, Link, Radio, RadioGroup, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, Card, CardActions, CardContent, CardMedia, CircularProgress, Divider, FormControl, FormControlLabel, Grid, Link, Radio, RadioGroup, TextField, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Link as RouterLink } from 'react-router-dom';
 import useCart from "../../hooks/useCart";
+import { useState } from "react";
+import useCheckout from "../../hooks/useCheckout";
 
 export default function Checkout() {
 
     const { data, isLoading, isError, error } = useCart();
+    const [paymentMethod, setPaymentMethod] = useState('cash');
+    const { mutate: checkout, data: checkoutData, isPending: isCheckoutPending,
+        isError: isCheckoutError, isSuccess: isCheckoutSuccess } = useCheckout();
     const { t } = useTranslation();
+
+    const handleCheckout = () => {
+        checkout({ paymentMethod })
+    }
 
     if (isLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3 }}>
         <CircularProgress />
@@ -16,6 +25,19 @@ export default function Checkout() {
     </Typography>
 
     return <>
+        {isCheckoutError ? (
+            <Alert variant="outlined" severity="error"
+                sx={{ display: 'flex', alignSelf: 'center', width: 'fit-content' }}>
+                {("Checkout failed")}
+            </Alert>
+        ) : null}
+        {(isCheckoutSuccess && paymentMethod !== 'visa') ? (
+            <Alert variant="outlined" severity="success"
+                sx={{ display: 'flex', alignSelf: 'center', width: 'fit-content' }}>
+                {checkoutData.message}
+            </Alert>
+        ) : null}
+
         <Grid container spacing={{ xs: 2, md: 3 }}>
             <Grid size={{ xs: 12, md: 7.2 }}>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -24,15 +46,17 @@ export default function Checkout() {
                             <Typography component={'h5'} variant="h6">{t("Payment")}</Typography>
 
                             <FormControl>
-                                <RadioGroup defaultValue="credit-card"
+                                <RadioGroup
+                                    value={paymentMethod}
+                                    onChange={(e) => setPaymentMethod(e.target.value)}
                                     sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
                                     <Box sx={{ backgroundColor: '#F9F9F9', borderRadius: 2, px: 1, py: 1.75 }}>
-                                        <FormControlLabel value="credit-card" control={<Radio sx={{ pl: 0.5, py: 0 }} />} label={t("Credit Card")}
-                                            sx={{ px: 1 }} />
+                                        <FormControlLabel value={'cash'} control={<Radio sx={{ pl: 0.5, py: 0 }} />} label={t("Cash")}
+                                            sx={{ px: 1, py: 0 }} />
                                     </Box>
                                     <Box sx={{ backgroundColor: '#F9F9F9', borderRadius: 2, px: 1, py: 1.75 }}>
-                                        <FormControlLabel value="cash" control={<Radio sx={{ pl: 0.5, py: 0 }} />} label={t("Cash")}
-                                            sx={{ px: 1, py: 0 }} />
+                                        <FormControlLabel value={'visa'} control={<Radio sx={{ pl: 0.5, py: 0 }} />} label={t("Visa")}
+                                            sx={{ px: 1 }} />
                                     </Box>
                                 </RadioGroup>
                             </FormControl>
@@ -56,7 +80,7 @@ export default function Checkout() {
                             <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
                                 <Typography component={'h4'} variant="h5">{t("Your Order")}</Typography>
                                 {data.items.map(item => (
-                                    <Card sx={{ boxShadow: "none" }}>
+                                    <Card key={item.productId} sx={{ boxShadow: "none" }}>
                                         <Box sx={{ display: "flex", flexDirection: "row", gap: 0.75, p: 0.75 }}>
                                             <CardMedia
                                                 component="img"
@@ -85,7 +109,7 @@ export default function Checkout() {
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5, p: 1 }}>
                             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
                                 {data.items.map(item => (
-                                    <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                                    <Box key={item.productId} sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                                         <Typography variant="body2" sx={{ color: "#717171" }}>{item.productName}</Typography>
                                         <Typography variant="body2" sx={{ color: "#717171" }}>${item.totalPrice}</Typography>
                                     </Box>
@@ -99,7 +123,10 @@ export default function Checkout() {
                         </Box>
                     </CardContent>
                     <CardActions sx={{ p: 0 }}>
-                        <Button fullWidth variant="contained" sx={{ py: 1.8125, borderRadius: 2, textTransform: 'none' }}>
+                        <Button fullWidth variant="contained"
+                            onClick={handleCheckout}
+                            disabled={isCheckoutPending}
+                            sx={{ py: 1.8125, borderRadius: 2, textTransform: 'none' }}>
                             <Typography variant="body1">{t("Continue to pay")}</Typography>
                         </Button>
                     </CardActions>

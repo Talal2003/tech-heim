@@ -99,7 +99,7 @@ export default function Cart() {
               <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5, p: 1 }}>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
                   {data.items.map(item => (
-                    <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                    <Box key={item.productId} sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                       <Typography variant="body2" sx={{ color: "#717171" }}>{item.productName}</Typography>
                       <Typography variant="body2" sx={{ color: "#717171" }}>${item.totalPrice}</Typography>
                     </Box>

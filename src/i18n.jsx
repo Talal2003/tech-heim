@@ -106,7 +106,6 @@ i18n
                     "about us": "about us",
                     "cookie settings": "cookie settings",
                     "discount code": "Discount code",
-                    "Credit Card": "Credit Card",
                     "Procced to checkout": "Proceed to checkout",
                     "Return to cart": "Return to cart",
                     "Shipping address": "Shipping address"
@@ -214,7 +213,6 @@ i18n
                     "about us": "معلومات عنا",
                     "cookie settings": "إعدادات ملفات تعريف الارتباط",
                     "discount code": "كود الخصم",
-                    "Credit Card": "بطاقة ائتمان",
                     "Procced to checkout": "المتابعة إلى الدفع",
                     "Return to cart": "العودة إلى السلة",
                     "Shipping address": "عنوان الشحن"
