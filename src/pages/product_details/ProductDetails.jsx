@@ -182,8 +182,8 @@ export default function ProductDetails() {
                             <TextField multiline minRows={1} maxRows={6} placeholder={t("Share your thoughts about this product here")}
                                 sx={{ 'fieldset': { borderColor: '#9E9E9E', borderRadius: 4 } }} />
                             <Button variant="outlined" sx={{
-                                borderWidth: 2, borderRadius: 4, color: '#0C68F4',
-                                borderBlockColor: '#0C68F4', textTransform: 'none', py: 1.8125
+                                borderWidth: 2, borderRadius: 4, color: 'primary',
+                                borderBlockColor: 'primary', textTransform: 'none', py: 1.8125
                             }}>
                                 <Typography sx={{ fontWeight: 'medium' }}>{t("Comment")}</Typography>
                             </Button>

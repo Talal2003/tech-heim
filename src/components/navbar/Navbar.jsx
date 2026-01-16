@@ -14,6 +14,9 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import { useTranslation } from 'react-i18next';
+import useThemeStore from '../../store/useThemeStore';
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 
 export default function Navbar() {
 
@@ -21,6 +24,7 @@ export default function Navbar() {
   const token = useAuthStore(state => state.token);
   const logout = useAuthStore(state => state.logout);
   const user = useAuthStore(state => state.user);
+  const { mode, toggleTheme } = useThemeStore();
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -69,6 +73,11 @@ export default function Navbar() {
                 <Typography sx={{ width: '1.5rem' }}>
                   {i18n.language === 'ar' ? 'EN' : 'ع'}
                 </Typography>
+              </IconButton>
+              <IconButton color='inherit'
+                onClick={toggleTheme}
+              >
+                {mode === 'light' ? <DarkModeOutlinedIcon /> : <LightModeOutlinedIcon />}
               </IconButton>
               <IconButton component={RouterLink} to='/products'>
                 <img src={searchNormalIcon} alt="" />
