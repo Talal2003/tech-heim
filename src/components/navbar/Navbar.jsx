@@ -59,7 +59,7 @@ export default function Navbar() {
             <Tabs value={value} onChange={(e, newValue) => setValue(newValue)}
               variant="scrollable" scrollButtons="auto" aria-label="categories tabs"
               sx={{ '.MuiTabs-flexContainer': { gap: { lg: 4 } }, '.MuiTabs-indicator': { height: 1.5 } }}>
-              <Tab component={RouterLink} to='/home' label={t("Home")} value={0} />
+              <Tab component={RouterLink} to='/' label={t("Home")} value={0} />
               <Tab component={RouterLink} to='/products' label={t("Products")} value={1} />
               <Tab component={RouterLink} to='/' label={t("Blog")} value={2} />
               <Tab component={RouterLink} to='/' label={t("FAQ")} value={3} />

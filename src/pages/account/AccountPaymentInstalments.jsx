@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PaymentInstalments() {
+export default function AccountPaymentInstalments() {
     return (
         <div>
             Payment & Instalments

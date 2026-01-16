@@ -27,7 +27,7 @@ export default function useLogin() {
             }
             setToken(accessToken);
             setUser(user);
-            navigate('/home');
+            navigate('/');
             setSuccessfulLogin(true);
             setServerErrors("");
         },

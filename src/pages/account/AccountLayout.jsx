@@ -4,17 +4,14 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import useAuthStore from "../../store/authStore";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import PersonalData from "../../components/account/PersonalData";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import PaymentInstalments from "../../components/account/PaymentInstalments";
 
-export default function Account() {
+export default function AccountLayout() {
 
     const [value, setValue] = useState(0);
     const user = useAuthStore(state => state.user);
     const logout = useAuthStore(state => state.logout);
-    const { t, i18n } = useTranslation();
     const navigate = useNavigate();
     const handleLogout = () => {
         logout();
@@ -32,7 +29,10 @@ export default function Account() {
                     <Tabs value={value} onChange={(e, newValue) => setValue(newValue)} orientation="vertical"
                         variant="scrollable" scrollButtons="auto" aria-label="categories tabs"
                         sx={{ ".MuiTabs-indicator": { right: "auto", } }}>
-                        <Tab sx={{ p: 3, alignItems: "start" }}
+                        <Tab
+                            component={NavLink}
+                            to=''
+                            sx={{ p: 3, alignItems: "start" }}
                             label={
                                 <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", color: "inherit", textTransform: "none", gap: 2 }}>
                                     <ManageAccountsOutlinedIcon sx={{ color: "#444444" }} />
@@ -40,10 +40,21 @@ export default function Account() {
                                 </Box>
                             } />
                         <Tab sx={{ p: 3, alignItems: "start" }}
+                            component={NavLink}
+                            to='payment-instalments'
                             label={
                                 <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", color: "inherit", textTransform: "none", gap: 2 }}>
                                     <ManageAccountsOutlinedIcon sx={{ color: "#444444" }} />
                                     <Typography component={"body1"} variant="h6" fontWeight="lighter">Payment & Instalments</Typography>
+                                </Box>
+                            } />
+                            <Tab sx={{ p: 3, alignItems: "start" }}
+                            component={NavLink}
+                            to='orders'
+                            label={
+                                <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", color: "inherit", textTransform: "none", gap: 2 }}>
+                                    <ManageAccountsOutlinedIcon sx={{ color: "#444444" }} />
+                                    <Typography component={"body1"} variant="h6" fontWeight="lighter">Orders</Typography>
                                 </Box>
                             } />
                     </Tabs>
@@ -54,8 +65,7 @@ export default function Account() {
                     </Button>
                 </Box>
                 <Box sx={{ flex: 1, pr: 13 }}>
-                    {value === 0 && <PersonalData />}
-                    {value === 1 && <PaymentInstalments />}
+                    <Outlet />
                 </Box>
             </Box >
         </>
