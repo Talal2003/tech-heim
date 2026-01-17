@@ -1,13 +1,12 @@
-import { Box, Card, CardMedia, CardContent, Typography, FormControl, InputLabel, Select, MenuItem, TextField, CardActionArea, Pagination, PaginationItem, CircularProgress } from "@mui/material";
+import { Box, Typography, FormControl, InputLabel, Select, MenuItem, TextField, Pagination, PaginationItem, CircularProgress } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import StarIcon from '@mui/icons-material/Star';
 import Categories from "../../components/categories/Categories.jsx";
 import Filters from "../../components/filters/Filters.jsx";
-import { Link as RouterLink } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import useProducts from "../../hooks/useProducts.js";
 import { useTranslation } from "react-i18next";
+import Product from "../../components/product/Product.jsx";
 
 export default function Products() {
 
@@ -47,36 +46,7 @@ export default function Products() {
 
             <Grid container spacing={4}>
               {data.response.data.map((product) =>
-                <Grid size={{ xs: 12, sm: 6, lg: 4 }} key={product.id}>
-                  <Card>
-                    <CardActionArea component={RouterLink} to={`/product/${product.id}`}>
-                      <CardMedia
-                        component="img"
-                        image={product.image}
-                        title={product.title}
-                        sx={{ height: 190, objectFit: "contain" }}
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="body1">{product.name}</Typography>
-
-                        <Box display="flex" justifyContent="space-between" alignItems="center" mt={1}>
-                          <Box display="flex" flexDirection="column">
-                            <Typography variant="caption" color="textSecondary" sx={{ textDecoration: 'line-through' }}>
-                              ${product.price}
-                            </Typography>
-                            <Typography component={'span'} variant="body1">${product.price}</Typography>
-                          </Box>
-
-                          <Box display="flex" alignItems="center" justifyContent="flex-end" mt="auto" gap={0.5}>
-                            <StarIcon fontSize="small" />
-                            <Typography variant="body2">{product.rate}</Typography>
-                          </Box>
-
-                        </Box>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </Grid>
+                <Product product={product} key={product.id}/>
               )}
             </Grid>
 
