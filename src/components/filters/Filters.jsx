@@ -2,7 +2,7 @@ import { Accordion, AccordionSummary, Box, Button, Slider, TextField, Typography
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTranslation } from 'react-i18next';
 
-export default function Filters() {
+export default function Filters({ register }) {
 
     const { t } = useTranslation();
 
@@ -19,11 +19,24 @@ export default function Filters() {
                 </AccordionSummary>
                 <Box sx={{ px: 3 }}>
                     <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mb: 1, px: 3, }}>
-                        <TextField label={t("min.")} type="number" size="small" />
-                        <TextField label={t("max.")} type="number" size="small" />
+                        <TextField label={t("min.")} type="number" size="small"
+                            {...register("minPrice")}
+                        />
+                        <TextField label={t("max.")} type="number" size="small"
+                            {...register("maxPrice")}
+                        />
                     </Box>
                     <Slider valueLabelDisplay="auto" />
                 </Box>
+            </Accordion>
+
+            <Accordion sx={{ boxShadow: "none" }}>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ p: 0 }} >
+                    <Typography variant="subtitle2">{t("Category")}</Typography>
+                </AccordionSummary>
+                <TextField label={`${t("Category")}..`} sx={{ width: '100%' }}
+                    {...register("categoryId")}
+                />
             </Accordion>
         </Box>
     )
