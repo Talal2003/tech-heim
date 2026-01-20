@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, CircularProgress, Divider, FormControlLabel, Grid, LinearProgress, Radio, RadioGroup, TextField, Typography } from '@mui/material'
+import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, CircularProgress, Divider, FormControlLabel, Grid, LinearProgress, Radio, RadioGroup, Rating, TextField, Typography } from '@mui/material'
 import StarIcon from '@mui/icons-material/Star';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import VerifiedIcon from '@mui/icons-material/Verified';
@@ -8,6 +8,8 @@ import { useParams } from 'react-router-dom';
 import useProductDetails from '../../hooks/useProductDetails';
 import useAddToCart from '../../hooks/useAddToCart';
 import { useTranslation } from 'react-i18next';
+import useReviews from '../../hooks/useReviews';
+import { useState } from 'react';
 
 export default function ProductDetails() {
     const itemData = [
@@ -62,16 +64,31 @@ export default function ProductDetails() {
     ];
 
     const { id } = useParams();
-    const { isLoading, isError, error, data } = useProductDetails(id);
-    const { mutate: addToCart, isPending } = useAddToCart();
+    const { isLoading: isProductLoading, isError: isProductError, error: productError, data: productData } = useProductDetails(id);
+    const { mutate: addToCart, isPending: isAddToCartPending } = useAddToCart();
+    const { mutate: addReview, isPending: isReviewPending } = useReviews(id);
     const { t } = useTranslation();
-    if (isLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3 }}>
+    const [comment, setComment] = useState("");
+    const [rating, setRating] = useState(0);
+    const handleReviewSubmit = (e) => {
+        e.preventDefault();
+        console.log(`Raintg: ${rating}, Comment: ${comment}`);
+        addReview({
+            Rating: rating,
+            Comment: comment,
+        });
+        setComment("");
+        setRating(0);
+    };
+
+    if (isProductLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3 }}>
         <CircularProgress />
     </Box>
-    if (isError) return <Typography sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3, color: 'red' }}>
-        {error.message}
+    if (isProductError) return <Typography sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3, color: 'red' }}>
+        {productError.message}
     </Typography>
-    const product = data.response;
+
+    const product = productData.response;
 
     return (
         <>
@@ -83,8 +100,7 @@ export default function ProductDetails() {
                                 <CardMedia component={'img'}
                                     image={product.image}
                                     sx={{ height: 338, objectFit: 'contain', borderRadius: 8 }}
-                                >
-                                </CardMedia>
+                                />
                                 <Box sx={{ display: 'flex', overflowX: 'auto', overflowY: 'hidden', gap: 3 }}>
                                     {itemData.slice(1).map((item) => (
                                         <Box key={item.img} sx={{ minWidth: 80 }}>
@@ -165,7 +181,7 @@ export default function ProductDetails() {
                             <Button variant="contained" color="primary" fullWidth sx={{ py: 1.25, borderRadius: 2 }}>{t("Buy Now")}</Button>
                             <Button variant="outlined" color="primary" fullWidth sx={{ py: 1.25, borderRadius: 2 }}
                                 onClick={() => addToCart({ ProductId: product.id, Count: 1 })}
-                                disabled={isPending}
+                                disabled={isAddToCartPending}
                             >{t("Add to Cart")}</Button>
                         </CardActions>
                     </Card>
@@ -179,14 +195,30 @@ export default function ProductDetails() {
                             <Typography variant='h6' sx={{ fontWeight: 'normal' }}>{t("leave your comments here for other customers")}</Typography>
                         </Box>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-                            <TextField multiline minRows={1} maxRows={6} placeholder={t("Share your thoughts about this product here")}
-                                sx={{ 'fieldset': { borderColor: '#9E9E9E', borderRadius: 4 } }} />
-                            <Button variant="outlined" sx={{
-                                borderWidth: 2, borderRadius: 4, color: 'primary',
-                                borderBlockColor: 'primary', textTransform: 'none', py: 1.8125
-                            }}>
-                                <Typography sx={{ fontWeight: 'medium' }}>{t("Comment")}</Typography>
-                            </Button>
+                            <Box component="form" onSubmit={handleReviewSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+                                <Box sx={{ '& > legend': { mt: 2 } }}>
+                                    <Typography component="legend"></Typography>
+                                    <Rating
+                                        value={rating}
+                                        onChange={(event, newValue) => {
+                                            setRating(newValue);
+                                        }}
+                                    />
+                                </Box>
+                                <TextField multiline minRows={1} maxRows={6}
+                                    value={comment}
+                                    onChange={(e) => setComment(e.target.value)}
+                                    placeholder={t("Share your thoughts about this product here")}
+                                    sx={{ 'fieldset': { borderColor: '#9E9E9E', borderRadius: 4 } }} />
+                                <Button type="submit" variant="outlined"
+                                    disabled={isReviewPending}
+                                    sx={{
+                                        borderWidth: 2, borderRadius: 4, color: 'primary',
+                                        borderBlockColor: 'primary', textTransform: 'none', py: 1.8125
+                                    }}>
+                                    <Typography sx={{ fontWeight: 'medium' }}>{t("Comment")}</Typography>
+                                </Button>
+                            </Box>
                             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                                 <Typography variant='body1'>{t("By feature")}</Typography>
                                 <Box sx={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
@@ -215,68 +247,28 @@ export default function ProductDetails() {
                 </Grid>
                 <Grid size={{ xs: 12, md: 8, lg: 9 }}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, pt: 6 }}>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, p: 2, backgroundColor: '#F9F9F9' }}>
-                            <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
-                                <Avatar alt="avatar" src="https://mui.com/static/images/avatar/1.jpg"
-                                    sx={{ width: 60, height: 60 }} />
-                                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: "space-between", width: "100%" }}>
-                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-                                        <Typography variant="h5">Gabriel</Typography>
-                                        <Typography variant="caption">July 28, 2023</Typography>
-                                    </Box>
-                                    <Box display="flex" alignItems="center"
-                                        sx={{ color: 'white', backgroundColor: "#063A88", p: 0.5, borderRadius: 1 }}>
-                                        <StarIcon fontSize="small" />
-                                        <Typography variant="body2">4.8</Typography>
-                                    </Box>
-                                </Box>
-                            </Box>
-                            <Box>
-                                <Typography variant="body1">I needed a fast, efficient laptop for on the go use. Battery life is amazing. Build quality is fantastic. Perfect fit for my needs.</Typography>
-                            </Box>
-                        </Box>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, p: 2, backgroundColor: '#F9F9F9' }}>
-                            <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
-                                <Avatar alt="avatar" src="https://mui.com/static/images/avatar/2.jpg"
-                                    sx={{ width: 60, height: 60 }} />
-                                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: "space-between", width: "100%" }}>
-                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-                                        <Typography variant="h5">Jimmy Smith</Typography>
-                                        <Typography variant="caption">May 28, 2023</Typography>
-                                    </Box>
-                                    <Box display="flex" alignItems="center"
-                                        sx={{ color: 'white', backgroundColor: "#063A88", p: 0.5, borderRadius: 1 }}>
-                                        <StarIcon fontSize="small" />
-                                        <Typography variant="body2">4.8</Typography>
+                        {product.reviews.map(review => (
+                            <Box key={review.id} sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, p: 2, backgroundColor: '#F9F9F9' }}>
+                                <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
+                                    <Avatar alt="avatar" src=""
+                                        sx={{ width: 60, height: 60 }} />
+                                    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: "space-between", width: "100%" }}>
+                                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                                            <Typography variant="h5">{review.userName}</Typography>
+                                            <Typography variant="caption">{review.createdAt}</Typography>
+                                        </Box>
+                                        <Box display="flex" alignItems="center"
+                                            sx={{ color: 'white', backgroundColor: "#063A88", p: 0.5, borderRadius: 1 }}>
+                                            <StarIcon fontSize="small" />
+                                            <Typography variant="body2">{review.rating}</Typography>
+                                        </Box>
                                     </Box>
                                 </Box>
-                            </Box>
-                            <Box>
-                                <Typography variant="body1">This macbook air at first feels just so big to me using it for school, and after a while, it felt as a perfect size. I look at it sometimes and realize how portable and small it is, but IT FEELS AS BIG AS LIKE A TV SCREEN. It's not a huge computer, but when your doing work and typing or whatever watching youtube it feels like a movie screen, beautiful. I never had such a good computer that just feels like a breath of fresh air. If you are contemplating on buying one, I would get 512 GB of storage and 16 ram. You will not be disappointed if you buy this no matter what, I strongly recommend it.</Typography>
-                            </Box>
-                        </Box>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, p: 2, backgroundColor: '#F9F9F9' }}>
-                            <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
-                                <Avatar alt="avatar" src="https://mui.com/static/images/avatar/3.jpg"
-                                    sx={{ width: 60, height: 60 }} />
-                                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: "space-between", width: "100%" }}>
-                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-                                        <Typography variant="h5">sarah Anderson</Typography>
-                                        <Typography variant="caption">April 20, 2023</Typography>
-                                    </Box>
-                                    <Box display="flex" alignItems="center"
-                                        sx={{ color: 'white', backgroundColor: "#063A88", p: 0.5, borderRadius: 1 }}>
-                                        <StarIcon fontSize="small" />
-                                        <Typography variant="body2">4.2</Typography>
-                                    </Box>
+                                <Box>
+                                    <Typography variant="body1">{review.comment}</Typography>
                                 </Box>
                             </Box>
-                            <Box>
-                                <Typography variant="body1">This was my first personal Mac purchase. We are using a combination of Mac & PC at work and while my PC skills are good the Mac side needs work.
-                                    So far I like the experience, although not all my apps will run on the Mac, I am finding workarounds.
-                                    One person found this helpful</Typography>
-                            </Box>
-                        </Box>
+                        ))}
                     </Box>
                 </Grid>
             </Grid>
