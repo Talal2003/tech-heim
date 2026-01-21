@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 import useThemeStore from '../../store/useThemeStore';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import MenuIcon from '@mui/icons-material/Menu';
 
 export default function Navbar() {
 
@@ -45,28 +46,75 @@ export default function Navbar() {
     setAnchorEl(null);
   };
 
+  const pages = [
+    { label: t("Home"), path: "/" },
+    { label: t("Products"), path: "/products" },
+    { label: t("Blog"), path: "/" },
+    { label: t("FAQ"), path: "/" },
+    { label: t("Contact Us"), path: "/" },
+  ];
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  }
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
   return (
     <Box sx={{ borderBottom: '1px solid', borderColor: '#78ABF9', boxShadow: 'none', py: 2 }}>
       <Container maxWidth="xl">
         <AppBar position="static" color="white" sx={{ boxShadow: 'none' }}>
           <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Box>
+            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                anchorEl={anchorElNav}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+              >
+                {pages.map((page, index) => (
+                  <MenuItem
+                    key={index}
+                    component={RouterLink}
+                    to={page.path}
+                    onClick={handleCloseNavMenu}
+                  >
+                    {page.label}
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <Link>
                 <img src={logoIcon} alt="Logo" />
               </Link>
             </Box>
 
+            <Typography component={'h3'} variant='h6'
+              sx={{ color: 'primary.main', display: { xs: 'flex', md: 'none' } }}>Tech Heim</Typography>
+
             <Tabs value={value} onChange={(e, newValue) => setValue(newValue)}
               variant="scrollable" scrollButtons="auto" aria-label="categories tabs"
-              sx={{ '.MuiTabs-flexContainer': { gap: { lg: 4 } }, '.MuiTabs-indicator': { height: 1.5 } }}>
-              <Tab component={RouterLink} to='/' label={t("Home")} value={0} />
-              <Tab component={RouterLink} to='/products' label={t("Products")} value={1} />
-              <Tab component={RouterLink} to='/' label={t("Blog")} value={2} />
-              <Tab component={RouterLink} to='/' label={t("FAQ")} value={3} />
-              <Tab component={RouterLink} to='/' label={t("Contact Us")} value={4} />
+              sx={{
+                display: { xs: 'none', md: 'flex' },
+                '.MuiTabs-flexContainer': { gap: { lg: 4 } }, '.MuiTabs-indicator': { height: 1.5 }
+              }}>
+              {pages.map((page, index) => (
+                <Tab key={index} component={RouterLink} to={page.path} label={page.label} value={index} />
+              ))}
             </Tabs>
 
-            <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+            <Box sx={{ display: 'flex', gap: { xs: 0.5, sm: 1, md: 2 }, alignItems: 'center' }}>
               <IconButton color='inherit'
                 onClick={changeLanguage}
               >
