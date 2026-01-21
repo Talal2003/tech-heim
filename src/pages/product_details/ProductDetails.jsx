@@ -70,8 +70,7 @@ export default function ProductDetails() {
     const { t } = useTranslation();
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState(0);
-    const handleReviewSubmit = (e) => {
-        e.preventDefault();
+    const handleReviewSubmit = () => {
         console.log(`Raintg: ${rating}, Comment: ${comment}`);
         addReview({
             Rating: rating,

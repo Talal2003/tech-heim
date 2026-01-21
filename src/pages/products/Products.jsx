@@ -11,12 +11,14 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function Products() {
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, setValue } = useForm({
     defaultValues: {
       search: '',
       categoryId: '',
       minPrice: '',
-      maxPrice: ''
+      maxPrice: '',
+      sortBy: '',
+      ascending: '',
     }
   });
   const [activeFilters, setActiveFilters] = useState({});
@@ -26,10 +28,16 @@ export default function Products() {
       search: values.search || null,
       categoryId: values.categoryId || null,
       minPrice: values.minPrice || null,
-      maxPrice: values.maxPrice || null
+      maxPrice: values.maxPrice || null,
+      sortBy: values.sortBy || null,
+      ascending: values.ascending || null,
     });
   };
+
   const { t } = useTranslation();
+
+  const [sortBy, setSortBy] = useState('');
+  const [ascending, setAscending] = useState('true');
 
   if (isLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3 }}>
     <CircularProgress />
@@ -40,16 +48,15 @@ export default function Products() {
 
   return (
     <>
-      <Categories />
+      <Categories setValue={setValue} handleSubmit={handleSubmit} applyFilters={applyFilters}/>
       <Grid container spacing={4}>
         <Grid size={{ sm: 12, md: 4, lg: 3 }}>
           <Filters register={register} />
           <Button form="filtersForm" type="submit" variant="outlined" fullWidth
-          sx={{ mt: 2, borderRadius: 2 }}>
+            sx={{ mt: 2, borderRadius: 2 }}>
             {t("Apply")}
           </Button>
         </Grid>
-
         <Grid size={{ sm: 12, md: 8, lg: 9 }}>
 
           <Box sx={{ display: "flex", flexDirection: "column", gap: 4.125 }}>
@@ -58,16 +65,38 @@ export default function Products() {
               sx={{ display: "flex", gap: 2, alignItems: "center" }}>
               <TextField label={`${t("Search")}..`} sx={{ flex: 1 }}
                 {...register("search")}
-                onKeyDown={() => {handleSubmit(applyFilters)}}
+                onKeyDown={() => { handleSubmit(applyFilters) }}
               />
-
-              <FormControl sx={{ flex: { xs: 0.5, md: 0.25 } }}>
+              <FormControl sx={{ flex: { xs: 0.4, md: 0.20 } }}>
                 <InputLabel>{t("Sort By")}</InputLabel>
-                <Select label={t("Sort By")}>
-                  <MenuItem value="featured">{t("Featured")}</MenuItem>
-                  <MenuItem value="priceAscending">{t("Price: ascending")}</MenuItem>
-                  <MenuItem value="priceDescending">{t("Price: descending")}</MenuItem>
-                  <MenuItem value="newArrivals">{t("New Arrivals")}</MenuItem>
+                <Select
+                  value={sortBy}
+                  label={t("Sort By")}
+                  onChange={(e) => {
+                    setValue("sortBy", e.target.value)
+                    setSortBy(e.target.value)
+                    handleSubmit(applyFilters)()
+                  }}
+                >
+                  <MenuItem value='name'>{t("Name")}</MenuItem>
+                  <MenuItem value='price'>{t("Price")}</MenuItem>
+                  <MenuItem value='rate'>{t("Rate")}</MenuItem>
+                </Select>
+              </FormControl>
+
+              <FormControl sx={{ flex: { xs: 0.4, md: 0.20 } }}>
+                <InputLabel>{t("Order")}</InputLabel>
+                <Select
+                  value={ascending}
+                  label={t("Ascending")}
+                  onChange={(e) => {
+                    setValue("ascending", e.target.value)
+                    setAscending(e.target.value)
+                    handleSubmit(applyFilters)()
+                  }}
+                >
+                  <MenuItem value='true'>{t("Ascending")}</MenuItem>
+                  <MenuItem value='false'>{t("Descending ")}</MenuItem>
                 </Select>
               </FormControl>
             </Box>
