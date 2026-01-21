@@ -96,7 +96,7 @@ export default function Products() {
                   }}
                 >
                   <MenuItem value='true'>{t("Ascending")}</MenuItem>
-                  <MenuItem value='false'>{t("Descending ")}</MenuItem>
+                  <MenuItem value='false'>{t("Descending")}</MenuItem>
                 </Select>
               </FormControl>
             </Box>

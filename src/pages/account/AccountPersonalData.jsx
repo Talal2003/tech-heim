@@ -12,7 +12,7 @@ import useAccount from "../../hooks/useAccount";
 export default function AccountPersonalData() {
 
     const { data: user, isLoading, isError, error } = useAccount();
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     if (isLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 3 }}>
         <CircularProgress />
@@ -24,8 +24,8 @@ export default function AccountPersonalData() {
     return (
         <Box sx={{ display: "flex", flexDirection: "column", gap: 5 }}>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-                <Typography component={"h5"} variant="h6">Identification</Typography>
-                <Typography fontWeight="lighter" color="#717171">Verify your identity</Typography>
+                <Typography component={"h5"} variant="h6">{t("Identification")}</Typography>
+                <Typography fontWeight="lighter" color="#717171">{t("Verify your identity")}</Typography>
             </Box>
             <Grid container spacing={3}>
                 <Grid size={{ xs: 12, md: 6 }} >
@@ -105,7 +105,7 @@ export default function AccountPersonalData() {
                     }}>
                         <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
                             <SignpostOutlinedIcon sx={{ color: "#444444" }} />
-                            <Typography fontWeight="lighter" color="#717171">Postal code</Typography>
+                            <Typography fontWeight="lighter" color="#717171">{t("Postal code")}</Typography>
                         </Box>
                         <IconButton>
                             <EditOutlinedIcon color="primary" />

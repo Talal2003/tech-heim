@@ -29,15 +29,6 @@ export default function Filters({ register }) {
                     <Slider valueLabelDisplay="auto" />
                 </Box>
             </Accordion>
-
-            <Accordion sx={{ boxShadow: "none" }}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ p: 0 }} >
-                    <Typography variant="subtitle2">{t("Category")}</Typography>
-                </AccordionSummary>
-                <TextField label={`${t("Category")}..`} sx={{ width: '100%' }}
-                    {...register("categoryId")}
-                />
-            </Accordion>
         </Box>
     )
 }

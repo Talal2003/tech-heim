@@ -12,6 +12,7 @@ export default function AccountLayout() {
     const [value, setValue] = useState(0);
     const user = useAuthStore(state => state.user);
     const logout = useAuthStore(state => state.logout);
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const handleLogout = () => {
         logout();
@@ -36,7 +37,7 @@ export default function AccountLayout() {
                             label={
                                 <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", color: "inherit", textTransform: "none", gap: 2 }}>
                                     <ManageAccountsOutlinedIcon sx={{ color: "#444444" }} />
-                                    <Typography component={"body1"} variant="h6" fontWeight="lighter">Personal Data</Typography>
+                                    <Typography component={"body1"} variant="h6" fontWeight="lighter">{t("Personal Data")}</Typography>
                                 </Box>
                             } />
                         <Tab sx={{ p: 3, alignItems: "start" }}
@@ -45,23 +46,23 @@ export default function AccountLayout() {
                             label={
                                 <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", color: "inherit", textTransform: "none", gap: 2 }}>
                                     <ManageAccountsOutlinedIcon sx={{ color: "#444444" }} />
-                                    <Typography component={"body1"} variant="h6" fontWeight="lighter">Payment & Instalments</Typography>
+                                    <Typography component={"body1"} variant="h6" fontWeight="lighter">{t("Payment & Instalments")}</Typography>
                                 </Box>
                             } />
-                            <Tab sx={{ p: 3, alignItems: "start" }}
+                        <Tab sx={{ p: 3, alignItems: "start" }}
                             component={NavLink}
                             to='orders'
                             label={
                                 <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", color: "inherit", textTransform: "none", gap: 2 }}>
                                     <ManageAccountsOutlinedIcon sx={{ color: "#444444" }} />
-                                    <Typography component={"body1"} variant="h6" fontWeight="lighter">Orders</Typography>
+                                    <Typography component={"body1"} variant="h6" fontWeight="lighter">{t("Orders")}</Typography>
                                 </Box>
                             } />
                     </Tabs>
                     <Button sx={{ display: "flex", flexDirection: "row", justifyContent: "start", alignItems: "center", color: "inherit", textTransform: "none", gap: 2, p: 3 }}
                         onClick={handleLogout}>
                         <LogoutOutlinedIcon sx={{ color: "#444444" }} />
-                        <Typography component={"body1"} variant="h6" color="error" fontWeight="lighter">Log out</Typography>
+                        <Typography component={"body1"} variant="h6" color="error" fontWeight="lighter">{t("Log out")}</Typography>
                     </Button>
                 </Box>
                 <Box sx={{ flex: 1, pr: 13 }}>
