@@ -4,7 +4,7 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import DiscountIcon from '@mui/icons-material/Discount';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useProductDetails from '../../hooks/useProductDetails';
 import useAddToCart from '../../hooks/useAddToCart';
 import { useTranslation } from 'react-i18next';
@@ -70,6 +70,7 @@ export default function ProductDetails() {
     const { t } = useTranslation();
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState(0);
+    const navigate = useNavigate();
     const handleReviewSubmit = () => {
         console.log(`Raintg: ${rating}, Comment: ${comment}`);
         addReview({
@@ -177,7 +178,13 @@ export default function ProductDetails() {
                             </Box>
                         </CardContent>
                         <CardActions sx={{ display: "flex", flexDirection: "column", gap: 1, px: 3, pt: 0, pb: 3 }}>
-                            <Button variant="contained" color="primary" fullWidth sx={{ py: 1.25, borderRadius: 2 }}>{t("Buy Now")}</Button>
+                            <Button variant="contained" color="primary" fullWidth sx={{ py: 1.25, borderRadius: 2 }}
+                                onClick={() => {
+                                    addToCart({ ProductId: product.id, Count: 1 })
+                                    navigate('/checkout');
+                                }}
+                                disabled={isAddToCartPending}
+                            >{t("Buy Now")}</Button>
                             <Button variant="outlined" color="primary" fullWidth sx={{ py: 1.25, borderRadius: 2 }}
                                 onClick={() => addToCart({ ProductId: product.id, Count: 1 })}
                                 disabled={isAddToCartPending}
