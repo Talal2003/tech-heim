@@ -62,7 +62,7 @@ export default function Navbar() {
   };
 
   return (
-    <Box sx={{ borderBottom: '1px solid', borderColor: '#78ABF9', boxShadow: 'none', py: 2 }}>
+    <Box sx={{ borderBottom: '1px solid', borderColor: 'primary.75', boxShadow: 'none', py: 2 }}>
       <Container maxWidth="xl">
         <AppBar position="static" color="white" sx={{ boxShadow: 'none' }}>
           <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>

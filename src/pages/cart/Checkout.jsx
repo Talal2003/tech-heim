@@ -41,7 +41,7 @@ export default function Checkout() {
         <Grid container spacing={{ xs: 2, md: 3 }}>
             <Grid size={{ xs: 12, md: 7.2 }}>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
-                    <Box sx={{ display: "flex", flexDirection: "column", gap: 2, px: 4, py: 3, border: "1px solid", borderRadius: 2, borderColor: "#EDEDED" }}>
+                    <Box sx={{ display: "flex", flexDirection: "column", gap: 2, px: 4, py: 3, border: "1px solid", borderRadius: 2, borderColor: "neutral.gray300" }}>
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
                             <Typography component={'h5'} variant="h6">{t("Payment")}</Typography>
 
@@ -50,11 +50,11 @@ export default function Checkout() {
                                     value={paymentMethod}
                                     onChange={(e) => setPaymentMethod(e.target.value)}
                                     sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-                                    <Box sx={{ backgroundColor: '#F9F9F9', borderRadius: 2, px: 1, py: 1.75 }}>
+                                    <Box sx={{ backgroundColor: 'neutral.gray100', borderRadius: 2, px: 1, py: 1.75 }}>
                                         <FormControlLabel value={'cash'} control={<Radio sx={{ pl: 0.5, py: 0 }} />} label={t("Cash")}
                                             sx={{ px: 1, py: 0 }} />
                                     </Box>
-                                    <Box sx={{ backgroundColor: '#F9F9F9', borderRadius: 2, px: 1, py: 1.75 }}>
+                                    <Box sx={{ backgroundColor: 'neutral.gray100', borderRadius: 2, px: 1, py: 1.75 }}>
                                         <FormControlLabel value={'visa'} control={<Radio sx={{ pl: 0.5, py: 0 }} />} label={t("Visa")}
                                             sx={{ px: 1 }} />
                                     </Box>
@@ -65,7 +65,7 @@ export default function Checkout() {
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
                             <Typography component={'h5'} variant="h6">{t("Shipping address")}</Typography>
                             <TextField placeholder={t("HubSpot, 25  Street, Cambridge MA 02141, United States")} fullWidth
-                                sx={{ input: { px: 1, py: 1.9375 }, 'fieldset': { border: 'none' }, backgroundColor: '#F9F9F9', borderRadius: 2 }} />
+                                sx={{ input: { px: 1, py: 1.9375 }, 'fieldset': { border: 'none' }, backgroundColor: 'neutral.gray100', borderRadius: 2 }} />
                         </Box>
                     </Box>
                     <Box sx={{ px: 1.3125, py: 1.8125 }}>
@@ -74,7 +74,7 @@ export default function Checkout() {
                 </Box>
             </Grid>
             <Grid size={{ xs: 12, md: 4.8 }}>
-                <Card variant="outlined" sx={{ display: "flex", flexDirection: "column", borderColor: "#EDEDED", gap: 5, p: 3, borderRadius: 2 }}>
+                <Card variant="outlined" sx={{ display: "flex", flexDirection: "column", borderColor: "neutral.gray300", gap: 5, p: 3, borderRadius: 2 }}>
                     <CardContent sx={{ display: "flex", flexDirection: "column", gap: 5, p: 0 }}>
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
                             <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
@@ -88,9 +88,9 @@ export default function Checkout() {
                                                 image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
                                                 title=""
                                             />
-                                            <Box sx={{ display: "flex", flexDirection: "column", gap: 1, color: "#2D2D2D", width: "100%" }}>
+                                            <Box sx={{ display: "flex", flexDirection: "column", gap: 1, color: "neutral.gray1000", width: "100%" }}>
                                                 <Typography variant="body2">{item.productName}</Typography>
-                                                <Typography variant="caption" sx={{ color: "#717171" }}>x{item.count}</Typography>
+                                                <Typography variant="caption" sx={{ color: "neutral.gray700" }}>x{item.count}</Typography>
                                                 <Typography variant="body2" sx={{ alignSelf: "flex-end" }}>${item.price}</Typography>
                                             </Box>
                                         </Box>
@@ -110,15 +110,15 @@ export default function Checkout() {
                             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
                                 {data.items.map(item => (
                                     <Box key={item.productId} sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                                        <Typography variant="body2" sx={{ color: "#717171" }}>{item.productName}</Typography>
-                                        <Typography variant="body2" sx={{ color: "#717171" }}>${item.totalPrice}</Typography>
+                                        <Typography variant="body2" sx={{ color: "neutral.gray700" }}>{item.productName}</Typography>
+                                        <Typography variant="body2" sx={{ color: "neutral.gray700" }}>${item.totalPrice}</Typography>
                                     </Box>
                                 ))}
                             </Box>
                             <Divider sx={{ borderBottomWidth: '2px' }}></Divider>
                             <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                                <Typography component={'h6'} variant="body1" sx={{ color: "#2D2D2D" }}>{t("Grand Total")}</Typography>
-                                <Typography component={'h6'} variant="body1" sx={{ color: "#2D2D2D" }}>${data.cartTotal}</Typography>
+                                <Typography component={'h6'} variant="body1" sx={{ color: "neutral.gray1000" }}>{t("Grand Total")}</Typography>
+                                <Typography component={'h6'} variant="body1" sx={{ color: "neutral.gray1000" }}>${data.cartTotal}</Typography>
                             </Box>
                         </Box>
                     </CardContent>

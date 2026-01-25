@@ -18,7 +18,7 @@ export default function Footer() {
   const { t } = useTranslation();
 
   return (
-    <Box component="footer" sx={{ pt: 1.5, color: 'white', backgroundColor: '#052E6D' }}>
+    <Box component="footer" sx={{ pt: 1.5, color: 'white', backgroundColor: 'primary.600' }}>
       <Container maxWidth="xl">
 
         <Box sx={{ display: { xs: 'none', md: 'block' } }} >
@@ -27,22 +27,22 @@ export default function Footer() {
               <Box sx={{ display: 'grid', gridTemplateColumns: '2fr 2fr 4fr 3fr', width: '100%', pb: 6.25 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                   <Typography component="span" variant="body1">{t("Company")}</Typography>
-                  <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("about us")}</Link>
-                  <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("blog")}</Link>
-                  <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("returns")}</Link>
-                  <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("order status")}</Link>
+                  <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("about us")}</Link>
+                  <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("blog")}</Link>
+                  <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("returns")}</Link>
+                  <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("order status")}</Link>
                 </Box>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                   <Typography component="span" variant="body1">{t("Info")}</Typography>
-                  <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("How it works?")}</Link>
-                  <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("our promises")}</Link>
-                  <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("FAQ")}</Link>
+                  <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("How it works?")}</Link>
+                  <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("our promises")}</Link>
+                  <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("FAQ")}</Link>
                 </Box>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                   <Typography component="span" variant="body1">{t("Contact us")}</Typography>
-                  <Typography variant="body2" to='/' color='#CBCBCB' underline='none'>123 Main Street, Anytown,USA</Typography>
-                  <Typography variant="body2" to='/' color='#CBCBCB' underline='none'>+1 (555) 123-4567</Typography>
-                  <Typography variant="body2" to='/' color='#CBCBCB' underline='none'>TechHeimSupport@gmail.com</Typography>
+                  <Typography variant="body2" to='/' color='neutral.gray400' underline='none'>123 Main Street, Anytown,USA</Typography>
+                  <Typography variant="body2" to='/' color='neutral.gray400' underline='none'>+1 (555) 123-4567</Typography>
+                  <Typography variant="body2" to='/' color='neutral.gray400' underline='none'>TechHeimSupport@gmail.com</Typography>
                 </Box>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                   <Typography component="span" variant="body1">{t("Sign up for News and updates")}</Typography>
@@ -67,11 +67,11 @@ export default function Footer() {
                 </Box>
               </Box>
               <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', px: 2.5 }}>
-                <Button sx={{ backgroundColor: "#AECDFB", minWidth: "auto", borderRadius: "50%", p: 1 }}>
-                  <ChatBubbleOutlineIcon sx={{ color: "#2D2D2D" }} />
+                <Button sx={{ backgroundColor: "primary.50", minWidth: "auto", borderRadius: "50%", p: 1 }}>
+                  <ChatBubbleOutlineIcon sx={{ color: "neutral.gray1000" }} />
                 </Button>
-                <Button sx={{ backgroundColor: "#AECDFB", minWidth: "auto", borderRadius: "50%", p: 1 }}>
-                  <KeyboardArrowUpIcon sx={{ color: "#2D2D2D" }} />
+                <Button sx={{ backgroundColor: "primary.50", minWidth: "auto", borderRadius: "50%", p: 1 }}>
+                  <KeyboardArrowUpIcon sx={{ color: "neutral.gray1000" }} />
                 </Button>
               </Box>
             </Box>
@@ -86,14 +86,14 @@ export default function Footer() {
 
           <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', py: 2 }}>
             <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.125, alignItems: 'center' }}>
-              <CopyrightIcon fontSize="large" sx={{ color: "#CBCBCB" }} />
-              <Typography variant="body2" color="#CBCBCB">2023 Tech Heim.</Typography>
+              <CopyrightIcon fontSize="large" sx={{ color: "neutral.gray400" }} />
+              <Typography variant="body2" color="neutral.gray400">2023 Tech Heim.</Typography>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'row', gap: 6, alignItems: 'center' }}>
-              <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("cookie settings")}</Link>
-              <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("Privacy Policy")}</Link>
-              <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("Terms and Conditions")}</Link>
-              <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("Imprint")}</Link>
+              <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("cookie settings")}</Link>
+              <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("Privacy Policy")}</Link>
+              <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("Terms and Conditions")}</Link>
+              <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("Imprint")}</Link>
             </Box>
           </Box>
         </Box >
@@ -102,11 +102,11 @@ export default function Footer() {
         <Box sx={{ display: { xs: 'block', md: 'none' } }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, py: 2 }}>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Button sx={{ backgroundColor: "#AECDFB", minWidth: "auto", borderRadius: "50%", p: 1 }}>
-                <ChatBubbleOutlineIcon sx={{ color: "#2D2D2D" }} />
+              <Button sx={{ backgroundColor: "primary.50", minWidth: "auto", borderRadius: "50%", p: 1 }}>
+                <ChatBubbleOutlineIcon sx={{ color: "neutral.gray1000" }} />
               </Button>
-              <Button sx={{ backgroundColor: "#AECDFB", minWidth: "auto", borderRadius: "50%", p: 1 }}>
-                <KeyboardArrowUpIcon sx={{ color: "#2D2D2D" }} />
+              <Button sx={{ backgroundColor: "primary.50", minWidth: "auto", borderRadius: "50%", p: 1 }}>
+                <KeyboardArrowUpIcon sx={{ color: "neutral.gray1000" }} />
               </Button>
             </Box>
             <Box>
@@ -135,10 +135,10 @@ export default function Footer() {
                   <Typography component={'h3'} variant="subtitle1">{t("Company")}</Typography>
                 </AccordionSummary>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, px: 1.5 }}>
-                  <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("about us")}</Link>
-                  <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("blog")}</Link>
-                  <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("returns")}</Link>
-                  <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("order status")}</Link>
+                  <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("about us")}</Link>
+                  <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("blog")}</Link>
+                  <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("returns")}</Link>
+                  <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("order status")}</Link>
                 </Box>
               </Accordion>
               <Accordion disableGutters sx={{
@@ -150,9 +150,9 @@ export default function Footer() {
                   <Typography component={'h3'} variant="subtitle1">{t("Info")}</Typography>
                 </AccordionSummary>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, px: 1.5 }}>
-                  <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("How it works?")}</Link>
-                  <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("our promises")}</Link>
-                  <Link component={RouterLink} variant="body2" to='/' color='#CBCBCB' underline='none'>{t("FAQ")}</Link>
+                  <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("How it works?")}</Link>
+                  <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("our promises")}</Link>
+                  <Link component={RouterLink} variant="body2" to='/' color='neutral.gray400' underline='none'>{t("FAQ")}</Link>
                 </Box>
               </Accordion>
               <Accordion disableGutters sx={{
@@ -164,9 +164,9 @@ export default function Footer() {
                   <Typography component={'h3'} variant="subtitle1">{t("Contact us")}</Typography>
                 </AccordionSummary>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, px: 1.5 }}>
-                  <Typography variant="body2" to='/' color='#CBCBCB' underline='none'>123 Main Street, Anytown,USA</Typography>
-                  <Typography variant="body2" to='/' color='#CBCBCB' underline='none'>+1 (555) 123-4567</Typography>
-                  <Typography variant="body2" to='/' color='#CBCBCB' underline='none'>TechHeimSupport@gmail.com</Typography>
+                  <Typography variant="body2" to='/' color='neutral.gray400' underline='none'>123 Main Street, Anytown,USA</Typography>
+                  <Typography variant="body2" to='/' color='neutral.gray400' underline='none'>+1 (555) 123-4567</Typography>
+                  <Typography variant="body2" to='/' color='neutral.gray400' underline='none'>TechHeimSupport@gmail.com</Typography>
                 </Box>
               </Accordion>
             </Box>

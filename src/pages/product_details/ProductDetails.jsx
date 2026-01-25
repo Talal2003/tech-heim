@@ -121,11 +121,11 @@ export default function ProductDetails() {
                                         <Typography>{product.name}</Typography>
                                         <Box display="flex" alignItems="center" gap={2}>
                                             <Box display="flex" alignItems="center"
-                                                sx={{ color: 'white', backgroundColor: "#063A88", p: 0.5, borderRadius: 1 }}>
+                                                sx={{ color: 'white', backgroundColor: "primary.500", p: 0.5, borderRadius: 1 }}>
                                                 <StarIcon fontSize="small" />
                                                 <Typography variant="body2">{product.rate}</Typography>
                                             </Box>
-                                            <Divider orientation="vertical" flexItem sx={{ borderWidth: 1, backgroundColor: "#717171" }} />
+                                            <Divider orientation="vertical" flexItem sx={{ borderWidth: 1, backgroundColor: "neutral.gray700" }} />
                                             <Typography>{t("quantity")} {product.quantity}</Typography>
                                         </Box>
                                     </Box>
@@ -215,7 +215,7 @@ export default function ProductDetails() {
                                     value={comment}
                                     onChange={(e) => setComment(e.target.value)}
                                     placeholder={t("Share your thoughts about this product here")}
-                                    sx={{ 'fieldset': { borderColor: '#9E9E9E', borderRadius: 4 } }} />
+                                    sx={{ 'fieldset': { borderColor: 'neutral.gray600', borderRadius: 4 } }} />
                                 <Button type="submit" variant="outlined"
                                     disabled={isReviewPending}
                                     sx={{
@@ -235,11 +235,11 @@ export default function ProductDetails() {
                                     </Box>
                                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4, py: 1.1875, flex: 1, }}>
                                         <LinearProgress variant="determinate" value={(4.8 / 5) * 100} color="warning"
-                                            sx={{ height: 4, borderRadius: 4, backgroundColor: "#CBCBCB" }} />
+                                            sx={{ height: 4, borderRadius: 4, backgroundColor: "neutral.gray400" }} />
                                         <LinearProgress variant="determinate" value={(4.9 / 5) * 100} color="warning"
-                                            sx={{ height: 4, borderRadius: 4, backgroundColor: "#CBCBCB" }} />
+                                            sx={{ height: 4, borderRadius: 4, backgroundColor: "neutral.gray400" }} />
                                         <LinearProgress variant="determinate" value={(4.3 / 5) * 100} color="warning"
-                                            sx={{ height: 4, borderRadius: 4, backgroundColor: "#CBCBCB" }} />
+                                            sx={{ height: 4, borderRadius: 4, backgroundColor: "neutral.gray400" }} />
                                     </Box>
                                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.625 }}>
                                         <Typography variant='body1'>4.8</Typography>
@@ -254,7 +254,7 @@ export default function ProductDetails() {
                 <Grid size={{ xs: 12, md: 8, lg: 9 }}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, pt: 6 }}>
                         {product.reviews.map(review => (
-                            <Box key={review.id} sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, p: 2, backgroundColor: '#F9F9F9' }}>
+                            <Box key={review.id} sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, p: 2, backgroundColor: 'neutral.gray100' }}>
                                 <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
                                     <Avatar alt="avatar" src=""
                                         sx={{ width: 60, height: 60 }} />
@@ -264,7 +264,7 @@ export default function ProductDetails() {
                                             <Typography variant="caption">{review.createdAt}</Typography>
                                         </Box>
                                         <Box display="flex" alignItems="center"
-                                            sx={{ color: 'white', backgroundColor: "#063A88", p: 0.5, borderRadius: 1 }}>
+                                            sx={{ color: 'white', backgroundColor: "primary.500", p: 0.5, borderRadius: 1 }}>
                                             <StarIcon fontSize="small" />
                                             <Typography variant="body2">{review.rating}</Typography>
                                         </Box>

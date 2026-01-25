@@ -32,12 +32,12 @@ export default function AccountOrders() {
     <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: 2, lg: 5 } }}>
       <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
         <Typography component={"h5"} variant="h6">{t("Order History")}</Typography>
-        <Typography component={"span"} variant="body1" color="#717171">{t("Track, return or purchase items")}</Typography>
+        <Typography component={"span"} variant="body1" color='neutral.gray700'>{t("Track, return or purchase items")}</Typography>
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column", gap: 3, px: 2, py: 2.125 }}>
         {orders.map(order => (
           <Box key={order.id} sx={{
-            display: "flex", flexDirection: { xs: "column", lg: "row" }, backgroundColor: "#F6F6F6",
+            display: "flex", flexDirection: { xs: "column", lg: "row" }, backgroundColor: "neutral.gray200",
             justifyContent: "space-evenly", borderRadius: 2, p: 2, gap: { xs: 1, lg: 0 }
           }}>
             <Box sx={{ display: "flex", flexDirection: { xs: "row", lg: "column" }, gap: 3, justifyContent: { xs: "space-between", lg: "center" } }}>

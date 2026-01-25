@@ -72,16 +72,16 @@ export default function Cart() {
                       </IconButton>
                       <Box sx={{
                         display: "flex", flexDirection: "row", gap: 1.5, alignItems: "center",
-                        width: "100%", borderBottom: "1px solid #717171"
+                        width: "100%", borderBottom: "1px solid neutral.gray700"
                       }}>
                         <IconButton disabled={updateItemPending} sx={{ p: 0.4375, minWidth: 0 }}
                           onClick={() => handleUpdate(item.productId, '-')}>
-                          <RemoveIcon fontSize="small" sx={{ color: "#717171" }} />
+                          <RemoveIcon fontSize="small" sx={{ color: "neutral.gray700" }} />
                         </IconButton>
-                        <Typography component={'span'} sx={{ color: "#717171" }}>{item.count}</Typography>
+                        <Typography component={'span'} sx={{ color: "neutral.gray700" }}>{item.count}</Typography>
                         <IconButton disabled={updateItemPending} sx={{ p: 0.4375, minWidth: 0 }}
                           onClick={() => handleUpdate(item.productId, '+')}>
-                          <AddIcon fontSize="small" sx={{ color: "#717171" }} />
+                          <AddIcon fontSize="small" sx={{ color: "neutral.gray700" }} />
                         </IconButton>
                       </Box>
                     </Box>
@@ -93,22 +93,22 @@ export default function Cart() {
         </Grid>
         <Grid size={{ xs: 12, md: 5, lg: 4 }}>
 
-          <Card variant="outlined" sx={{ display: "flex", flexDirection: "column", borderColor: "#EDEDED", gap: 2, px: 3, py: 2, borderRadius: 2 }}>
+          <Card variant="outlined" sx={{ display: "flex", flexDirection: "column", borderColor: "neutral.gray300", gap: 2, px: 3, py: 2, borderRadius: 2 }}>
             <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2, p: 0 }}>
               <Typography component={'h4'} variant="h5">{t("Payment Details")}</Typography>
               <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5, p: 1 }}>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
                   {data.items.map(item => (
                     <Box key={item.productId} sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                      <Typography variant="body2" sx={{ color: "#717171" }}>{item.productName}</Typography>
-                      <Typography variant="body2" sx={{ color: "#717171" }}>${item.totalPrice}</Typography>
+                      <Typography variant="body2" sx={{ color: "neutral.gray700" }}>{item.productName}</Typography>
+                      <Typography variant="body2" sx={{ color: "neutral.gray700" }}>${item.totalPrice}</Typography>
                     </Box>
                   ))}
                 </Box>
                 <Divider sx={{ borderBottomWidth: '2px' }}></Divider>
                 <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                  <Typography component={'h6'} variant="body1" sx={{ color: "#2D2D2D" }}>{t("Grand Total")}</Typography>
-                  <Typography component={'h6'} variant="body1" sx={{ color: "#2D2D2D" }}>${data.cartTotal}</Typography>
+                  <Typography component={'h6'} variant="body1" sx={{ color: "neutral.gray1000" }}>{t("Grand Total")}</Typography>
+                  <Typography component={'h6'} variant="body1" sx={{ color: "neutral.gray1000" }}>${data.cartTotal}</Typography>
                 </Box>
               </Box>
             </CardContent>

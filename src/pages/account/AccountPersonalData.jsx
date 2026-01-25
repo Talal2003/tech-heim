@@ -25,17 +25,17 @@ export default function AccountPersonalData() {
         <Box sx={{ display: "flex", flexDirection: "column", gap: 5 }}>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
                 <Typography component={"h5"} variant="h6">{t("Identification")}</Typography>
-                <Typography fontWeight="lighter" color="#717171">{t("Verify your identity")}</Typography>
+                <Typography fontWeight="lighter" color="neutral.gray700">{t("Verify your identity")}</Typography>
             </Box>
             <Grid container spacing={3}>
                 <Grid size={{ xs: 12, md: 6 }} >
                     <Box sx={{
                         display: "flex", flexDirection: "row", justifyContent: "space-between",
-                        alignItems: "center", backgroundColor: "#F9F9F9", borderRadius: 2, gap: 0.5, p: 2
+                        alignItems: "center", backgroundColor: "neutral.gray100", borderRadius: 2, gap: 0.5, p: 2
                     }}>
                         <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
-                            <PersonOutlineOutlinedIcon sx={{ color: "#444444" }} />
-                            <Typography fontWeight="lighter" color="#717171">{user.fullName}</Typography>
+                            <PersonOutlineOutlinedIcon sx={{ color: "neutral.gray900" }} />
+                            <Typography fontWeight="lighter" color="neutral.gray700">{user.fullName}</Typography>
                         </Box>
                         <IconButton>
                             <EditOutlinedIcon color="primary" />
@@ -45,11 +45,11 @@ export default function AccountPersonalData() {
                 <Grid size={{ xs: 12, md: 6 }} >
                     <Box sx={{
                         display: "flex", flexDirection: "row", justifyContent: "space-between",
-                        alignItems: "center", backgroundColor: "#F9F9F9", borderRadius: 2, gap: 0.5, p: 2
+                        alignItems: "center", backgroundColor: "neutral.gray100", borderRadius: 2, gap: 0.5, p: 2
                     }}>
                         <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
-                            <EmailOutlinedIcon sx={{ color: "#444444" }} />
-                            <Typography fontWeight="lighter" color="#717171">{user.email}</Typography>
+                            <EmailOutlinedIcon sx={{ color: "neutral.gray900" }} />
+                            <Typography fontWeight="lighter" color="neutral.gray700">{user.email}</Typography>
                         </Box>
                         <IconButton>
                             <EditOutlinedIcon color="primary" />
@@ -59,11 +59,11 @@ export default function AccountPersonalData() {
                 <Grid size={{ xs: 12, md: 6 }} >
                     <Box sx={{
                         display: "flex", flexDirection: "row", justifyContent: "space-between",
-                        alignItems: "center", backgroundColor: "#F9F9F9", borderRadius: 2, gap: 0.5, p: 2
+                        alignItems: "center", backgroundColor: "neutral.gray100", borderRadius: 2, gap: 0.5, p: 2
                     }}>
                         <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
-                            <PhoneOutlinedIcon sx={{ color: "#444444" }} />
-                            <Typography fontWeight="lighter" color="#717171">{user.phoneNumber}</Typography>
+                            <PhoneOutlinedIcon sx={{ color: "neutral.gray900" }} />
+                            <Typography fontWeight="lighter" color="neutral.gray700">{user.phoneNumber}</Typography>
                         </Box>
                         <IconButton>
                             <EditOutlinedIcon color="primary" />
@@ -73,11 +73,11 @@ export default function AccountPersonalData() {
                 <Grid size={{ xs: 12, md: 6 }} >
                     <Box sx={{
                         display: "flex", flexDirection: "row", justifyContent: "space-between",
-                        alignItems: "center", backgroundColor: "#F9F9F9", borderRadius: 2, gap: 0.5, p: 2
+                        alignItems: "center", backgroundColor: "neutral.gray100", borderRadius: 2, gap: 0.5, p: 2
                     }}>
                         <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
-                            <KeyOutlinedIcon sx={{ color: "#444444" }} />
-                            <Typography fontWeight="lighter" color="#717171">*********</Typography>
+                            <KeyOutlinedIcon sx={{ color: "neutral.gray900" }} />
+                            <Typography fontWeight="lighter" color="neutral.gray700">*********</Typography>
                         </Box>
                         <IconButton>
                             <EditOutlinedIcon color="primary" />
@@ -87,11 +87,11 @@ export default function AccountPersonalData() {
                 <Grid size={{ xs: 12, md: 6 }} >
                     <Box sx={{
                         display: "flex", flexDirection: "row", justifyContent: "space-between",
-                        alignItems: "center", backgroundColor: "#F9F9F9", borderRadius: 2, gap: 0.5, p: 2
+                        alignItems: "center", backgroundColor: "neutral.gray100", borderRadius: 2, gap: 0.5, p: 2
                     }}>
                         <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
-                            <HomeOutlinedIcon sx={{ color: "#444444" }} />
-                            <Typography fontWeight="lighter" color="#717171">{user.city}</Typography>
+                            <HomeOutlinedIcon sx={{ color: "neutral.gray900" }} />
+                            <Typography fontWeight="lighter" color="neutral.gray700">{user.city}</Typography>
                         </Box>
                         <IconButton>
                             <EditOutlinedIcon color="primary" />
@@ -101,11 +101,11 @@ export default function AccountPersonalData() {
                 <Grid size={{ xs: 12, md: 6 }} >
                     <Box sx={{
                         display: "flex", flexDirection: "row", justifyContent: "space-between",
-                        alignItems: "center", backgroundColor: "#F9F9F9", borderRadius: 2, gap: 0.5, p: 2
+                        alignItems: "center", backgroundColor: "neutral.gray100", borderRadius: 2, gap: 0.5, p: 2
                     }}>
                         <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
-                            <SignpostOutlinedIcon sx={{ color: "#444444" }} />
-                            <Typography fontWeight="lighter" color="#717171">{t("Postal code")}</Typography>
+                            <SignpostOutlinedIcon sx={{ color: "neutral.gray900" }} />
+                            <Typography fontWeight="lighter" color="neutral.gray700">{t("Postal code")}</Typography>
                         </Box>
                         <IconButton>
                             <EditOutlinedIcon color="primary" />
