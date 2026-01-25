@@ -7,7 +7,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import useProducts from "../../hooks/useProducts.js";
 import { useTranslation } from "react-i18next";
 import Product from "../../components/product/Product.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function Products() {
@@ -34,6 +34,13 @@ export default function Products() {
     });
   };
 
+  const [page, setPage] = useState(1);
+  const prodcutsPerPage = 6
+
+  useEffect(() => {
+    setPage(1);
+  }, [activeFilters]);
+
   const { t } = useTranslation();
 
   const [sortBy, setSortBy] = useState('');
@@ -46,9 +53,13 @@ export default function Products() {
     {error.message}
   </Typography>
 
+  const totalProducts = data.response.totalCount;
+  const products = data.response.data.slice((page - 1) * prodcutsPerPage, page * prodcutsPerPage);
+  const numberOfPages = Math.ceil(totalProducts / prodcutsPerPage);
+
   return (
     <>
-      <Categories setValue={setValue} handleSubmit={handleSubmit} applyFilters={applyFilters}/>
+      <Categories setValue={setValue} handleSubmit={handleSubmit} applyFilters={applyFilters} />
       <Grid container spacing={4}>
         <Grid size={{ sm: 12, md: 4, lg: 3 }}>
           <Filters register={register} />
@@ -102,14 +113,16 @@ export default function Products() {
             </Box>
 
             <Grid container spacing={4}>
-              {data.response.data.map((product) =>
+              {products.map((product) =>
                 <Product product={product} key={product.id} />
               )}
             </Grid>
 
             <Box sx={{ display: "flex", justifyContent: "center" }}>
               <Pagination
-                count={10}
+                page={page}
+                onChange={(e, value) => setPage(value)}
+                count={numberOfPages}
                 shape="rounded"
                 size="large"
                 renderItem={(item) => (
