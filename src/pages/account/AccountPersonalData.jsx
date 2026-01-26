@@ -35,7 +35,8 @@ export default function AccountPersonalData() {
                     }}>
                         <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
                             <PersonOutlineOutlinedIcon sx={{ color: "neutral.gray900" }} />
-                            <Typography fontWeight="lighter" color="neutral.gray700">{user.fullName}</Typography>
+                            <Typography fontWeight="lighter" color="neutral.gray700">{user.fullName ||
+                                "Jimmy Smith"}</Typography>
                         </Box>
                         <IconButton>
                             <EditOutlinedIcon color="primary" />
@@ -49,7 +50,8 @@ export default function AccountPersonalData() {
                     }}>
                         <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
                             <EmailOutlinedIcon sx={{ color: "neutral.gray900" }} />
-                            <Typography fontWeight="lighter" color="neutral.gray700">{user.email}</Typography>
+                            <Typography fontWeight="lighter" color="neutral.gray700">{user.email ||
+                                "Jimmy.smith1996@gmail.com"}</Typography>
                         </Box>
                         <IconButton>
                             <EditOutlinedIcon color="primary" />
@@ -63,7 +65,8 @@ export default function AccountPersonalData() {
                     }}>
                         <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
                             <PhoneOutlinedIcon sx={{ color: "neutral.gray900" }} />
-                            <Typography fontWeight="lighter" color="neutral.gray700">{user.phoneNumber}</Typography>
+                            <Typography fontWeight="lighter" color="neutral.gray700">{user.phoneNumber ||
+                                "+12345678910"}</Typography>
                         </Box>
                         <IconButton>
                             <EditOutlinedIcon color="primary" />
@@ -91,7 +94,8 @@ export default function AccountPersonalData() {
                     }}>
                         <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
                             <HomeOutlinedIcon sx={{ color: "neutral.gray900" }} />
-                            <Typography fontWeight="lighter" color="neutral.gray700">{user.city}</Typography>
+                            <Typography fontWeight="lighter" color="neutral.gray700">{user.city ||
+                                t("HubSpot, 25 First Street, Cambridge MA 02141, United States")}</Typography>
                         </Box>
                         <IconButton>
                             <EditOutlinedIcon color="primary" />

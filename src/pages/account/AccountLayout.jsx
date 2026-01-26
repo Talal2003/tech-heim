@@ -25,7 +25,8 @@ export default function AccountLayout() {
                 <Box sx={{ display: "flex", flexDirection: "column", backgroundColor: "neutral.gray100" }}>
                     <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2, px: 1, py: 0.25 }}>
                         <AccountCircleOutlinedIcon sx={{ color: 'neutral.gray500', fontSize: '3.75rem' }} />
-                        <Typography component={"h5"} variant="h6">{user?.name}</Typography>
+                        <Typography component={"h5"} variant="h6">{user.name ||
+                            "Jimmy Smith"}</Typography>
                     </Box>
                     <Tabs value={value} onChange={(e, newValue) => setValue(newValue)} orientation="vertical"
                         variant="scrollable" scrollButtons="auto" aria-label="categories tabs"

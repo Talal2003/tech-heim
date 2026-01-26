@@ -64,7 +64,7 @@ export default function Checkout() {
                         </Box>
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
                             <Typography component={'h5'} variant="h6">{t("Shipping address")}</Typography>
-                            <TextField placeholder={t("HubSpot, 25  Street, Cambridge MA 02141, United States")} fullWidth
+                            <TextField placeholder={t("HubSpot, 25 First Street, Cambridge MA 02141, United States")} fullWidth
                                 sx={{ input: { px: 1, py: 1.9375 }, 'fieldset': { border: 'none' }, backgroundColor: 'neutral.gray100', borderRadius: 2 }} />
                         </Box>
                     </Box>
