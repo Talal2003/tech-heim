@@ -28,7 +28,7 @@ export default function AccountPersonalData() {
                 <Typography fontWeight="lighter" color="neutral.gray700">{t("Verify your identity")}</Typography>
             </Box>
             <Grid container spacing={3}>
-                <Grid size={{ xs: 12, md: 6 }} >
+                <Grid size={{ xs: 12, lg: 6 }} >
                     <Box sx={{
                         display: "flex", flexDirection: "row", justifyContent: "space-between",
                         alignItems: "center", backgroundColor: "neutral.gray100", borderRadius: 2, gap: 0.5, p: 2
@@ -43,7 +43,7 @@ export default function AccountPersonalData() {
                         </IconButton>
                     </Box>
                 </Grid>
-                <Grid size={{ xs: 12, md: 6 }} >
+                <Grid size={{ xs: 12, lg: 6 }} >
                     <Box sx={{
                         display: "flex", flexDirection: "row", justifyContent: "space-between",
                         alignItems: "center", backgroundColor: "neutral.gray100", borderRadius: 2, gap: 0.5, p: 2
@@ -58,7 +58,7 @@ export default function AccountPersonalData() {
                         </IconButton>
                     </Box>
                 </Grid>
-                <Grid size={{ xs: 12, md: 6 }} >
+                <Grid size={{ xs: 12, lg: 6 }} >
                     <Box sx={{
                         display: "flex", flexDirection: "row", justifyContent: "space-between",
                         alignItems: "center", backgroundColor: "neutral.gray100", borderRadius: 2, gap: 0.5, p: 2
@@ -73,7 +73,7 @@ export default function AccountPersonalData() {
                         </IconButton>
                     </Box>
                 </Grid>
-                <Grid size={{ xs: 12, md: 6 }} >
+                <Grid size={{ xs: 12, lg: 6 }} >
                     <Box sx={{
                         display: "flex", flexDirection: "row", justifyContent: "space-between",
                         alignItems: "center", backgroundColor: "neutral.gray100", borderRadius: 2, gap: 0.5, p: 2
@@ -87,7 +87,7 @@ export default function AccountPersonalData() {
                         </IconButton>
                     </Box>
                 </Grid>
-                <Grid size={{ xs: 12, md: 6 }} >
+                <Grid size={{ xs: 12, lg: 6 }} >
                     <Box sx={{
                         display: "flex", flexDirection: "row", justifyContent: "space-between",
                         alignItems: "center", backgroundColor: "neutral.gray100", borderRadius: 2, gap: 0.5, p: 2
@@ -102,7 +102,7 @@ export default function AccountPersonalData() {
                         </IconButton>
                     </Box>
                 </Grid>
-                <Grid size={{ xs: 12, md: 6 }} >
+                <Grid size={{ xs: 12, lg: 6 }} >
                     <Box sx={{
                         display: "flex", flexDirection: "row", justifyContent: "space-between",
                         alignItems: "center", backgroundColor: "neutral.gray100", borderRadius: 2, gap: 0.5, p: 2

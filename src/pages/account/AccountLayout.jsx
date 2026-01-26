@@ -21,8 +21,8 @@ export default function AccountLayout() {
 
     return (
         <>
-            <Box sx={{ display: "flex", flexDirection: "row", gap: 3 }}>
-                <Box sx={{ display: "flex", flexDirection: "column", backgroundColor: "neutral.gray100" }}>
+            <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: 3 }}>
+                <Box sx={{ display: "flex", flexDirection: "column", backgroundColor: "neutral.gray100", borderRadius: 2 }}>
                     <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2, px: 1, py: 0.25 }}>
                         <AccountCircleOutlinedIcon sx={{ color: 'neutral.gray500', fontSize: '3.75rem' }} />
                         <Typography component={"h5"} variant="h6">{user.name ||
@@ -66,7 +66,7 @@ export default function AccountLayout() {
                         <Typography component={"body1"} variant="h6" color="error" fontWeight="lighter">{t("Log out")}</Typography>
                     </Button>
                 </Box>
-                <Box sx={{ flex: 1, pr: 13 }}>
+                <Box sx={{ flex: 1, pr: { xs: 0, md: 13 } }}>
                     <Outlet />
                 </Box>
             </Box >
