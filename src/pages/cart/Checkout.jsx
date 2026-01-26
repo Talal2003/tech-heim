@@ -4,6 +4,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import useCart from "../../hooks/useCart";
 import { useState } from "react";
 import useCheckout from "../../hooks/useCheckout";
+import ImageNotSupportedOutlinedIcon from '@mui/icons-material/ImageNotSupportedOutlined';
 
 export default function Checkout() {
 
@@ -82,12 +83,16 @@ export default function Checkout() {
                                 {data.items.map(item => (
                                     <Card key={item.productId} sx={{ boxShadow: "none" }}>
                                         <Box sx={{ display: "flex", flexDirection: "row", gap: 0.75, p: 0.75 }}>
-                                            <CardMedia
-                                                component="img"
-                                                sx={{ width: 87, objectFit: 'contain', borderRadius: 2 }}
-                                                image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                                                title=""
-                                            />
+                                            {item.image != null ?
+                                                <CardMedia
+                                                    component="img"
+                                                    sx={{ width: 87, objectFit:'contain', borderRadius: 2 }}
+                                                    image={item.image}
+                                                    title=""
+                                                />
+                                                :
+                                                <ImageNotSupportedOutlinedIcon sx={{ width: 87, height: '100%', color: 'neutral.gray500' }} />
+                                            }
                                             <Box sx={{ display: "flex", flexDirection: "column", gap: 1, color: "neutral.gray1000", width: "100%" }}>
                                                 <Typography variant="body2">{item.productName}</Typography>
                                                 <Typography variant="caption" sx={{ color: "neutral.gray700" }}>x{item.count}</Typography>

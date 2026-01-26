@@ -11,6 +11,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import useUpdateCartItem from "../../hooks/useUpdateCartItem";
 import { useTranslation } from "react-i18next";
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import ImageNotSupportedOutlinedIcon from '@mui/icons-material/ImageNotSupportedOutlined';
 
 export default function Cart() {
 
@@ -41,12 +42,16 @@ export default function Cart() {
             <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
               {data.items.map(item => (
                 <Card key={item.productId} sx={{ display: "flex", flexDirection: "row", gap: 3, px: 2, py: 1, alignItems: "center" }}>
-                  <CardMedia
-                    component="img"
-                    sx={{ width: 182, height: '100%', borderRadius: 2 }}
-                    image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                    title=""
-                  />
+                  {item.image != null ?
+                    <CardMedia
+                      component="img"
+                      sx={{ width: 182, height: '100%', borderRadius: 2 }}
+                      image={item.image}
+                      title=""
+                    />
+                    :
+                    <ImageNotSupportedOutlinedIcon sx={{ width: 182, height: '100%', color: 'neutral.gray500' }} />
+                  }
                   <CardContent sx={{ display: "flex", flexDirection: "column", gap: 3, flex: 1 }}>
                     <Typography>{item.productName}</Typography>
                     <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
