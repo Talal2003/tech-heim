@@ -73,7 +73,6 @@ export default function ProductDetails() {
     const [rating, setRating] = useState(0);
     const navigate = useNavigate();
     const handleReviewSubmit = () => {
-        console.log(`Raintg: ${rating}, Comment: ${comment}`);
         addReview({
             Rating: rating,
             Comment: comment,
@@ -252,7 +251,7 @@ export default function ProductDetails() {
                         </Box>
                     </Box>
                 </Grid>
-                {productData.response.reviews.length == 0 ? (
+                {productData.response.reviews.length != 0 ? (
                     <Grid size={{ xs: 12, md: 8, lg: 9 }}>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, pt: 6 }}>
                             {product.reviews.map(review => (
