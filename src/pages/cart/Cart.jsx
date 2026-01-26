@@ -12,12 +12,14 @@ import useUpdateCartItem from "../../hooks/useUpdateCartItem";
 import { useTranslation } from "react-i18next";
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import ImageNotSupportedOutlinedIcon from '@mui/icons-material/ImageNotSupportedOutlined';
+import useClearCart from "../../hooks/useClearCart";
 
 export default function Cart() {
 
   const { data, isLoading, isError, error } = useCart();
   const { mutate: removeItem, isPending: removeItemPending } = useRemoveFromCart();
   const { mutate: updateItem, isPending: updateItemPending } = useUpdateCartItem();
+  const { mutate: clearCart, isPending: clearCartPending } = useClearCart();
   const { t } = useTranslation();
   const handleUpdate = (productId, action) => {
     const item = data.items.find(i => i.productId == productId);
@@ -101,6 +103,13 @@ export default function Cart() {
                   </CardContent>
                 </Card>
               ))}
+            </Box>
+            <Box sx={{ display: "flex", justifyContent: "flex-end", pt: 2 }}>
+              <Button onClick={clearCart} disabled={clearCartPending} variant='outlined' color='error'
+                sx={{ display: 'flex', textTransform: "none", gap: 1, px: 3, py: 1.5, borderRadius: 2, borderWidth: 2 }}>
+                <DeleteOutlineIcon fontSize="small" />
+                {t("Clear Cart")}
+              </Button>
             </Box>
           </Grid>
           <Grid size={{ xs: 12, md: 5, lg: 4 }}>

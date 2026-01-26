@@ -130,6 +130,7 @@ i18n
                     "Payment status": "Payment status",
                     "Order status": "Order status",
                     "Track, return or purchase items": "Track, return or purchase items",
+                    "Clear Cart": "Clear Cart"
                 }
             },
             ar: {
@@ -258,6 +259,7 @@ i18n
                     "Payment status": "حالة الدفع",
                     "Order status": "حالة الطلب",
                     "Track, return or purchase items": "تتبع، إرجاع أو شراء العناصر",
+                    "Clear Cart": "مسح السلة"
                 }
             }
         },

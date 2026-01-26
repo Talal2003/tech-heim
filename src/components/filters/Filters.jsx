@@ -2,15 +2,24 @@ import { Accordion, AccordionSummary, Box, Button, Slider, TextField, Typography
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTranslation } from 'react-i18next';
 
-export default function Filters({ register }) {
+export default function Filters({ register, setValue, handleSubmit, applyFilters }) {
 
     const { t } = useTranslation();
+
+    const clearAll = () => {
+        setValue("search", '')
+        setValue("categoryId", '')
+        setValue("minPrice", '')
+        setValue("maxPrice", '')
+        setValue("ascending", '')
+        handleSubmit(applyFilters)()
+    }
 
     return (
         <Box sx={{ display: "flex", gap: 1, flexDirection: "column", p: 2 }}>
             <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <Typography variant="subtitle1" fontWeight="bold">{t("Filters")}</Typography>
-                <Button size="small" sx={{ px: 6.5, textTransform: 'none' }}>{t("Clear all")}</Button>
+                <Button onClick={clearAll} size="small" sx={{ px: 6.5, textTransform: 'none' }}>{t("Clear all")}</Button>
             </Box>
 
             <Accordion sx={{ boxShadow: "none" }}>
