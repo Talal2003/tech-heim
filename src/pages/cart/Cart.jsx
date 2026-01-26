@@ -22,7 +22,12 @@ export default function Cart() {
   const handleUpdate = (productId, action) => {
     const item = data.items.find(i => i.productId == productId);
     if (action == '-') {
-      updateItem({ productId, count: item.count - 1 })
+      if (item.count - 1 == 0) {
+        removeItem(productId)
+      }
+      else {
+        updateItem({ productId, count: item.count - 1 })
+      }
     } else {
       updateItem({ productId, count: item.count + 1 })
     }
