@@ -10,6 +10,7 @@ import useAddToCart from '../../hooks/useAddToCart';
 import { useTranslation } from 'react-i18next';
 import useReviews from '../../hooks/useReviews';
 import { useState } from 'react';
+import CommentsDisabledOutlinedIcon from '@mui/icons-material/CommentsDisabledOutlined';
 
 export default function ProductDetails() {
     const itemData = [
@@ -251,32 +252,42 @@ export default function ProductDetails() {
                         </Box>
                     </Box>
                 </Grid>
-                <Grid size={{ xs: 12, md: 8, lg: 9 }}>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, pt: 6 }}>
-                        {product.reviews.map(review => (
-                            <Box key={review.id} sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, p: 2, backgroundColor: 'neutral.gray100' }}>
-                                <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
-                                    <Avatar alt="avatar" src=""
-                                        sx={{ width: 60, height: 60 }} />
-                                    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: "space-between", width: "100%" }}>
-                                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-                                            <Typography variant="h5">{review.userName}</Typography>
-                                            <Typography variant="caption">{review.createdAt}</Typography>
-                                        </Box>
-                                        <Box display="flex" alignItems="center"
-                                            sx={{ color: 'white', backgroundColor: "primary.500", p: 0.5, borderRadius: 1 }}>
-                                            <StarIcon fontSize="small" />
-                                            <Typography variant="body2">{review.rating}</Typography>
+                {productData.response.reviews.length == 0 ? (
+                    <Grid size={{ xs: 12, md: 8, lg: 9 }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, pt: 6 }}>
+                            {product.reviews.map(review => (
+                                <Box key={review.id} sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, p: 2, backgroundColor: 'neutral.gray100' }}>
+                                    <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
+                                        <Avatar alt="avatar" src=""
+                                            sx={{ width: 60, height: 60 }} />
+                                        <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: "space-between", width: "100%" }}>
+                                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                                                <Typography variant="h5">{review.userName}</Typography>
+                                                <Typography variant="caption">{review.createdAt}</Typography>
+                                            </Box>
+                                            <Box display="flex" alignItems="center"
+                                                sx={{ color: 'white', backgroundColor: "primary.500", p: 0.5, borderRadius: 1 }}>
+                                                <StarIcon fontSize="small" />
+                                                <Typography variant="body2">{review.rating}</Typography>
+                                            </Box>
                                         </Box>
                                     </Box>
+                                    <Box>
+                                        <Typography variant="body1">{review.comment}</Typography>
+                                    </Box>
                                 </Box>
-                                <Box>
-                                    <Typography variant="body1">{review.comment}</Typography>
-                                </Box>
-                            </Box>
-                        ))}
-                    </Box>
-                </Grid>
+                            ))}
+                        </Box>
+                    </Grid>
+                )
+                    :
+                    <Grid size={{ xs: 12, md: 8, lg: 9 }}
+                        sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', color: 'neutral.gray600', gap: 2 }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 1.5, p: 2 }}>
+                            <CommentsDisabledOutlinedIcon sx={{ fontSize: 80 }} />
+                            <Typography variant="h6">No comments available for this product</Typography>
+                        </Box>
+                    </Grid>}
             </Grid>
         </>
     )
