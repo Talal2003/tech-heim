@@ -28,6 +28,8 @@ export default function AccountOrders() {
   const orders = data.orders.slice((page - 1) * ordersPerPage, page * ordersPerPage);
   const numberOfPages = Math.ceil(totalOrders / ordersPerPage);
 
+  console.log(data)
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: 2, lg: 5 } }}>
       <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>

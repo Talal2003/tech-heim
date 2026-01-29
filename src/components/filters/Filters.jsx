@@ -2,7 +2,7 @@ import { Accordion, AccordionSummary, Box, Button, Slider, TextField, Typography
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTranslation } from 'react-i18next';
 
-export default function Filters({ register, setValue, handleSubmit, applyFilters }) {
+export default function Filters({ register, setValue, handleSubmit, applyFilters, setSortBy, setAscending }) {
 
     const { t } = useTranslation();
 
@@ -11,7 +11,10 @@ export default function Filters({ register, setValue, handleSubmit, applyFilters
         setValue("categoryId", '')
         setValue("minPrice", '')
         setValue("maxPrice", '')
+        setValue("sortBy", '')
         setValue("ascending", '')
+        setSortBy('')
+        setAscending('true')
         handleSubmit(applyFilters)()
     }
 

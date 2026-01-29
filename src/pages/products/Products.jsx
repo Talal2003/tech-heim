@@ -62,7 +62,8 @@ export default function Products() {
       <Categories setValue={setValue} handleSubmit={handleSubmit} applyFilters={applyFilters} />
       <Grid container spacing={4}>
         <Grid size={{ sm: 12, md: 4, lg: 3 }}>
-          <Filters register={register} setValue={setValue} handleSubmit={handleSubmit} applyFilters={applyFilters} />
+          <Filters register={register} setValue={setValue} handleSubmit={handleSubmit}
+            applyFilters={applyFilters} setSortBy={setSortBy} setAscending={setAscending} />
           <Button form="filtersForm" type="submit" variant="outlined" fullWidth
             sx={{ mt: 2, borderRadius: 2 }}>
             {t("Apply")}
