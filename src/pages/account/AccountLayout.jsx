@@ -1,6 +1,8 @@
 import { Box, Button, Tab, Tabs, Typography } from "@mui/material";
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
+import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import useAuthStore from "../../store/authStore";
 import { useTranslation } from "react-i18next";
@@ -46,7 +48,7 @@ export default function AccountLayout() {
                             to='payment-instalments'
                             label={
                                 <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", color: "inherit", textTransform: "none", gap: 2 }}>
-                                    <ManageAccountsOutlinedIcon sx={{ color: 'neutral.gray900' }} />
+                                    <PaidOutlinedIcon sx={{ color: 'neutral.gray900' }} />
                                     <Typography component={"body1"} variant="h6" fontWeight="lighter">{t("Payment & Instalments")}</Typography>
                                 </Box>
                             } />
@@ -55,7 +57,7 @@ export default function AccountLayout() {
                             to='orders'
                             label={
                                 <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", color: "inherit", textTransform: "none", gap: 2 }}>
-                                    <ManageAccountsOutlinedIcon sx={{ color: "neutral.gray900" }} />
+                                    <ShoppingCartOutlinedIcon sx={{ color: "neutral.gray900" }} />
                                     <Typography component={"body1"} variant="h6" fontWeight="lighter">{t("Orders")}</Typography>
                                 </Box>
                             } />
