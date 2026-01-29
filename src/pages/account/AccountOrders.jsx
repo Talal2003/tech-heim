@@ -4,6 +4,7 @@ import useAccount from "../../hooks/useAccount";
 import { useEffect, useState } from "react";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 
 export default function AccountOrders() {
 
@@ -28,43 +29,48 @@ export default function AccountOrders() {
   const orders = data.orders.slice((page - 1) * ordersPerPage, page * ordersPerPage);
   const numberOfPages = Math.ceil(totalOrders / ordersPerPage);
 
-  console.log(data)
-
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: 2, lg: 5 } }}>
       <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
         <Typography component={"h5"} variant="h6">{t("Order History")}</Typography>
         <Typography component={"span"} variant="body1" color='neutral.gray700'>{t("Track, return or purchase items")}</Typography>
       </Box>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 3, px: 2, py: 2.125 }}>
-        {orders.map(order => (
-          <Box key={order.id} sx={{
-            display: "flex", flexDirection: { xs: "column", lg: "row" }, backgroundColor: "neutral.gray200",
-            justifyContent: "space-evenly", borderRadius: 2, p: 2, gap: { xs: 1, lg: 0 }
-          }}>
-            <Box sx={{ display: "flex", flexDirection: { xs: "row", lg: "column" }, gap: 3, justifyContent: { xs: "space-between", lg: "center" } }}>
-              <Typography component={"h6"} variant="body1">{t("order code")}</Typography>
-              <Typography component={"span"} sx={{ fontSize: '1.125rem' }}>#{order.id}</Typography>
+      {data.orders.length != 0 ?
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 3, px: 2, py: 2.125 }}>
+          {orders.map(order => (
+            <Box key={order.id} sx={{
+              display: "flex", flexDirection: { xs: "column", lg: "row" }, backgroundColor: "neutral.gray200",
+              justifyContent: "space-evenly", borderRadius: 2, p: 2, gap: { xs: 1, lg: 0 }
+            }}>
+              <Box sx={{ display: "flex", flexDirection: { xs: "row", lg: "column" }, gap: 3, justifyContent: { xs: "space-between", lg: "center" } }}>
+                <Typography component={"h6"} variant="body1">{t("order code")}</Typography>
+                <Typography component={"span"} sx={{ fontSize: '1.125rem' }}>#{order.id}</Typography>
+              </Box>
+              <Box sx={{ display: "flex", flexDirection: { xs: "row", lg: "column" }, gap: 3, justifyContent: { xs: "space-between", lg: "center" } }}>
+                <Typography component={"h6"} variant="body1">{t("Placed on")}</Typography>
+                <Typography component={"span"} sx={{ fontSize: '1.125rem' }}>{order.orderDate}</Typography>
+              </Box>
+              <Box sx={{ display: "flex", flexDirection: { xs: "row", lg: "column" }, gap: 3, justifyContent: { xs: "space-between", lg: "center" } }}>
+                <Typography component={"h6"} variant="body1">{t("Total")}</Typography>
+                <Typography component={"span"} sx={{ fontSize: '1.125rem' }}>${order.amountPaid}</Typography>
+              </Box>
+              <Box sx={{ display: "flex", flexDirection: { xs: "row", lg: "column" }, gap: 3, justifyContent: { xs: "space-between", lg: "center" } }}>
+                <Typography component={"h6"} variant="body1">{t("Payment status")}</Typography>
+                <Typography component={"span"} sx={{ fontSize: '1.125rem' }}>{order.paymentStatus}</Typography>
+              </Box>
+              <Box sx={{ display: "flex", flexDirection: { xs: "row", lg: "column" }, gap: 3, justifyContent: { xs: "space-between", lg: "center" } }}>
+                <Typography component={"h6"} variant="body1">{t("Order status")}</Typography>
+                <Typography component={"span"} sx={{ fontSize: '1.125rem' }}>{order.status}</Typography>
+              </Box>
             </Box>
-            <Box sx={{ display: "flex", flexDirection: { xs: "row", lg: "column" }, gap: 3, justifyContent: { xs: "space-between", lg: "center" } }}>
-              <Typography component={"h6"} variant="body1">{t("Placed on")}</Typography>
-              <Typography component={"span"} sx={{ fontSize: '1.125rem' }}>{order.orderDate}</Typography>
-            </Box>
-            <Box sx={{ display: "flex", flexDirection: { xs: "row", lg: "column" }, gap: 3, justifyContent: { xs: "space-between", lg: "center" } }}>
-              <Typography component={"h6"} variant="body1">{t("Total")}</Typography>
-              <Typography component={"span"} sx={{ fontSize: '1.125rem' }}>${order.amountPaid}</Typography>
-            </Box>
-            <Box sx={{ display: "flex", flexDirection: { xs: "row", lg: "column" }, gap: 3, justifyContent: { xs: "space-between", lg: "center" } }}>
-              <Typography component={"h6"} variant="body1">{t("Payment status")}</Typography>
-              <Typography component={"span"} sx={{ fontSize: '1.125rem' }}>{order.paymentStatus}</Typography>
-            </Box>
-            <Box sx={{ display: "flex", flexDirection: { xs: "row", lg: "column" }, gap: 3, justifyContent: { xs: "space-between", lg: "center" } }}>
-              <Typography component={"h6"} variant="body1">{t("Order status")}</Typography>
-              <Typography component={"span"} sx={{ fontSize: '1.125rem' }}>{order.status}</Typography>
-            </Box>
-          </Box>
-        ))}
-      </Box>
+          ))}
+        </Box>
+        :
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'neutral.gray600', gap: 2 }}>
+          <ProductionQuantityLimitsIcon sx={{ fontSize: 80 }} />
+          <Typography variant="h6">You have no orders yet</Typography>
+        </Box>
+      }
       <Stack spacing={2} sx={{ alignSelf: 'center' }}>
         <Pagination page={page} onChange={(e, value) => setPage(value)} count={numberOfPages} shape="rounded"
           renderItem={(item) => (
