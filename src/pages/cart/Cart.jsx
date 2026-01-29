@@ -136,7 +136,7 @@ export default function Cart() {
               <CardActions sx={{ p: 0 }}>
                 <Button fullWidth variant="contained" sx={{ py: 1.8125, borderRadius: 2, textTransform: 'none' }}>
                   <Typography component={RouterLink} variant="body1" to='/checkout'
-                    sx={{ color: 'white', textDecoration: 'none' }}>{t("Procced to checkout")}</Typography>
+                    sx={{ color: 'white', textDecoration: 'none' }}>{t("Proceed to checkout")}</Typography>
                 </Button>
               </CardActions>
             </Card>
@@ -147,7 +147,7 @@ export default function Cart() {
         :
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'neutral.gray600', gap: 2 }}>
           <ProductionQuantityLimitsIcon sx={{ fontSize: 80 }} />
-          <Typography variant="h6">Your cart is empty</Typography>
+          <Typography variant="h6">{t("Your cart is empty")}</Typography>
         </Box>}
     </>
   )

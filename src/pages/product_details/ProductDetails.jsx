@@ -223,7 +223,7 @@ export default function ProductDetails() {
                         sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', color: 'neutral.gray600', gap: 2 }}>
                         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 1.5, p: 2 }}>
                             <CommentsDisabledOutlinedIcon sx={{ fontSize: 80 }} />
-                            <Typography variant="h6">No comments available for this product</Typography>
+                            <Typography variant="h6">{t("No comments available for this product")}</Typography>
                         </Box>
                     </Grid>}
             </Grid>
