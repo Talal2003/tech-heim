@@ -22,7 +22,8 @@ export default function ProductDetails() {
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState(0);
     const navigate = useNavigate();
-    const handleReviewSubmit = () => {
+    const handleReviewSubmit = (e) => {
+        e.preventDefault();
         addReview({
             Rating: rating,
             Comment: comment,
