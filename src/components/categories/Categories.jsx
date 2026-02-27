@@ -21,7 +21,7 @@ export default function Categories({ setValue, handleSubmit, applyFilters }) {
                 handleSubmit(applyFilters)()
             }}
                 variant="scrollable" scrollButtons="auto" aria-label="categories tabs">
-                {data.response.map((category, index) =>
+                {data.response.data.map((category, index) =>
                     <Tab key={category.id} label={category.name} value={index} />
                 )}
             </Tabs>
